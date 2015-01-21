@@ -1,8 +1,8 @@
-Reproducible Research Project Initialization
+Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis
 =======
 
-Research project initialization and organization following reproducible research
-guidelines as modified for use with typical microbial ecology projects
+....Summary of the project needs to be written here....
+
 
 Overview
 --------
@@ -27,90 +27,9 @@ Overview
     |
     |- scratch/        # temporary files that can be safely deleted or lost
     |
-    |- study.Rmd       # executable Rmarkdown for this study, if applicable
-    |- study.md        # Markdown (GitHub) version of the *Rmd file
-    |- study.html      # HTML version of *.Rmd file
+    |- Zackular_AbAOMDSS_GutMicrobes_2015.Rmd  # executable Rmarkdown for this study, if applicable
+    |- Zackular_AbAOMDSS_GutMicrobes_2015.md   # Markdown (GitHub) version of the *Rmd file
+    |- Zackular_AbAOMDSS_GutMicrobes_2015.html # HTML version of *.Rmd file
     |
-    +- Makefile        # executable Makefile for this study, if applicable
+    +- Makefile        # executable Makefile for this study
 
-
-How to use
-----------
-
-* Download the [latest release](https://github.com/SchlossLab/new_project/archive/schloss_v0.1.tar.gz) to the directory and decompress
-* Rename the decompressed/untarred file to the name of your project. Name the
-folder in the format `LastName_BriefDescription_Journal_Year`. For example,
-"Kozich_MiSeqSOP_AEM_2013" will work. Move into the folder.
-
-* At the prompt type:
-
-  ```
-  git init ./
-  git add .
-  git commit -m "Initial commit"
-  ```
-
-* Go to the [SchlossLab repository](https://github.com/schlosslab) on GitHub and
-create a new repository with the same name as your folder. Click the "Create
-Repository" button.
-* Follow the instructions for pushing an existing repository from the command line. For example:
-
-  ```
-  git remote add origin https://github.com/SchlossLab/miseq_analysis.git
-  git push -u origin master
-  ```
-
-* Open this document (i.e. README.md) in an editor. Change the first line to
-reflect the title of your research study, and delete the rest of the content
-in this file. You can, but are not obligated to keep the Acknowledgements
-section.
-
-* In the directory tree of the README.md file, customize the comments to fit
-your project. Update this tree as the project proceeds.
-
-* Replace the word `study` in `study.Rmd`, `study.md`, and `study.html` to be
-the name of your project.
-
-* Do the following...
-
-```
-git mv newproject_LICENSE LICENSE.md
-git commit -m "Use MIT license for project"
-```
-
-* Go forth and experiment, keeping files in their appropriate places.
-
-* You will want to update this page as you go through your work. It is likely
-that you'll need to provide a link to the published paper, a brief description
-of the study, and instructions for how to generate the paper.
-
-
-Key concepts and goals
-----------------------
-
-To the extent possible under law, the author(s) of this template have dedicated
-all copyright and related and neighboring rights to it to the public domain
-worldwide under the [CC0 Public Domain Dedication]. The template and all other
-content in the [rr-init repository] is distributed without any warranty.
-
-See [Noble 2009] for a full description of and argument for the principle template structure. Some concepts and goals that guided this work:
-* (Good) There is a folder for the raw data, which do not get altered, or intermixed with data that is the result of manual or programmatic manipulation. I.e., derived data is kept separate from raw data, and raw data are not duplicated.
-* (Good) Code is kept separate from data.
-* (Better) Manuscript production output is kept separate from everything else.
-* (Good) There is a scratch directory for experimentation. Everything in the scratch directory can be deleted at any time without negative impact.
-* (Better) There should be a `README` in evey directory, describing the purpose of the directory and its contents.
-* (Best) There is a top-level `Makefile` or [Rmarkdown] file that documents the computational study in executable form. Those files may call out to other `Makefile`'s or `.Rmd` files in subdirectories.
-* (Best) There is a formal metadata descriptor at the root of the package that describes all the important input and output data files.
-* (Meta) The template structure should have no special software or skill prerequisites to install. Specifically, deploying the template structure should not require installing git, or using the command line.
-
-Acknowledgements
-----------------
-
-The initial file and directory structure of this project was developed by a group of participants in the Reproducible Science Curriculum Workshop, held at [NESCent] in December 2014. The structure is based on, and heavily follows the one proposed by [Noble 2009], with a few but small modifications. It has been further modified by Pat Schloss to fit the needs of his research group.
-
-[rr-init repository]: https://github.com/Reproducible-Science-Curriculum/rr-init
-[latest release]: https://github.com/Reproducible-Science-Curriculum/rr-init/releases/latest
-[NESCent]: http://nescent.org
-[Rmarkdown]: http://rmarkdown.rstudio.com/
-[Noble 2009]: http://dx.doi.org/10.1371/journal.pcbi.1000424
-[CC0 Public Domain Dedication]: http://creativecommons.org/publicdomain/zero/1.0/
