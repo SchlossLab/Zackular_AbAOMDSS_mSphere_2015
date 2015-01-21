@@ -1,8 +1,7 @@
 Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis
 =======
 
-....Summary of the project needs to be written here....
-
+...Insert Abstract here...
 
 Overview
 --------
@@ -32,4 +31,3 @@ Overview
     |- Zackular_AbAOMDSS_GutMicrobes_2015.html # HTML version of *.Rmd file
     |
     +- Makefile        # executable Makefile for this study
-
