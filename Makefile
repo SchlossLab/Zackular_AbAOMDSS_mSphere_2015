@@ -82,7 +82,7 @@ data/raw/get_data : code/get_fastqs.sh data/raw/ab_aomdss.files
 
 GOOD_STEM = data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster
 
-$(GOOD_STEM).uchime.pick.pick.count_table $(GOOD_STEM).pick.pick.fasta $(GOOD_STEM).pick.pds.wang.pick.taxonomy : code/get_good_seqs.batch\
+$(GOOD_STEM).uchime.pick.pick.count_table $(GOOD_STEM).pick.pick.fasta $(GOOD_STEM).pick.v4.wang.pick.taxonomy : code/get_good_seqs.batch\
 										data/raw/get_data\
 										data/references/silva.v4.align\
 										data/references/trainset10_082014.v4.fasta\
