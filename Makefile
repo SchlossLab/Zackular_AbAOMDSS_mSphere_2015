@@ -92,30 +92,33 @@ $(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC
 										data/references/silva.v4.align\
 										data/references/trainset10_082014.v4.fasta\
 										data/references/trainset10_082014.v4.tax
-	mothur code/get_good_seqs.batch
+	mothur code/get_good_seqs.batch;\
+	rm data/process/*.map
 
 
 
 # here we go from the good sequences and generate a shared file and a
 # cons.taxonomy file based on OTU data
-$(BASIC_STEM).pick.an.unique_list.shared $(BASIC_STEM).pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
+$(BASIC_STEM).pick.pick.pick.an.unique_list.shared $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(BASIC_STEM).pick.v4.wang.pick.taxonomy
 	mothur code/get_shared_otus.batch;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
-	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;\
+	rm data/process/*.an.*rabund
 
 
 
 # here we go from the good sequences and generate a shared file and a
 # cons.taxonomy file based on phylum-level data
-phylum_shared : code/get_shared_otus.batch\
+$(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy $(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared : code/get_shared_phyla.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(BASIC_STEM).pick.v4.wang.pick.taxonomy
 	mothur code/get_shared_phyla.batch;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
-	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;\
+	rm data/process/*.tx.*rabund;
