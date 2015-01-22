@@ -1,5 +1,5 @@
 set.current(inputdir=data/process, outputdir=data/process, processors=8)
-remove.groups(count=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.count_table, fasta=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, taxonomy=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy, groups=mock1-mock2-mock3-mock4-GD1-GD2-GD3-GD4-water1-water2)
+remove.groups(count=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.count_table, fasta=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, taxonomy=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.taxonomy, groups=mock1-mock2-mock3-mock4-GD1-GD2-GD3-GD4-water1-water2)
 cluster.split(fasta=current, count=current, taxonomy=current, splitmethod=classify, taxlevel=4, cutoff=0.15)
 make.shared(list=current, count=current, label=0.03)
 classify.otu(list=current, count=current, taxonomy=current, label=0.03)
