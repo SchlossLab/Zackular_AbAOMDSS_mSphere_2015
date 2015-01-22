@@ -66,16 +66,8 @@ AllAbs_NT_d5	Allabs-NT-d5_S180_L001_R1_001.fastq	Allabs-NT-d5_S180_L001_R2_001.f
 AllAbs_NT_d69	Allabs-NT-d69_S183_L001_R1_001.fastq	Allabs-NT-d69_S183_L001_R2_001.fastq
 AllAbs_NT_d74	Allabs-NT-d74_S184_L001_R1_001.fastq	Allabs-NT-d74_S184_L001_R2_001.fastq
 AllAbs_NT_dneg7	Allabs-NT-dneg7_S178_L001_R1_001.fastq	Allabs-NT-dneg7_S178_L001_R2_001.fastq
-control_GD1	Gd1_S95_L001_R1_001.fastq	Gd1_S95_L001_R2_001.fastq
-control_GD2	Gd2_S191_L001_R1_001.fastq	Gd2_S191_L001_R2_001.fastq
-control_GD3	GD3_S287_L001_R1_001.fastq	GD3_S287_L001_R2_001.fastq
-control_GD4	GD4_S383_L001_R1_001.fastq	GD4_S383_L001_R2_001.fastq
-control_mock1	mock1_S96_L001_R1_001.fastq	mock1_S96_L001_R2_001.fastq
 control_mock2	mock2_S192_L001_R1_001.fastq	mock2_S192_L001_R2_001.fastq
 control_mock3	mock3_S288_L001_R1_001.fastq	mock3_S288_L001_R2_001.fastq
-control_mock4	mock4_S384_L001_R1_001.fastq	mock4_S384_L001_R2_001.fastq
-control_water1	water1_S286_L001_R1_001.fastq	water1_S286_L001_R2_001.fastq
-control_water2	water2_S287_L001_R1_001.fastq	water2_S287_L001_R2_001.fastq
 DSSonly_m7469_d25	DSSonly-m7469-d25_S357_L001_R1_001.fastq	DSSonly-m7469-d25_S357_L001_R2_001.fastq
 DSSonly_m7469_d26	DSSonly-m7469-d26_S358_L001_R1_001.fastq	DSSonly-m7469-d26_S358_L001_R2_001.fastq
 DSSonly_m7469_d4	DSSonly-m7469-d4_S355_L001_R1_001.fastq	DSSonly-m7469-d4_S355_L001_R2_001.fastq
