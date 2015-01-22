@@ -125,7 +125,7 @@ $(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy $(BASIC_STEM).pick.v4.wa
 
 
 # now we want to get the sequencing error as seen in the mock community samples
-$(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch
+$(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta
 	mothur code/get_error.batch
