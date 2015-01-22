@@ -68,3 +68,23 @@ $(REFS)HMP_MOCK.v4.fasta : $(REFS)HMP_MOCK.fasta $(REFS)silva.v4.align
 	rm $(REFS)HMP_MOCK.align.report;\
 	rm $(REFS)HMP_MOCK.flip.accnos
 
+
+################################################################################
+#
+#	Part 2: Run data through mothur
+#
+#
+################################################################################
+
+data/raw/get_data : code/get_fastqs.sh data/raw/ab_aomdss.files
+	bash code/get_fastqs.sh data/raw/ab_aomdss.files;\
+	touch data/raw/get_data
+
+GOOD_STEM = data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster
+
+$(GOOD_STEM).uchime.pick.pick.count_table $(GOOD_STEM).pick.pick.fasta $(GOOD_STEM).pick.pds.wang.pick.taxonomy : code/get_good_seqs.batch\
+										data/raw/get_data\
+										data/references/silva.v4.align\
+										data/references/trainset10_082014.v4.fasta\
+										data/references/trainset10_082014.v4.tax
+	mothur code/get_good_seqs.batch
