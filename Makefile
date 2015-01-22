@@ -27,7 +27,7 @@ $(REFS)silva.bacteria.align :
 	rm $(REFS)README.html; \
 	rm $(REFS)README.Rmd; \
 	rm $(REFS)silva.nr_v119.*
-	
+
 #get the v4 region of the alignment
 $(REFS)silva.v4.align : $(REFS)silva.bacteria.align
 	mothur "#pcr.seqs(fasta=$(REFS)silva.bacteria.align, start=11894, end=25319, keepdots=F, processors=8);\
@@ -80,11 +80,22 @@ data/raw/get_data : code/get_fastqs.sh data/raw/ab_aomdss.files
 	bash code/get_fastqs.sh data/raw/ab_aomdss.files;\
 	touch data/raw/get_data
 
-GOOD_STEM = data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster
+BASIC_STEM = data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster
 
-$(GOOD_STEM).uchime.pick.pick.count_table $(GOOD_STEM).pick.pick.fasta $(GOOD_STEM).pick.v4.wang.pick.taxonomy : code/get_good_seqs.batch\
+$(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC_STEM).pick.v4.wang.pick.taxonomy : code/get_good_seqs.batch\
 										data/raw/get_data\
 										data/references/silva.v4.align\
 										data/references/trainset10_082014.v4.fasta\
 										data/references/trainset10_082014.v4.tax
 	mothur code/get_good_seqs.batch
+
+
+
+$(BASIC_STEM).pick.an.unique_list.shared $(BASIC_STEM).pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
+										$(BASIC_STEM).unique.precluster.uchime.pick.pick.count_table\
+										$(BASIC_STEM).pick.pick.fasta\
+										$(BASIC_STEM).pick.pds.wang.pick.taxonomy
+	mothur code/get_shared_otus.batch;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy
