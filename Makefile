@@ -102,11 +102,12 @@ $(BASIC_STEM).pick.an.unique_list.shared $(BASIC_STEM).pick.an.unique_list.0.03.
 
 
 
-phylum_shared : code/get_shared_otus.batch\
+$(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy $(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared : code/get_shared_phyla.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(BASIC_STEM).pick.v4.wang.pick.taxonomy
 	mothur code/get_shared_phyla.batch;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
-	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;\
+	rm data/process/*.tx.*rabund;
