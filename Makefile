@@ -90,8 +90,7 @@ $(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC
 	mothur code/get_good_seqs.batch
 
 
-
-$(BASIC_STEM).pick.an.unique_list.shared $(BASIC_STEM).pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
+$(BASIC_STEM).pick.pick.pick.an.unique_list.shared $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(BASIC_STEM).pick.v4.wang.pick.taxonomy
