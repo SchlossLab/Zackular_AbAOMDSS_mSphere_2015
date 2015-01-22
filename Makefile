@@ -82,6 +82,11 @@ data/raw/get_data : code/get_fastqs.sh data/raw/ab_aomdss.files
 
 BASIC_STEM = data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster
 
+
+
+# here we go from the raw fastq files and the files file to generate a fasta,
+# taxonomy, and count_table file that has had the chimeras removed as well as
+# any non bacterial sequences
 $(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC_STEM).pick.v4.wang.pick.taxonomy : code/get_good_seqs.batch\
 										data/raw/get_data\
 										data/references/silva.v4.align\
@@ -91,6 +96,8 @@ $(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC
 
 
 
+# here we go from the good sequences and generate a shared file and a
+# cons.taxonomy file based on OTU data
 $(BASIC_STEM).pick.an.unique_list.shared $(BASIC_STEM).pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
@@ -102,6 +109,8 @@ $(BASIC_STEM).pick.an.unique_list.shared $(BASIC_STEM).pick.an.unique_list.0.03.
 
 
 
+# here we go from the good sequences and generate a shared file and a
+# cons.taxonomy file based on phylum-level data
 phylum_shared : code/get_shared_otus.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
