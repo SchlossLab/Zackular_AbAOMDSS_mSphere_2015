@@ -129,3 +129,12 @@ $(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta
 	mothur code/get_error.batch
+
+
+# rarefy the number of reads to 2500 sequences per library for the alpha and beta diversity analyses
+$(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist : $(BASIC_STEM).pick.pick.pick.an.unique_list.shared
+	mothur "#dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100)";\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.groups.summary;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.dist;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.std.dist
+
