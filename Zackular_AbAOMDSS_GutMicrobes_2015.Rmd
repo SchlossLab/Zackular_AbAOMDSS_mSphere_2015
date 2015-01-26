@@ -17,7 +17,7 @@ University of Michigan, Ann Arbor, MI
 **Introduction**
 The mammalian gastrointestinal tract is home to a complex and dynamic community
 of microorganisms, termed the gut microbiome, which is essential for maintaining
-host health [Backhed et al*.,* 2005].  Among the bacterial populations that make
+host health [Backhed et al*.,* 2005]. Among the bacterial populations that make
 make up the gut microbiome there are complex interactions that have an important
 effect on host health [Levy and Bordenstein, 2013, Marino et al., 2013, Lepp et
 al., 2004]. The number of diseases that are associated with abnormalities in the
@@ -39,7 +39,7 @@ microbiota of human donors and observed significant variation in the number of
 tumors that formed [Baxter et al., 2014]. Combined, these results demonstrate
 that the microbiota interact with the host to potentiate tumorigenesis. A
 critical question that remains unanswered is what factors and ecological
-principles mediate the gut microbiome's influence on this process.  Deciphering
+principles mediate the gut microbiome's influence on this process. Deciphering
 how changes in community composition and structure disturb these interactions,
 and subsequently modulate tumorigenesis, is an essential step in understanding
 the etiology of CRC.
@@ -425,38 +425,38 @@ number, not actual bacterial numbers.
 
 **References**
 
-1.  Backhed F, Ley RE, Sonnenburg JL, Peterson DA, Gordon JI (2005)
+1. Backhed F, Ley RE, Sonnenburg JL, Peterson DA, Gordon JI (2005)
     Host-bacterial mutualism in the human intestine. Science 307:
     1915-1920.
 
-2.  Chen HM, Yu YN, Wang JL, Lin YW, Kong X, et al. (2013) Decreased
+2. Chen HM, Yu YN, Wang JL, Lin YW, Kong X, et al. (2013) Decreased
     dietary fiber intake and structural alteration of gut microbiota in
     patients with advanced colorectal adenoma. Am J Clin Nutr.
 
-3.  Chen W, Liu F, Ling Z, Tong X, Xiang C (2012) Human Intestinal Lumen
+3. Chen W, Liu F, Ling Z, Tong X, Xiang C (2012) Human Intestinal Lumen
     and Mucosa-Associated Microbiota in Patients with Colorectal Cancer.
     PLoS ONE 7(6): e39743. doi:10.1371/journal.pone.0039743
 
-4.  Kostic AD, Gevers D, Pedamallu CS, Michaud M, Duke F, et al. (2012)
+4. Kostic AD, Gevers D, Pedamallu CS, Michaud M, Duke F, et al. (2012)
     Genomic analysis identifies association of *Fusobacterium* with
     colorectal carcinoma. Genome Res 22: 292-298.
 
-5.  Geng J, Fan H, Tang X, Zhai H, Zhang Z (2013) Diversified pattern of
+5. Geng J, Fan H, Tang X, Zhai H, Zhang Z (2013) Diversified pattern of
     the human colorectal cancer microbiome. Gut Pathog 5: 2.
 
-6.  Shen XJ, Rawls JF, Randall T, Burcal L, Mpande CN, et al. (2010)
+6. Shen XJ, Rawls JF, Randall T, Burcal L, Mpande CN, et al. (2010)
     Molecular characterization of mucosal adherent bacteria and
     associations with colorectal adenomas. Gut Microbes 1: 138-147.
 
-7.  Sobhani I, Tap J, Roudot-Thoraval F, Roperch JP, Letulle S, et al.
+7. Sobhani I, Tap J, Roudot-Thoraval F, Roperch JP, Letulle S, et al.
     (2011) Microbial dysbiosis in colorectal cancer (CRC) patients. Plos
     One 6: e16393.
 
-8.  Wang T, Cai G, Qiu Y, Fei N, Zhang M, et al. (2012) Structural
+8. Wang T, Cai G, Qiu Y, Fei N, Zhang M, et al. (2012) Structural
     segregation of gut microbiota between colorectal cancer patients and
     healthy volunteers. ISME Journal 6: 320-329.
 
-9.  Ahn J, Sinha R, Pei ZH, Dominianni C, Wu J, et al. (2013) Human Gut
+9. Ahn J, Sinha R, Pei ZH, Dominianni C, Wu J, et al. (2013) Human Gut
     Microbiome and Risk for Colorectal Cancer. Jnci-J Natl Cancer Inst
     105: 1907-1911.
 
