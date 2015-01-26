@@ -3,6 +3,7 @@
 .RData
 
 data/
+jpz_docx
 
 *.qsub*
 mothur*logfile
