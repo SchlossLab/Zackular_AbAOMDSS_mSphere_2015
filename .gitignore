@@ -8,3 +8,4 @@ jpz_docx
 *.qsub*
 mothur*logfile
 *temp*
+*.docx
