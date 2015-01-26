@@ -1,5 +1,4 @@
-**Manipulation of the Gut Microbiome Reveals Role for Microbial
-Community Structure in Colon Tumorigenesis **
+**Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
 Joseph P. Zackular^1^, Nielson T. Baxter^1^, Grace Y. Chen^2^, and
 Patrick D. Schloss^1^
@@ -14,80 +13,84 @@ Arbor, MI
 2 Department of Internal Medicine, Division of Hematology and Oncology,
 University of Michigan, Ann Arbor, MI
 
-\break
 
 **Introduction**
+The mammalian gastrointestinal tract is home to a complex and dynamic community
+of microorganisms, termed the gut microbiome, which is essential for maintaining
+host health [Backhed et al*.,* 2005]. Among the bacterial populations that make
+make up the gut microbiome there are complex interactions that have an important
+effect on host health [Levy and Bordenstein, 2013, Marino et al., 2013, Lepp et
+al., 2004]. The number of diseases that are associated with abnormalities in the
+gut microbiome highlights the importance of these ecological interactions
+[Turnbaugh et al. 2006; Tamboli et al.; 2004, Saulnier et al., 2011]. Over the
+last several years it has been well documented that perturbations to this
+community are associated with colorectal cancer (CRC) in humans and mice [Chen
+et al., 2013; Chen, et al., 2012; Kostic et al., 2012; Geng et al., 2013; Shen
+et al., 2013; Sobhani et al., 2011; Wang et al., 2012; Ahn et al., 2013]. We
+have previously shown that CRC-associated changes in the gut microbiome directly
+potentiate colon tumorigenesis in a mouse model of CRC [Zackular et al., 2013].
+In that study we observed clear shifts in the microbiome that could be
+associated with a stepwise progression in the number of tumors that were found
+in the colon. In addition, we showed that transfer of the tumor-associated
+microbiota to germ-free mice resulted in increased tumor formation relative to
+germ-free mice receiving the microbiota of healthy mice. These results were
+supported by a subsequent study where we colonized germ-free mice with the
+microbiota of human donors and observed significant variation in the number of
+tumors that formed [Baxter et al., 2014]. Combined, these results demonstrate
+that the microbiota interact with the host to potentiate tumorigenesis. A
+critical question that remains unanswered is what factors and ecological
+principles mediate the gut microbiome's influence on this process. Deciphering
+how changes in community composition and structure disturb these interactions,
+and subsequently modulate tumorigenesis, is an essential step in understanding
+the etiology of CRC.
 
-The mammalian gastrointestinal tract is home to a complex and dynamic
-community of microorganisms, termed the gut microbiome, which is
-essential for the health [Backhed et al*.,* 2005]. Over the last several
-years it has been well document that abnormalities in this community are
-associated with colorectal in humans and mice [Chen et al., 2013; Chen,
-et al., 2012; Kostic et al., 2012; Geng et al., 2013; Shen et al., 2013;
-Sobhani et al., 2011; Wang et al., 2012; Ahn et al., 2013]. We have
-previously demonstrated that in a mouse model, CRC-associated changes in
-the gut microbiome directly potentiate colon tumorigenesis [Zackular et
-al., 2013]. A critical question that remains unanswered is what factors
-and ecological principles mediate the gut microbiomes influence on this
-process.
-
-It has been demonstrated that several common commensal bacteria have the
-capability to directly influence the process of tumor development and
-progression in the colon. The mechanisms by which bacteria potentiate
-these processes range from the production of carcinogenic toxins [Arthur
-et al., 2012; Sears et al., 2008] to direct manipulation of the
-inflammatory status in a tumors microenvironment [Kostic et al., 2013;
-Rubinstein et al., 2014]. Furthermore, some bacterial populations have
-been hypothesized be protective against CRC [Louis and Flint, 2009;
-Arthur et al., 2011; Appleyard et al., 2011]. This may be mediated
-through metabolite production, induction of immunotolerance, or an
-ability to outcompete pathogenic bacteria [Zhu et al., 2011].
-
-Although individual bacterial populations undoubtedly modulate
-colorectal cancer, there are likely a myriad of commensal bacteria that
-influence tumorigenesis in the colon. This is supported by several
-studies that have explored the gut microbiome associated with
-individuals with CRC [Zackular et al., 2014; Chen et al., 2013; Chen, et
-al., 2012; Kostic et al., 2012; Geng et al., 2013; Shen et al., 2013;
-Sobhani et al., 2011; Wang et al., 2012; Ahn et al., 2013]. Each of
-these studies reported abnormal shifts in the gut microbiome, termed
-dysbiosis; however, there were no CRC-associated bacterial populations
-that were consistently identified across all studies. This is likely due
-to the fact that there is significant functional redundancy within the
-gut microbiome and various bacterial populations may fill similar roles
-in tumorigenesis [Lepage et al., 2011; Turnbaugh et al., 2009; Qin et
-al., 2010]. We hypothesize that multiple bacteria in the gut microbiome
-have the potential to play antagonistic or protective roles in
-tumorigenesis; thus, the gut microbiomes influence on CRC is likely
+Several bacterial populations including *E. coli*, *Bacteroides fragilis*, and
+*Fusobacteirum nucleatum* have been shown to directly influence the process of
+tumorigenesis in the colon. The mechanisms by which bacteria potentiate these
+processes range from the production of carcinogenic toxins [Arthur et al.,
+2012; Sears et al., 2008] to direct manipulation of the inflammatory status in
+a tumor's microenvironment [Kostic et al., 2013; Rubinstein et al., 2014].
+Although individual bacterial populations undoubtedly modulate colorectal
+cancer, there are likely a myriad of commensal bacteria that work together to
+influence tumorigenesis in the colon. This is supported by several studies that
+have explored the gut microbiome associated with individuals with CRC [Zackular
+et al., 2014; Chen et al., 2013; Chen, et al., 2012; Kostic et al., 2012; Geng
+et al., 2013; Shen et al., 2013; Sobhani et al., 2011; Wang et al., 2012; Ahn et
+al., 2013; Baxter et al., 2014]. Each of these studies reported abnormal shifts
+in the gut microbiome; however, there were no specific CRC-associated
+bacterial populations that were consistently identified across all individuals
+or studies. This is likely due to the fact that there is significant functional
+redundancy within the gut microbiome and various bacterial populations may fill
+similar roles in tumorigenesis [Lepage et al., 2011; Turnbaugh et al., 2009; Qin
+et al., 2010]. Furthermore, some bacterial populations have been hypothesized be
+protective against CRC [Louis and Flint, 2009; Arthur et al., 2011; Appleyard et
+al., 2011]. This protective phenotype may be mediated through metabolite
+production, induction of immunotolerance, or an ability to outcompete pathogenic
+bacteria [Zhu et al., 2011]. We hypothesize that multiple bacteria in the gut
+microbiome have the potential to play antagonistic or protective roles in
+tumorigenesis; thus, the gut microbiome's influence on CRC is likely to be
 polymicrobial.
 
-Within host-associated microbial communities there are complex
-interactions between individual bacterial populations that have an
-important effect on host health [Levy and Bordenstein, 2013, Marino et
-al., 2013, Lepp et al., 2004]. The number of diseases that are
-associated with abnormalities in the gut microbiome highlights the
-importance of these ecological interactions [Turnbaugh et al. 2006;
-Tamboli et al.; 2004, Saulnier et al., 2011]. Deciphering how changes in
-community composition and structure disturb these interactions, and
-subsequently modulate tumorigenesis, is an essential step in
-understanding the etiology of CRC.
+Altering the composition of the microbiome in an inflammation-based mouse model
+of CRC resulted in varying numbers of colonic tumors. We also treated
+conventionally-raised mice with a cocktail of metronidazole, streptomycin, and
+vancomycin in their drinking water while they received the tumor-inducing
+treatment and observed a significant decrease in tumorigenesis [Zackular et al,
+2013]. In the current study, we explored this result further by altering the
+composition of this antibiotic cocktail to test the hypothesis that the gut
+microbiome structure mediates tumor multiplicity and severity. To better
+understand the composition of the microbiome and its dynamics, we extended this
+result by permuting the composition of the antibiotic cocktail and associated
+changes in the microbiome with the number of tumors that formed. These results
+confirmed our hypothesis that the microbiome is capable of driving
+tumorigenesis. To further test this hypothesis, we designed an antiboitic-based
+intervention to determine whether it was possible to arrest tumorigenesis. Our
+analysis supports a model by which individual bacterial populations play an
+important role in CRC, but the ecological interactions and community structure
+of the gut microbiome mediate the capacity to modulate tumorigenesis.
 
-Previously, we found that when mice received metronidazole,
-streptomycin, and vancomycin in their drinking water and were then
-treated to induce inflammation-associated CRC, there was a significant
-decrease in tumorigenesis [Zackular et al, 2013]. Here we explored this
-result further by altering the composition of this antibiotic cocktail
-to test the hypothesis that the gut microbiome structure mediates tumor
-multiplicity and severity. Furthermore, we sequenced the V4 region of
-the 16S rRNA gene from treated mice in each group and determined that
-each treatment generated non-overlapping microbial community structures
-with varying levels of carcinogenicity. Using antibiotics to intervene
-following the first signs of dysbiosis, we demonstrated the feasibility
-of targeting the gut microbiome as a therapeutic for CRC. Our analysis
-supports a model by which individual bacterial populations play an
-important role in CRC, but the ecological interactions and community
-structure of the gut microbiome mediate the capacity to modulate
-tumorigenesis.
+
+
 
 **Results**
 
@@ -422,38 +425,38 @@ number, not actual bacterial numbers.
 
 **References**
 
-1.  Backhed F, Ley RE, Sonnenburg JL, Peterson DA, Gordon JI (2005)
+1. Backhed F, Ley RE, Sonnenburg JL, Peterson DA, Gordon JI (2005)
     Host-bacterial mutualism in the human intestine. Science 307:
     1915-1920.
 
-2.  Chen HM, Yu YN, Wang JL, Lin YW, Kong X, et al. (2013) Decreased
+2. Chen HM, Yu YN, Wang JL, Lin YW, Kong X, et al. (2013) Decreased
     dietary fiber intake and structural alteration of gut microbiota in
     patients with advanced colorectal adenoma. Am J Clin Nutr.
 
-3.  Chen W, Liu F, Ling Z, Tong X, Xiang C (2012) Human Intestinal Lumen
+3. Chen W, Liu F, Ling Z, Tong X, Xiang C (2012) Human Intestinal Lumen
     and Mucosa-Associated Microbiota in Patients with Colorectal Cancer.
     PLoS ONE 7(6): e39743. doi:10.1371/journal.pone.0039743
 
-4.  Kostic AD, Gevers D, Pedamallu CS, Michaud M, Duke F, et al. (2012)
+4. Kostic AD, Gevers D, Pedamallu CS, Michaud M, Duke F, et al. (2012)
     Genomic analysis identifies association of *Fusobacterium* with
     colorectal carcinoma. Genome Res 22: 292-298.
 
-5.  Geng J, Fan H, Tang X, Zhai H, Zhang Z (2013) Diversified pattern of
+5. Geng J, Fan H, Tang X, Zhai H, Zhang Z (2013) Diversified pattern of
     the human colorectal cancer microbiome. Gut Pathog 5: 2.
 
-6.  Shen XJ, Rawls JF, Randall T, Burcal L, Mpande CN, et al. (2010)
+6. Shen XJ, Rawls JF, Randall T, Burcal L, Mpande CN, et al. (2010)
     Molecular characterization of mucosal adherent bacteria and
     associations with colorectal adenomas. Gut Microbes 1: 138-147.
 
-7.  Sobhani I, Tap J, Roudot-Thoraval F, Roperch JP, Letulle S, et al.
+7. Sobhani I, Tap J, Roudot-Thoraval F, Roperch JP, Letulle S, et al.
     (2011) Microbial dysbiosis in colorectal cancer (CRC) patients. Plos
     One 6: e16393.
 
-8.  Wang T, Cai G, Qiu Y, Fei N, Zhang M, et al. (2012) Structural
+8. Wang T, Cai G, Qiu Y, Fei N, Zhang M, et al. (2012) Structural
     segregation of gut microbiota between colorectal cancer patients and
     healthy volunteers. ISME Journal 6: 320-329.
 
-9.  Ahn J, Sinha R, Pei ZH, Dominianni C, Wu J, et al. (2013) Human Gut
+9. Ahn J, Sinha R, Pei ZH, Dominianni C, Wu J, et al. (2013) Human Gut
     Microbiome and Risk for Colorectal Cancer. Jnci-J Natl Cancer Inst
     105: 1907-1911.
 
