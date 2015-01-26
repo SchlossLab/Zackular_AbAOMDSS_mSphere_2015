@@ -138,3 +138,15 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM)
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.dist;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.std.dist
 
+
+
+################################################################################
+#
+#	Part 3: Write the paper
+#
+#
+################################################################################
+
+write.paper :
+	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_GutMicrobes_2015.Rmd', 'Zackular_AbAOMDSS_GutMicrobes_2015.html;')"; \
+	pandoc -f markdown -t docx Zackular_AbAOMDSS_GutMicrobes_2015.md -o Zackular_AbAOMDSS_GutMicrobes_2015.docx
