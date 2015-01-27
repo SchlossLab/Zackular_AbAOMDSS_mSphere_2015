@@ -110,7 +110,7 @@ administered an assortment of antibiotic treatments to specific-pathogen-free
 inflammation-based model of CRC [Zackular et al., 2013] (Figure 1a). We treated
 mice with all possible combinations of metronidazole, streptomycin, and
 vancomycin to create eight treatment groups: no antibiotics, all antibiotics
-(metronidazole, streptomycin, and vancomycin), Δmetronidazole (streptomycin and
+(metronidazole, streptomycin, and vancomycin), $\Delta$metronidazole (streptomycin and
 vancomycin), Δstreptomycin (metronidazole and vancomycin), Δvancomycin
 (metronidazole and streptomycin), metronidazole only, streptomycin only, and
 vancomycin only. Each treatment group showed a significant decrease in tumor
