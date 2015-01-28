@@ -131,7 +131,6 @@ Metro_m8074_d5	Metro-m8074-d5_S250_L001_R1_001.fastq	Metro-m8074-d5_S250_L001_R2
 Metro_m8074_d69	Metro-m8074-d69_S253_L001_R1_001.fastq	Metro-m8074-d69_S253_L001_R2_001.fastq
 Metro_m8074_d74	Metro-m8074-d74_S254_L001_R1_001.fastq	Metro-m8074-d74_S254_L001_R2_001.fastq
 Metro_m8074_dneg7	Metro-m8074-dneg7_S248_L001_R1_001.fastq	Metro-m8074-dneg7_S248_L001_R2_001.fastq
-NoAbs_blankwell	NoAbs-blankwell_S349_L001_R1_001.fastq	NoAbs-blankwell_S349_L001_R2_001.fastq
 NoAbs_m6554_d0	WTmice-m6554-d0_S1_L001_R1_001.fastq	WTmice-m6554-d0_S1_L001_R2_001.fastq
 NoAbs_m6554_d18	WTmice-m6554-d18_S3_L001_R1_001.fastq	WTmice-m6554-d18_S3_L001_R2_001.fastq
 NoAbs_m6554_d21	WTmice-m6554-d21_S4_L001_R1_001.fastq	WTmice-m6554-d21_S4_L001_R2_001.fastq
@@ -293,7 +292,7 @@ Strep_NT2_dneg7	Strep-NT2-dneg7_S214_L001_R1_001.fastq	Strep-NT2-dneg7_S214_L001
 StrepMetro_m7259_d0	StrepMetro-m7259-d0_S308_L001_R1_001.fastq	StrepMetro-m7259-d0_S308_L001_R2_001.fastq
 StrepMetro_m7259_d21	StrepMetro-m7259-d21_S309_L001_R1_001.fastq	StrepMetro-m7259-d21_S309_L001_R2_001.fastq
 StrepMetro_m7259_d25	StrepMetro-m7259-d25_S310_L001_R1_001.fastq	StrepMetro-m7259-d25_S310_L001_R2_001.fastq
-StrepMetro_m7259_d41m7259	StrepMetro-m7259-d41m7259_S311_L001_R1_001.fastq	StrepMetro-m7259-d41m7259_S311_L001_R2_001.fastq
+StrepMetro_m7259_d41	StrepMetro-m7259-d41m7259_S311_L001_R1_001.fastq	StrepMetro-m7259-d41m7259_S311_L001_R2_001.fastq
 StrepMetro_m7259_d46	StrepMetro-m7259-d46_S312_L001_R1_001.fastq	StrepMetro-m7259-d46_S312_L001_R2_001.fastq
 StrepMetro_m7259_d69	StrepMetro-m7259-d69_S313_L001_R1_001.fastq	StrepMetro-m7259-d69_S313_L001_R2_001.fastq
 StrepMetro_m7259_d70	StrepMetro-m7259-d70_S314_L001_R1_001.fastq	StrepMetro-m7259-d70_S314_L001_R2_001.fastq
@@ -330,7 +329,6 @@ StrepMetro_m7263_d46	StrepMetro-m7263-d46_S344_L001_R1_001.fastq	StrepMetro-m726
 StrepMetro_m7263_d69	StrepMetro-m7263-d69_S345_L001_R1_001.fastq	StrepMetro-m7263-d69_S345_L001_R2_001.fastq
 StrepMetro_m7263_d70	StrepMetro-m7263-d70_S346_L001_R1_001.fastq	StrepMetro-m7263-d70_S346_L001_R2_001.fastq
 StrepMetro_m7263_dneg8	StrepMetro-m7263-dneg8_S339_L001_R1_001.fastq	StrepMetro-m7263-dneg8_S339_L001_R2_001.fastq
-StrepMetro_m7264_dneg8	StrepMetro-m7264-dneg8_S347_L001_R1_001.fastq	StrepMetro-m7264-dneg8_S347_L001_R2_001.fastq
 Vanc_NT1_d0	Vanc-NT1-d0_S257_L001_R1_001.fastq	Vanc-NT1-d0_S257_L001_R2_001.fastq
 Vanc_NT1_d45	Vanc-NT1-d45_S258_L001_R1_001.fastq	Vanc-NT1-d45_S258_L001_R2_001.fastq
 Vanc_NT1_d47	Vanc-NT1-d47_S259_L001_R1_001.fastq	Vanc-NT1-d47_S259_L001_R2_001.fastq
