@@ -1,0 +1,351 @@
+# Random Forest Modeling
+
+
+**Purpose:** We want to model the number of tumors based on the microbiome using
+regression via random forests
+
+
+### Setup
+
+```{r setup}
+library(randomForest)
+opts_chunk$set("dev" = c("png", "pdf"))
+
+sessionInfo()
+```
+
+Let's read in the shared file and convert the numbers to relative abundances...
+
+```{r input_shared}
+shared.file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
+shared <- read.table(file=shared.file, row.names=2, header=T, stringsAsFactors=FALSE)
+
+#get rid of the first two columns, which are not needed
+cols_to_remove <- c("label", "numOtus")
+shared <- shared[, !colnames(shared)%in% cols_to_remove]
+
+#remove those columns that are labeled as being samples that only received DSS
+rows_to_remove <- grepl("DSSonly", rownames(shared))
+shared <- shared[!rows_to_remove, ]
+
+#calculate the number of sequences and then get out the relative abundance
+n_seqs <- sum(shared[1,])
+shared <- shared/n_seqs
+```
+
+Now we want to get the tumor count data
+
+```{r tumor_counts}
+tumor_count.file <- "data/process/tumor_counts.tsv"
+tumor_counts <- read.table(file=tumor_count.file, header=T)
+```
+
+
+
+Let's get the metadata from the sample names
+
+```{r metadata}
+#The sample names go treatment_eartag_day, so let's split them on the '_'
+#and then return the appropriate slot in the resulting vector
+get_name_part <- function(sample_name, column){
+    name_parts <- unlist(strsplit(sample_name, "_"))
+    return(name_parts[column])
+}
+
+#treatment is in slot 1
+get_treatment <- function(sample_name){
+    get_name_part(sample_name, column=1)
+}
+
+#eartag is in slot 2
+get_eartag <- function(sample_name){
+    get_name_part(sample_name, column=2)
+}
+
+#eartag is in slot 3; neg indicates that the sample was prior to day 0;
+#need to convert string to a number
+get_day <- function(sample_name){
+    text.day <- get_name_part(sample_name, column=3)
+    text.day <- gsub("d", "", text.day)
+    text.day <- gsub("neg", "-", text.day)
+    text.day <- as.numeric(text.day)
+}
+
+treatment <- sapply(rownames(shared), get_treatment)
+eartag <- sapply(rownames(shared), get_eartag)
+day <- sapply(rownames(shared), get_day)
+```
+
+
+### Get the baseline samples
+
+I want to build a model based on all of the day 0 data and then predict the
+number of tumors based on the observed data. Let's identify those
+samples that are from day 0:
+
+```{r baseline_setup}
+baseline <- grepl("_d0", rownames(shared))  #baseline samples are from day 0
+treatment_baseline <- treatment[baseline]   #update the metadata
+eartag_baseline <- eartag[baseline]
+day_baseline <- day[baseline]
+
+shared_baseline <- shared[baseline,]        #extract the baseline samples
+
+mice_baseline <- paste(treatment_baseline, eartag_baseline, sep="_")
+tumor_counts_baseline <- tumor_counts[mice_baseline,]   #get the tumor count data
+```
+
+
+### Find the best threshold
+
+One question is how best to filter the OTU data. Let's see what happens when we
+alter the minimum average relative abundance across all samples:
+
+```{r filter_test, cache=TRUE}
+threshold <- seq(0,0.03, 0.005)
+n_trees <- 10000 #number of trees for random forest
+
+rsq <- rep(0, length(threshold))    #vector to hold the Rsquared values
+n_otus <- rep(0, length(threshold)) #number of OTUs for the threshold
+
+for(i in 1:length(threshold)){
+    #keep those OTUs that are more than threshold across all samples
+    filter <- apply(shared_baseline, 2, mean) > threshold[i]
+    shared_baseline_filtered <- shared_baseline[,filter]
+    rf <- randomForest(tumor_counts_baseline ~ ., data=shared_baseline_filtered,
+                                    importance=TRUE, proximity=TRUE, ntree=n_trees)
+    rsq[i] <- rf$rsq[n_trees] #percent variance explained
+    n_otus[i] <- ncol(shared_baseline_filtered)
+}
+
+opt_thresh <- threshold[which.max(rsq)]
+opt_thresh_notus <- n_otus[which.max(rsq)]
+opt_thresh_rsq <- max(rsq)
+
+
+plot(rsq~threshold, pch=19, xlab="Average relative abundance", ylab="Rsquared", ylim=c(0.4, max(rsq)))
+text(x=threshold, y=0.45, label=n_otus)
+```
+
+From this plot, it appears that the best threshold would be `r opt_thresh`
+(Rsq=`r round(opt_thresh_rsq, 2)`) and this would give us `r opt_thresh_notus`
+OTUs.
+
+
+
+### Find the best number of trees
+
+Ok, let's press on and make sure we're using a sufficient number of trees with
+our threshold:
+
+
+```{r ntrees_test, cache=TRUE}
+threshold <- opt_thresh
+n_trees <- seq(1000,30000,1000) #number of trees for random forest
+
+tree_rsq <- rep(0, length(n_trees))  #vector to hold the Rsquared values
+
+for(i in 1:length(n_trees)){
+    #keep those OTUs that are more than threshold across all samples
+    filter <- apply(shared_baseline, 2, mean) > threshold
+    shared_baseline_filtered <- shared_baseline[,filter]
+    rf <- randomForest(tumor_counts_baseline ~ ., data=shared_baseline_filtered,
+                                    importance=TRUE, proximity=TRUE, ntree=n_trees[i])
+    tree_rsq[i] <- rf$rsq[n_trees[i]] #percent variance explained
+}
+
+plot(tree_rsq~n_trees, pch=19, xlab="Number of trees", ylab="Rsquared")
+```
+
+We see that over a wide spread in the number of trees used to model the data
+that there really isn't much variation if we use 1,000 or 30,000 trees (min:
+`r round(min(tree_rsq), 2)`, max: `r round(max(tree_rsq), 2)`). We'll stick with
+10,000 trees for the rest of this analysis.
+
+
+
+
+### Run the model
+
+We'll run the model with 10,000 trees and use `r opt_thresh` as our
+threshold for filtering the data:
+
+```{r get_model, cache=TRUE}
+n_trees <- 10000
+threshold <- opt_thresh
+
+#filter the data
+filter <- apply(shared_baseline, 2, mean) > threshold
+shared_baseline_filtered <- shared_baseline[,filter]
+
+#build the model
+rf_baseline <- randomForest(tumor_counts_baseline ~ ., data=shared_baseline_filtered,
+                                        importance=TRUE, proximity=TRUE, ntree=n_trees)
+
+#get the Rsquared value
+rf_baseline_rsq <- rf_baseline$rsq[n_trees] #percent variance explained
+
+#get the importance data
+rf_baseline_importance <- importance(rf_baseline)   #extract the importance data
+
+#plot the error over the forest
+plot(rf_baseline, main="")
+```
+
+Looks like the model has stabilized at `r n_trees`. Let's see the importance
+plots:
+
+```{r importance_plot}
+#plot the importance data
+varImpPlot(rf_baseline, main="")
+```
+
+This model results in an Rsq value of `r round(rf_baseline_rsq, 2)`. Inspection
+of the Gini coefficient plot suggests that there are three OTUs that stick out
+as being highly informative, followed by an additional three OTUs that are also
+informative.
+
+
+
+### Simplify the model
+
+Let's sort the OTUs by their Gini coefficient and build a model for all of the
+OTUs.
+
+
+```{r simplify_model, cache=TRUE}
+sorted_importance <- rf_baseline_importance[order(rf_baseline_importance[,2], decreasing=T),]
+
+n_otus <- nrow(sorted_importance)
+rf_simplify_rsq <- rep(0, n_otus)
+
+for(i in 2:n_otus){
+    simple_shared <- shared_baseline_filtered[,colnames(shared_baseline_filtered)
+                                                    %in% rownames(sorted_importance)[1:i]]
+    rf_simplify <- randomForest(tumor_counts_baseline ~ ., data=simple_shared,
+                                            importance=TRUE, ntree=n_trees)
+    rf_simplify_rsq[i] <- rf_simplify$rsq[n_trees] #percent variance explained
+}
+
+plot(rf_simplify_rsq[-1]~c(2:n_otus), ylab="Rsquared", xlab="Number of OTUs in model")
+```
+
+Here we see that the model does pretty well with just a few parameters.
+
+
+
+### Fit data to model
+
+Let's compare the number of predicted tumors to the number of observed tumors
+based on the full model.
+
+```{r model_fit}
+rf_baseline_pred <- predict(rf_baseline, shared_baseline_filtered)
+
+max_value <- max(c(rf_baseline_pred,tumor_counts_baseline))
+
+clrs <- c(Metro = "red",
+    VancStrep = "red",
+    Strep = "darkgreen",
+    VancMetro = "darkgreen",
+    Vanc = "blue",
+    StrepMetro = "blue",
+    AllAbs = "black",
+    NoAbs = "black")
+
+pch <- c(Metro = 19,
+    VancStrep = 1,
+    Strep = 19,
+    VancMetro = 1,
+    Vanc = 19,
+    StrepMetro = 1,
+    AllAbs = 19,
+    NoAbs = 1)
+
+labels <- c(NoAbs = "No antibiotics",
+    AllAbs = "All antibiotics",
+    Metro = "Metronidozole",
+    VancStrep = "delMetronidozole",
+    Strep = "Streptomycin",
+    VancMetro = "delStreptomycin",
+    Vanc = "Vancomycin",
+    StrepMetro = "delVancomycin")
+
+
+plot(rf_baseline_pred~tumor_counts_baseline, pch=pch[treatment_baseline],
+    col=clrs[treatment_baseline], ylim=c(0,max_value), xlim=c(0,max_value),
+    cex=1.5, xlab="Observed number of tumors", ylab="Predicted number of tumors")
+legend(x=0, y=max_value, legend=labels, pch=pch[names(labels)],
+        col=clrs[names(labels)])
+```
+
+
+### Plot the top six features with tumor counts
+
+Let's generate a plot with the number of tumors on the y-axis and the OTU's
+relative abundance on the x-axis:
+
+```{r rabund_tumor_plot, warning=FALSE, fig.align="center", fig.width=7.5, fig.height=5}
+
+tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
+
+tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
+tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
+tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
+
+otus <- rownames(sorted_importance)[1:6]
+pretty_otus <- gsub("Otu0*", "OTU ", otus)
+otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", round(sorted_importance[1:6,2], 1))
+otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
+
+shared_nozeros <- shared_baseline_filtered
+#shared_nozeros[shared_baseline_filtered==0] <- 5/25000
+
+par_orig <- par()$mar
+par(mar=c(5,4,0.5,0.5))
+layout(matrix(1:6, nrow=2, byrow=T))
+for(i in 1:6){
+
+    row <- ifelse(i<=3,1,2)
+    column <- ifelse(i<=3, i, i-3)
+
+    xlab <- ""
+    if(row==2){
+        xlab <- "Relative abundance (%)"
+    }
+
+    ylab <- ""
+    if(column==1){
+        ylab <- "Number of tumors"
+    }
+    rel_abund <- shared_nozeros[,otus[i]]
+
+    plot(rel_abund,tumor_counts_baseline, log="x", pch=pch[treatment_baseline],
+        col=clrs[treatment_baseline], ylab=ylab, xlab=xlab,
+        xlim=c(1e-4, 1), ylim=c(0,27), yaxt="n",
+        xaxt="n", cex.lab=1.5)
+
+    zeroes <- rel_abund == 0
+    x_zeroes <- runif(sum(zeroes),1.0e-4,1.5e-4)#rep(1.2e-4, sum(zeroes))
+    points(x=x_zeroes, tumor_counts_baseline[zeroes], pch=pch[treatment_baseline[zeroes]],
+            col=clrs[treatment_baseline[zeroes]])
+    abline(v=2.2e-4, col="gray")
+
+    text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
+
+    if(row == 2){
+        axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
+                label=c("0", "0.1", "1", "10", "100"),
+                cex.axis=1.5)
+    }
+    if(column == 1){
+        axis(2, las=2, cex.axis=1.5)
+    }
+}
+
+par(mar=par_orig)
+```
+
+These plots highlight a few important results:
+* Anaeroplasma, Porphyromonadaceae, and Prevotella increase with tumor count
+* Enterobacteriaceae, Ureaplasma, and Lactobacillus decrease with tumor count
