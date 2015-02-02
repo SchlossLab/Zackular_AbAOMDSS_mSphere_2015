@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+cache/
 
 data/
 jpz_docx
