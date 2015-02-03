@@ -202,8 +202,7 @@ plot(rf_baseline, main="")
 Looks like the model has stabilized at `r n_trees`. Let's see the importance
 plots:
 
-```{r importance_plot}
-#plot the importance data
+```{r importance_plot, echo=FALSE}
 varImpPlot(rf_baseline, main="")
 ```
 
@@ -221,16 +220,23 @@ OTUs.
 
 
 ```{r simplify_model, cache=TRUE}
+#gini coefficient is in the second column of the importance data frame
 sorted_importance <- rf_baseline_importance[order(rf_baseline_importance[,2], decreasing=T),]
 
 n_otus <- nrow(sorted_importance)
 rf_simplify_rsq <- rep(0, n_otus)
 
+#add each successive OTU's data and rebuild the model; save the Rsquared value
+#can't have a model with only one feature; start at i = 2.
 for(i in 2:n_otus){
+
+    #extract the appropriate columns
     simple_shared <- shared_baseline_filtered[,colnames(shared_baseline_filtered)
                                                     %in% rownames(sorted_importance)[1:i]]
+    #build the model
     rf_simplify <- randomForest(tumor_counts_baseline ~ ., data=simple_shared,
                                             importance=TRUE, ntree=n_trees)
+    #get the Rsquared values
     rf_simplify_rsq[i] <- rf_simplify$rsq[n_trees] #percent variance explained
 }
 
@@ -247,8 +253,11 @@ Let's compare the number of predicted tumors to the number of observed tumors
 based on the full model.
 
 ```{r model_fit}
+#fit the full model back to the original data
 rf_baseline_pred <- predict(rf_baseline, shared_baseline_filtered)
 
+#want the x and y-axes to have the same limits, so let's find the largest
+#tumor value among the observed and predicted
 max_value <- max(c(rf_baseline_pred,tumor_counts_baseline))
 
 clrs <- c(Metro = "red",
@@ -260,6 +269,7 @@ clrs <- c(Metro = "red",
     AllAbs = "black",
     NoAbs = "black")
 
+#single Abx get a solid dot, the deletion gets an open dot
 pch <- c(Metro = 19,
     VancStrep = 1,
     Strep = 19,
@@ -269,14 +279,15 @@ pch <- c(Metro = 19,
     AllAbs = 19,
     NoAbs = 1)
 
+#these are needed for the legend
 labels <- c(NoAbs = "No antibiotics",
     AllAbs = "All antibiotics",
     Metro = "Metronidozole",
-    VancStrep = "delMetronidozole",
+    VancStrep = expression(paste(Delta, "Metronidozole")),
     Strep = "Streptomycin",
-    VancMetro = "delStreptomycin",
+    VancMetro = expression(paste(Delta, "Streptomycin")),
     Vanc = "Vancomycin",
-    StrepMetro = "delVancomycin")
+    StrepMetro = expression(paste(Delta, "Vancomycin")) )
 
 
 plot(rf_baseline_pred~tumor_counts_baseline, pch=pch[treatment_baseline],
