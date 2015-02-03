@@ -167,7 +167,7 @@ write.paper :
 doc/notebook/2015_02_02-random_forest.html : $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
 											$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy\
 											code/rf_baseline_analysis.R\
-	R -e "library(knitr);knit2html('doc/notebook/2015_02_02-random_forest.Rmd')";
+	R -e "library(knitr);knit2html('doc/notebook/2015_02_02-random_forest.Rmd')";\
 	mv 2015_02_02-random_forest.* doc/notebook/
 
 notebooks : doc/notebook/2015_02_02-random_forest.html
