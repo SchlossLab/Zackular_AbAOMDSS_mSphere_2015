@@ -17,8 +17,9 @@ sessionInfo()
 opts_chunk$set(dev = c("png", "pdf"))
 opts_chunk$set(results = "hold")
 opts_chunk$set(fig.show = "hold")
-opts_chunk$set(warning=FALSE)
-opts_chunk$set(fig.align="center")
+opts_chunk$set(warning = FALSE)
+opts_chunk$set(fig.align = "center")
+opts_chunk$set(echo = FALSE)
 ```
 
 Let's read in the shared file and convert the numbers to relative abundances...
