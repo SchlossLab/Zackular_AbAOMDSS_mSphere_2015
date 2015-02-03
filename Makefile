@@ -127,7 +127,8 @@ $(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy $(BASIC_STEM).pick.v4.wa
 # now we want to get the sequencing error as seen in the mock community samples
 $(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
 										$(BASIC_STEM).uchime.pick.pick.count_table\
-										$(BASIC_STEM).pick.pick.fasta
+										$(BASIC_STEM).pick.pick.fasta\
+										$(REFS)HMP_MOCK.v4.fasta
 	mothur code/get_error.batch
 
 
@@ -163,8 +164,27 @@ write.paper :
 #
 ################################################################################
 
-doc/notebook/2015_02_02-random_forest.% : $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
+doc/notebook/2015_02_02-random_forest.html : $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
 											$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy\
 											code/rf_baseline_analysis.R\
 	R -e "library(knitr);knit2html('doc/notebook/2015_02_02-random_forest.Rmd')";
 	mv 2015_02_02-random_forest.* doc/notebook/
+
+notebooks : doc/notebook/2015_02_02-random_forest.html
+
+
+
+################################################################################
+#
+#	Part 5: Everything
+#
+#
+################################################################################
+
+all : notebooks\
+		$(BASIC_STEM).pick.pick.pick.error.summary\
+		$(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary\
+		$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
+		$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
+		$(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy\
+		$(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared
