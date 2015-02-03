@@ -8,10 +8,17 @@ regression via random forests
 ### Setup
 
 ```{r setup}
-library(randomForest)
-opts_chunk$set("dev" = c("png", "pdf"))
-
+library(randomForest, quietly=TRUE)
+library(knitr, quietly=TRUE)
 sessionInfo()
+```
+
+```{r knitr_settings, echo=TRUE, eval=TRUE}
+opts_chunk$set(dev = c("png", "pdf"))
+opts_chunk$set(results = "hold")
+opts_chunk$set(fig.show = "hold")
+opts_chunk$set(warning=FALSE)
+opts_chunk$set(fig.align="center")
 ```
 
 Let's read in the shared file and convert the numbers to relative abundances...
@@ -285,7 +292,7 @@ legend(x=0, y=max_value, legend=labels, pch=pch[names(labels)],
 Let's generate a plot with the number of tumors on the y-axis and the OTU's
 relative abundance on the x-axis:
 
-```{r rabund_tumor_plot, warning=FALSE, fig.align="center", fig.width=7.5, fig.height=5}
+```{r rabund_tumor_plot, fig.width=7.5, fig.height=5}
 
 tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
 
