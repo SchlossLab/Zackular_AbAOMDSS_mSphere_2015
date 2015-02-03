@@ -132,8 +132,8 @@ $(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
 
 
 # rarefy the number of reads to 2500 sequences per library for the alpha and beta diversity analyses
-$(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist : $(BASIC_STEM).pick.pick.pick.an.unique_list.shared
-	mothur "#dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100)";\
+$(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared : $(BASIC_STEM).pick.pick.pick.an.unique_list.shared
+	mothur "#dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100); sub.sample(shared=$^, size=2500)";\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.groups.summary;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.dist;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.std.dist
@@ -150,3 +150,21 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM)
 write.paper :
 	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_GutMicrobes_2015.Rmd', 'Zackular_AbAOMDSS_GutMicrobes_2015.html')"; \
 	pandoc -f markdown -t docx Zackular_AbAOMDSS_GutMicrobes_2015.md -o Zackular_AbAOMDSS_GutMicrobes_2015.docx
+
+
+
+
+
+
+################################################################################
+#
+#	Part 4: Notebook entries
+#
+#
+################################################################################
+
+doc/notebook/2015_02_02-random_forest.% : $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
+											$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy\
+											code/rf_baseline_analysis.R\
+	R -e "library(knitr);knit2html('doc/notebook/2015_02_02-random_forest.Rmd')";
+	mv 2015_02_02-random_forest.* doc/notebook/
