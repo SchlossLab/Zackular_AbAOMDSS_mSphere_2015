@@ -10,6 +10,14 @@ regression via random forests
 
 ```r
 library(randomForest, quietly=TRUE)
+```
+
+```
+## randomForest 4.6-10
+## Type rfNews() to see new features/changes/bug fixes.
+```
+
+```r
 library(knitr, quietly=TRUE)
 sessionInfo()
 
@@ -18,11 +26,16 @@ source("code/rf_baseline_analysis.R")
 ```
 
 ```
-## R version 3.1.1 (2014-07-10)
-## Platform: x86_64-apple-darwin13.1.0 (64-bit)
+## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-unknown-linux-gnu (64-bit)
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -31,8 +44,7 @@ source("code/rf_baseline_analysis.R")
 ## [1] randomForest_4.6-10 knitr_1.8          
 ## 
 ## loaded via a namespace (and not attached):
-## [1] digest_0.6.4   evaluate_0.5.5 formatR_1.0    markdown_0.7.4
-## [5] mime_0.2       stringr_0.6.2  tools_3.1.1
+## [1] evaluate_0.5.5 formatR_1.0    stringr_0.6.2  tools_3.1.2
 ```
 
 
@@ -62,8 +74,8 @@ alter the minimum average relative abundance across all samples:
 <img src="results/figures/filter_test-1.png" title="plot of chunk filter_test" alt="plot of chunk filter_test" style="display: block; margin: auto;" />
 
 From this plot, it appears that the best threshold would be
-0.015 (Rsq=0.63) and this would
-give us 15 OTUs. Let's press on and make sure we're
+0 (Rsq=0.52) and this would
+give us 645 OTUs. Let's press on and make sure we're
 using a sufficient number of trees with our threshold:
 
 <img src="results/figures/ntrees_test-1.png" title="plot of chunk ntrees_test" alt="plot of chunk ntrees_test" style="display: block; margin: auto;" />
@@ -104,7 +116,10 @@ Pretty sweet!
 Let's generate a plot with the number of tumors on the y-axis and the OTU's
 relative abundance on the x-axis:
 
-<img src="results/figures/rabund_tumor_plot-1.png" title="plot of chunk rabund_tumor_plot" alt="plot of chunk rabund_tumor_plot" style="display: block; margin: auto;" />
+
+```
+## Error in rownames(sorted_importance): object 'sorted_importance' not found
+```
 
 These plots highlight a few important results:
 * Anaeroplasma, Porphyromonadaceae, and Prevotella increase with tumor count
