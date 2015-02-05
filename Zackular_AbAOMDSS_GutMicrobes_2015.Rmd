@@ -1,3 +1,17 @@
+```{r, echo=FALSE, eval=TRUE}
+opts_chunk$set("dev" = c("png", "cairo_pdf"))
+opts_chunk$set(results = "hold")
+opts_chunk$set(echo = FALSE)
+opts_chunk$set(fig.show = "hold")
+opts_chunk$set(warning = FALSE)
+opts_chunk$set(fig.align = "center")
+opts_chunk$set(cache = FALSE)
+```
+
+```{r test}
+source("code/tumor_count_stripchart.R")
+
+```
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
 Joseph P. Zackular^1^, Nielson T. Baxter^1^, Grace Y. Chen^2^, and
@@ -132,15 +146,13 @@ x*   Ab treatment results in very different community structures for communities
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *   Antibiotic perturbations create different community structures
+    -   Model
     -   Phylum-level descriptions / diversity
     -   No effect on bacterial load
-*   Those community structures result in differing numbers of tumors
-    -   Tumor count strip chart
+*   Predict tumor levels based on day 0 community composition
     -   Very different starting communities goes to similar and different numbers
         of tumors
-    -   End point phylum-level representation cannot explain the different/similar
-        levels of tumors
-*   Predict tumor levels based on day 0 community composition
+    -   Tumor count strip chart
     -   Feature plot
 *   Temporal dynamics of communities with biggest differences in tumor counts
 *   Intervention experiment
@@ -150,7 +162,7 @@ x*   Ab treatment results in very different community structures for communities
 
 ***Antibiotic perturbation of the gut microbiome modulates tumorigenicity.***
 
-1. To test the hypothesis that gut microbiome structure mediates tumorigenesis, we
+To test the hypothesis that gut microbiome structure mediates tumorigenesis, we
 administered an assortment of antibiotic treatments to specific-pathogen-free
 (SPF) C57BL/6 mice and treated them with the azoxymethane (AOM) and DSS
 inflammation-based model of CRC [Zackular et al., 2013] (Figure 1A). We treated
