@@ -56,7 +56,7 @@ get_day <- function(sample_name){
     text.day <- get_name_part(sample_name, column=3)
     text.day <- gsub("d", "", text.day)
     text.day <- gsub("neg", "-", text.day)
-    text.day <- as.numeric(text.day)
+    as.numeric(text.day)
 }
 
 
@@ -142,11 +142,11 @@ pch <- c(Metro = 19,
 labels <- c(NoAbs = "No antibiotics",
     AllAbs = "All antibiotics",
     Metro = "Metronidozole",
-    VancStrep = expression(paste(Delta, "Metronidozole")),
+    VancStrep = "\u0394 Metronidozole",
     Strep = "Streptomycin",
-    VancMetro = expression(paste(Delta, "Streptomycin")),
+    VancMetro = "\u0394 Streptomycin",
     Vanc = "Vancomycin",
-    StrepMetro = expression(paste(Delta, "Vancomycin")) )
+    StrepMetro = "\u0394 Vancomycin" )
 
 
 
@@ -165,8 +165,6 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
     legend(x=0, y=max_value, legend=labels, pch=pch[names(labels)],
             col=clrs[names(labels)])
 }
-
-
 
 #Plot top features' relative abundance versus the tumor counts for the mice that
 #they came from...
