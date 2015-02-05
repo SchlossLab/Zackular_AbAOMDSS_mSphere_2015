@@ -26,7 +26,7 @@ ordered_treatments <- c("NoAbs", "Vanc", "Strep", "VancStrep", "Metro",
 
 otu_plot <- function(rabunds, ordered_treatments, otu_label){
 
-    means <- aggregate(rabunds, by=list(treatments), mean)$x
+    means <- aggregate(rabunds, by=list(baseline_treatment), mean)$x
     o <- c(3, 6, 4, 8, 2, 7, 1, 5)
 
     par(mar=c(0.5, 2, 0.5, 0.5))
@@ -37,10 +37,9 @@ otu_plot <- function(rabunds, ordered_treatments, otu_label){
 
     box()
     axis(2, las=2)
-    #axis(1, at=1:8, label=labels[treatments], las=2, tick=F)
 
     for(i in 1:length(ordered_treatments)){
-        stripchart(at=i, x=rabunds[treatments==ordered_treatments[i]],
+        stripchart(at=i, x=rabunds[baseline_treatment==ordered_treatments[i]],
         vertical=T, method="jitter", col=clrs[ordered_treatments[i]],
         pch=pch[ordered_treatments[i]], jitter=0.25, cex=1.5, add=T)
     }
