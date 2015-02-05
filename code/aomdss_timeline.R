@@ -1,12 +1,15 @@
 #build a model timeline (Fig. 1A)
+#4.0in x 2.5in
 
 par(mar=c(0.5,0.5,0.5,0.5))
-par(cex=0.5)
+par(cex=1)
 
 start <- -14
 end <- 74
 
-plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab='',xlab='',xlim=c(start-1,end+1),ylim=c(-5,5))
+samples <- c(-7, 0, 5, 21, 25, 45, 47, 69, 74)
+
+plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab='',xlab='',xlim=c(start-1,end+1),ylim=c(-4,5))
 
 line <- 2
 
@@ -32,19 +35,23 @@ for(i in seq(-10,70,5)){
 text(seq(-10,70,10),line-1.5,labels=seq(-10,70,10))
 text((end+start)/2,line-2.25,'Day')
 
-text(0,line+2,'AOM', srt=90)
-text(7.5,line+2,'DSS 1', srt=90)
-text(28.5,line+2,'DSS 2', srt=90)
-text(49.5,line+2,'DSS 3', srt=90)
+text(0,line+2.1,'AOM', srt=90)
+text(7.5,line+2.1,'DSS 1', srt=90)
+text(28.5,line+2.1,'DSS 2', srt=90)
+text(49.5,line+2.1,'DSS 3', srt=90)
 
-abx_line <- line-4
+
+#sampling times
+points(x=samples, y=rep(line,length(samples))+0.35, pch=25, bg="black", cex=1)
+
+abx_line <- line-3.5
 polygon(c(start, start, end, end),c(abx_line+0.5,abx_line-0.5,abx_line-0.5,abx_line+0.5), col='gray', border=NA)     # AOM box
-text((end+start)/2, abx_line, label="Antibiotic treatment")
+text((end+start)/2, abx_line, label="Antibiotic treatment", cex=0.7)
 
-intervention_line <- abx_line-1.25
+intervention_line <- abx_line-1.2
 polygon(c(start, start, 5, 5),c(intervention_line+0.5,intervention_line-0.5,intervention_line-0.5,intervention_line+0.5), col='gray', border=NA)     # AOM box
-text((5+start)/2, intervention_line, label="Intervention 1")
+text((5+start)/2, intervention_line, label="Intervention 1", cex=0.7)
 
-intervention_line <- intervention_line-1.25
+intervention_line <- intervention_line-1.2
 polygon(c(26, 26, end, end),c(intervention_line+0.5,intervention_line-0.5,intervention_line-0.5,intervention_line+0.5), col='gray', border=NA)     # AOM box
-text((end+26)/2, intervention_line, label="Intervention 2")
+text((end+26)/2, intervention_line, label="Intervention 2", cex=0.7)
