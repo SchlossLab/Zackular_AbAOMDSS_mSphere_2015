@@ -1,17 +1,3 @@
-x*   Ab treatment results in different tumor burdens (1)
-    x-   Model
-    x-   Tumor count
-    x-   Tumor pictures
-    x-   Does not affect bacterial load in feces
-x*   Ab treatment results in very different community structures for communities
-    w/ similar burdens (2/3/4)
-    -   This is at end point
-    x-   Plot of phylum-level differences for different combinations - perhaps
-        show a pre and post (model) relative abundance for Firm., Bact., and
-        Prot.? (7)
-    -   We also have diversity data and ordination -> how important?
-
-
 **Identification of tumor modulating bacterial populations in the gut microbiome**
 *   Segregate into high, medium, and low categories and run lefse (5)
 *   Comment on patchiness of communities - indicator bugs are not found in all
@@ -40,5 +26,3 @@ x*   Ab treatment results in very different community structures for communities
     -   Feature plot
 *   Temporal dynamics of communities with biggest differences in tumor counts
 *   Intervention experiment
-
-
