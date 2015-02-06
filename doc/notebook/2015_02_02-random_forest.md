@@ -44,7 +44,7 @@ source("code/rf_baseline_analysis.R")
 
 
 ```r
-opts_chunk$set(dev = c("png", "pdf"))
+opts_chunk$set(dev = c("png", "cairo_pdf"))
 opts_chunk$set(results = "hold")
 opts_chunk$set(fig.show = "hold")
 opts_chunk$set(warning = FALSE)
@@ -111,18 +111,7 @@ Pretty sweet!
 Let's generate a plot with the number of tumors on the y-axis and the OTU's
 relative abundance on the x-axis:
 
-
-```
-## Error in importance(forest): object 'forest' not found
-```
-
-```
-## Error in importance[, 2]: object of type 'closure' is not subsettable
-```
-
-```
-## Error in rownames(sorted_importance): object 'sorted_importance' not found
-```
+<img src="results/figures/rabund_tumor_plot-1.png" title="plot of chunk rabund_tumor_plot" alt="plot of chunk rabund_tumor_plot" style="display: block; margin: auto;" />
 
 These plots highlight a few important results:
 * Anaeroplasma, Porphyromonadaceae, and Prevotella increase with tumor count
