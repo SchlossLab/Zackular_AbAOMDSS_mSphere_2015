@@ -17,7 +17,7 @@ source("code/rf_baseline_analysis.R")
 ```
 
 ```{r knitr_settings, echo=TRUE, eval=TRUE}
-opts_chunk$set(dev = c("png", "pdf"))
+opts_chunk$set(dev = c("png", "cairo_pdf"))
 opts_chunk$set(results = "hold")
 opts_chunk$set(fig.show = "hold")
 opts_chunk$set(warning = FALSE)
