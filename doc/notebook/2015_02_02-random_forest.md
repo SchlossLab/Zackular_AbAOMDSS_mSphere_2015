@@ -26,16 +26,11 @@ source("code/rf_baseline_analysis.R")
 ```
 
 ```
-## R version 3.1.2 (2014-10-31)
-## Platform: x86_64-unknown-linux-gnu (64-bit)
+## R version 3.1.1 (2014-07-10)
+## Platform: x86_64-apple-darwin13.1.0 (64-bit)
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -44,7 +39,7 @@ source("code/rf_baseline_analysis.R")
 ## [1] randomForest_4.6-10 knitr_1.8          
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.5 formatR_1.0    stringr_0.6.2  tools_3.1.2
+## [1] evaluate_0.5.5 formatR_1.0    stringr_0.6.2  tools_3.1.1
 ```
 
 
@@ -74,8 +69,8 @@ alter the minimum average relative abundance across all samples:
 <img src="results/figures/filter_test-1.png" title="plot of chunk filter_test" alt="plot of chunk filter_test" style="display: block; margin: auto;" />
 
 From this plot, it appears that the best threshold would be
-0 (Rsq=0.52) and this would
-give us 645 OTUs. Let's press on and make sure we're
+0.015 (Rsq=0.63) and this would
+give us 15 OTUs. Let's press on and make sure we're
 using a sufficient number of trees with our threshold:
 
 <img src="results/figures/ntrees_test-1.png" title="plot of chunk ntrees_test" alt="plot of chunk ntrees_test" style="display: block; margin: auto;" />
@@ -116,6 +111,14 @@ Pretty sweet!
 Let's generate a plot with the number of tumors on the y-axis and the OTU's
 relative abundance on the x-axis:
 
+
+```
+## Error in importance(forest): object 'forest' not found
+```
+
+```
+## Error in importance[, 2]: object of type 'closure' is not subsettable
+```
 
 ```
 ## Error in rownames(sorted_importance): object 'sorted_importance' not found
