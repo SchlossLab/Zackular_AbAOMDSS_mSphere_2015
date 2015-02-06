@@ -136,7 +136,7 @@ Let's generate a plot with the number of tumors on the y-axis and the OTU's
 relative abundance on the x-axis:
 
 ```{r rabund_tumor_plot, fig.width=7.5, fig.height=5}
-importance <- importance(forest)
+importance <- importance(rf_baseline_forest)
 sorted_importance <- importance[order(importance[,2], decreasing=T),]
 plot_top_features(tumor_counts_baseline, sorted_importance, rf_baseline_rabund, treatment_baseline)
 ```
