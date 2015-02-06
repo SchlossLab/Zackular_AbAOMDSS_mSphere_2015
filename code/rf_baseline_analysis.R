@@ -150,6 +150,27 @@ labels <- c(NoAbs = "No antibiotics",
 
 
 
+plot_importance <- function(forest){
+
+    par(mar=c(5,8,0.5,0.5))
+    #read in the taxonomy file
+    tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
+
+    #the next three lines extract the last named taxonomic level for each OTU
+    tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("_", " ", tax$Taxonomy)
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,2], decreasing=T),2]
+    labels <- paste0(tax[names(sorted_importance),2]," (",gsub("tu0*", "TU ", rownames(tax)) ,")")
+    names(labels) <- rownames(tax)
+
+    dotchart(x=rev(sorted_importance), labels=rev(labels[names(sorted_importance)]), xlab="Gini coefficient", xlim=c(0, max(sorted_importance)))
+}
+
+
 #fit the full model back to the original data
 plot_forest_fit <- function(observed, forest, rabund, treatment){
 
