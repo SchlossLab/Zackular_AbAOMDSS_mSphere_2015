@@ -6,12 +6,10 @@ opts_chunk$set(fig.show = "hold")
 opts_chunk$set(warning = FALSE)
 opts_chunk$set(fig.align = "center")
 opts_chunk$set(cache = FALSE)
+
+library("randomForest")
 ```
 
-```{r test}
-source("code/tumor_count_stripchart.R")
-
-```
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
 Joseph P. Zackular^1^, Nielson T. Baxter^1^, Grace Y. Chen^2^, and
@@ -115,6 +113,32 @@ of the gut microbiome mediate the capacity to modulate tumorigenesis.
 
 **Results**
 
+```{r setup}
+set.seed(6201976)
+source("code/rf_baseline_analysis.R")
+
+shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
+rel_abund <- get_rel_abund(paste0(PROJHOME, "/", shared_file), "DSS")
+
+treatment <- sapply(rownames(rel_abund), get_treatment)
+eartag <- sapply(rownames(rel_abund), get_eartag)
+day <- sapply(rownames(rel_abund), get_day)
+
+baseline <- day == 0                        #baseline samples are from day 0
+treatment_baseline <- treatment[baseline]   #update the metadata
+eartag_baseline <- eartag[baseline]         #update the metadata
+day_baseline <- day[baseline]               #update the metadata
+rabund_baseline <- rel_abund[baseline,]     #extract the baseline samples
+
+#what mice do we have baseline data for? necessary because the tumor data
+#is indexed by `treatment_eartag`
+mice_baseline <- paste(treatment_baseline, eartag_baseline, sep="_")
+
+tumor_count.file <- paste0(PROJHOME, "/data/process/tumor_counts.tsv")
+tumor_counts <- read.table(file=tumor_count.file, header=T)
+tumor_counts_baseline <- tumor_counts[mice_baseline,]   #get the tumor count data
+```
+
 ***Antibiotic perturbation of the gut microbiome modulates tumorigenicity.***
 We subjected conventionally-raised C57BL/6 mice to an inflammation-based model
 of colorectal cancer that utilizes azoxymethane (AOM) as a mutatgen and dextran
@@ -124,9 +148,9 @@ involved in tumorigenesis, we manipulated the microbiota by administering eight
 antibiotic treatment groups and then quantified the effects of the treatments on
 the number of tumors observed at the end of the model. Specifically, we treated
 mice with (i) no antibiotics, (ii) metronidazole, streptomycin, and vancomycin
-(all antibiotics), (iii) streptomycin and vancomycin ($\Delta$metronidazole),
-(iv) metronidazole and vancomycin ($\Delta$streptomycin), (v) metronidazole and
-streptomycin ($\Delta$vancomycin), (vi) metronidazole, (vii) streptomycin, and
+(all antibiotics), (iii) streptomycin and vancomycin ($\Delta$ metronidazole),
+(iv) metronidazole and vancomycin ($\Delta$ streptomycin), (v) metronidazole and
+streptomycin ($\Delta$ vancomycin), (vi) metronidazole, (vii) streptomycin, and
 (viii) vancomycin. Quantitative PCR targeting the 16S rRNA gene indicated that
 the number of copies of the 16S rRNA gene did not differ between the treatment
 groups. The three antibiotics were selected because they were thought to target
@@ -143,6 +167,21 @@ through the use of antibiotics yields a differential capacity for colon
 tumorigenesis.
 
 
+```{r predict_tumor_baseline}
+n_trees <- 10000 #number of trees for random forest
+rf_baseline_thresh <- 0.015 #an average of 1.5%
+
+rf_baseline_forest <- get_forest(rabund=rabund_baseline,
+                            dependent=tumor_counts_baseline,
+                            n_trees=n_trees,
+                            threshold=rf_baseline_thresh)
+
+rf_baseline_rabund <- filter_rabund(rabund_baseline, rf_baseline_thresh)
+
+rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest, rabund_baseline)
+```
+
+
 ***The final tumor burden can be predicted from the initial microbiota***
 Because we obtained serial fecal samples it was possible to ascertain the
 composition of the microbiota for each mouse as well as the number of tumors in
@@ -150,14 +189,15 @@ its colon at the end of the model. Using the 16S rRNA gene sequence data
 generated from feces collected on the day of AOM injection, we assigned the
 sequences to operational taxonomic units (OTUs) that were defined as a group of
 sequences that, on average, were not more than 3% different from each other. We
-then used a regression-based random forest machine learning algorithm to
+then used the regression-based random forest machine learning algorithm to
 identify OTUs that would enable us to predict the number of tumors that were
 found in the same mice at the end of the model. The model that included OTUs
 that had an average relative abundance greater than 1.5% resulted in the
 greatest percentage of the variance explained (Supplementary Figure 1). This
-model included XX OTUs and explained XX% of the variation in the tumor counts
-(Figure 2). As suggested in Figure 2A, when the OTUs were sorted in decreasing
-order by their Gini coefficient, there was a jump between the sixth and seventh
+model included XX OTUs and explained `r round(100*rf_simplify_rsq, 2)`% of the
+variation in the tumor counts (Figure 2). As suggested in Figure 2A, when the
+OTUs were sorted in decreasing order by their Gini coefficient, there was a jump
+between the sixth and seventh
 OTUs. In fact, when we reconstructed the model using only the six OTUs that
 provided the largest Gini coefficients, the model explained XX% of the variation
 in the tumor counts. These six OTUs included members of the Firmicutes (OTU 6),
@@ -176,10 +216,10 @@ composition of the microbiota at the beginning of the model.
 7. Comparison of the communities in the initial and final fecal samples collected
 from each treatment group indicated that the groups varied in the amount of
 change over the course of the model. The mice that received streptomycin or
-vancomycin only and the $\Delta$streptomycin mice had significantly less structural
+vancomycin only and the $\Delta$ streptomycin mice had significantly less structural
 change overtime compared to control mice (Fig. 4A). Meanwhile, the mice that
 received the full cocktail maintained a constant community structure throughout
-the model. Conversely, the $\Delta$metronidazole and $\Delta$vancomycin mice had the highest
+the model. Conversely, the $\Delta$ metronidazole and $\Delta$ vancomycin mice had the highest
 level of variation across the model (Figure 4A). The amount that the gut
 microbiomes changed was not directly correlated with tumor burden ($\rho$=0.15,
 p = 0.41). This result indicated that the destabilization of the initial
@@ -192,13 +232,13 @@ between treatment groups. Thus, we performed repeated-measures paired group
 analysis of variance to identify features from within the microbiome that were
 significantly enriched or depleted over time for each treatment group. We used
 fecal samples from day 0 and compared those to samples at the endpoint of the
-model for the $\Delta$metronidazole and $\Delta$vancomycin treated groups since these
+model for the $\Delta$ metronidazole and $\Delta$ vancomycin treated groups since these
 communities showed the greatest change over the course of the model (Figure 5A).
 In both groups there was a significant enrichment of an OTU associated with the
-*Enterobacteriaceae* (OTU 3) family. In the $\Delta$metronidazole-treated mice, this
+*Enterobacteriaceae* (OTU 3) family. In the $\Delta$ metronidazole-treated mice, this
 enrichment was associated with the simultaneous depletion in the relative
 abundance of *Clostridium* (OTUs 31, 34, and 57), *Streptococcus* (OTU 92), and
-*Enterococcus* (OTU 27). However, $\Delta$vancomycin-treated mice only showed a
+*Enterococcus* (OTU 27). However, $\Delta$ vancomycin-treated mice only showed a
 significant decrease in OTUs associated with *Lactobacillus* (OTU 6), while
 maintaining steady levels in each of the depleted populations observed in
 ∆metronidazole treated mice. We also observed enrichment in the relative
@@ -344,9 +384,9 @@ tumors.
 **Antibiotic treatment.** Mice were treated with all possible combinations of
 metronidazole (0.75 g/L), streptomycin (2 g/L), and vancomycin (0.5 g/L) to
 create eight treatment groups: no antibiotics, all antibiotics (n=5)
-(metronidazole, streptomycin, and vancomycin), $\Delta$metronidazole (n=5)
-(streptomycin and vancomycin), $\Delta$streptomycin (n=5) (metronidazole and
-vancomycin), $\Delta$vancomycin (n=5) (metronidazole and streptomycin), metronidazole
+(metronidazole, streptomycin, and vancomycin), $\Delta$ metronidazole (n=5)
+(streptomycin and vancomycin), $\Delta$ streptomycin (n=5) (metronidazole and
+vancomycin), $\Delta$ vancomycin (n=5) (metronidazole and streptomycin), metronidazole
 only, streptomycin only, and vancomycin only (n=3). Antibiotics were
 administered in mouse drinking water for 2 weeks prior to and throughout the
 duration of AOM/DSS administration, unless otherwise specified in Figure 1A.
@@ -577,11 +617,11 @@ Abundance data is taken from endpoint of the model for each mouse. Error
 bars represent +/- standard deviation
 
 **Figure 5. Gut microbiome dynamics during tumorigenesis for
-$\Delta$metronidazole and $\Delta$vancomycin treatments groups.** **A.** Average
+$\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
 change in the gut microbiome community structure over the time course of
 tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
 **C.** Change in relative abundance over the time course of
-tumorigenesis for $\Delta$metronidazole and $\Delta$vancomycin treatment groups. OTUs
+tumorigenesis for $\Delta$ metronidazole and $\Delta$ vancomycin treatment groups. OTUs
 with relative abundances that were significantly different at day 70
 compared to day 0 are shown. Repeated-measures paired group analysis of
 variance was used to identify significantly altered OTUs. Error bars
