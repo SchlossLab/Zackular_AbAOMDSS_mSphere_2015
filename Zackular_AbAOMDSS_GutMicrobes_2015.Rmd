@@ -579,37 +579,32 @@ numbers.
 
 **Figure legends**
 
-**Figure 1. Antibiotic perturbation of the gut microbiome modulates
-tumorigenicity. A.** Mice were injected with azoxymethane (AOM) on day 1
-followed by 3 subsequent rounds of water administered 2% DSS. Colons
-were harvested 73 days after AOM and tumors grossly counted. Black
-wedges indicate fecal samples used for gut microbiome analysis.
-Antibiotic perturbation was started 2 week prior to AOM injection and
-continued throughout the model. **B.** Mice were treated with all
-possible combinations of metronidazole, streptomycin, and vancomycin to
-create eight treatment groups. Tumors were enumerated at the end of the
-model. **C.** Representative images of tumors in the distal colon of
-mice from each treatment group.
+**Figure 1. Antibiotic perturbation drives changes in microbial community
+structure and final tumor burden.** The AOM-DSS model was applied to C57BL/6
+mice reared under standard pathogen free (SPF) conditions with different
+antibiotic perturbations; Black arrows indicate fecal samples that used for our
+analysis (A). The mice were treated with all possible combinations of
+metronidazole, streptomycin, and vancomycin to create eight treatment groups,
+which resulted in considerable differences in the taxonomic composition of the
+gut communities at the start of the model (Day 0) (B). These communities
+resulted in a continuum of tumor burden in the mice (C and D).  
 
-**Figure 2. Antibiotic perturbation drives changes in microbial
-community structure.** Microbiome analysis was performed on fecal
-samples from each mouse on days indicated in Figure 1A. **A.** Inverse
-Simpson’s diversity index of fecal samples taken at the endpoint of the
-model. **B.** Phylum level relative abundance for each treatment group.
-Relative abundance represents the average structure of each treatment
-group at the endpoint of the model. **C.** NMDS ordination based on $theta$<sub>YC</sub>
-distances for all mice following the third DSS administration. (AMOVA; P
-\< 0.01; Stress = 0.175)
 
-**Figure 3. Analysis of bacterial populations associated with increased
-and decreased tumorigenesis.** Antibiotic treatment groups were
-partitioned into two groups based on tumor burden: high tumor burden
-(∆metronidazole, vancomycin only, and streptomycin only) and low tumor
-burden (All antibiotics, ∆streptomycin, ∆vancomycin, and metronidazole).
-LeFSe analysis was performed for stool samples from each mouse at the
-endpoint of the model. Strip charts show relative abundance for OTUs
-with LDA-value greater than 3.5. Error bars represent +/- standard
-deviation
+**Figure 2. A random forest model successfully predicted the number of tumors in
+the mice at the end of the model (A) based on their microbiota composition at the
+start of the model (B).** The OTUs in B are ranked in decreasing order of their
+Gini coefficient. The relationships between the first 6 OTUs and the number of
+tumors found in those mice are shown in Figure 3.
+
+
+
+**Figure 3. Relationship between the initial relative abundance of the most
+informative OTUs from the random forest model with the number of tumors found
+in the mice at the end of the model.**
+
+
+
+
 
 **Figure 4. Relative abundance of significantly enriched OTUs for each
 treatment group.** Strip charts show relative abundance of OTUs
