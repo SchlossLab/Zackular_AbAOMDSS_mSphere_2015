@@ -1,3 +1,9 @@
+
+```
+## randomForest 4.6-10
+## Type rfNews() to see new features/changes/bug fixes.
+```
+
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
 Joseph P. Zackular^1^, Nielson T. Baxter^1^, Grace Y. Chen^2^, and
@@ -23,6 +29,7 @@ Abstract will go here
 \newpage
 
 **Introduction**
+
 The mammalian gastrointestinal tract is home to a complex and dynamic community
 of microorganisms, termed the gut microbiome, which is essential for maintaining
 host health [Backhed et al*.,* 2005]. Among the bacterial populations that make
@@ -98,134 +105,99 @@ important role in CRC, but the ecological interactions and community structure
 of the gut microbiome mediate the capacity to modulate tumorigenesis.
 
 
-
-
 **Results**
 
-**Antibiotic perturbation of the gut microbiome modulates tumorigenicity.**
-
-To test the hypothesis that gut microbiome structure mediates tumorigenesis, we
-administered an assortment of antibiotic treatments to specific-pathogen-free
-(SPF) C57BL/6 mice and treated them with the azoxymethane (AOM) and DSS
-inflammation-based model of CRC [Zackular et al., 2013] (Figure 1a). We treated
-mice with all possible combinations of metronidazole, streptomycin, and
-vancomycin to create eight treatment groups: no antibiotics, all antibiotics
-(metronidazole, streptomycin, and vancomycin), $\Delta$metronidazole (streptomycin and
-vancomycin), Δstreptomycin (metronidazole and vancomycin), Δvancomycin
-(metronidazole and streptomycin), metronidazole only, streptomycin only, and
-vancomycin only. Each treatment group showed a significant decrease in tumor
-multiplicity compared to mice that did not receive antibiotics; however, all of
-the antibiotic treatments resulted in varying levels of tumorigenesis (Figure
-1A). These results demonstrate that distinctive antibiotic treatments yield a
-differential capacity for colon tumorigenesis.
-
-Marked structural changes associated with each antibiotic treatment could be
-observed at the phylum level (Figure 2C). Untreated control mice were dominated
-by the phlya Bacteroidetes (65±5.7%), Firmicutes (24±4.6%), and Proteobacteria
-(3±1.1%) (Figure 3A). The mice that received the full antibiotic cocktail
-primarily harbored Firmicutes (92±3%), particularly from the family
-*Lactobacillaceae*. In contrast, the mice that received only metronidazole had
-similar levels of Bacteroidetes (74±4%) and Firmicutes (7±1%) as control mice,
-but there was a significant bloom in Proteobacteria (9±0.08%). The
-Δmetronidazole and Δstreptomycin treatments led to the dominance of
-Proteobacteria (66±5% and 75±5%, respectively). The Δvancomycin treated mice
-harbored Firmicutes (48±8%) and Proteobacteria (48±12%). The mice that only
-received vancomycin were composed of bacterial populations belonging to the
-phyla Firmicutes (12±3%), Proteobacteria (38±2%), Tenericutes (18±6%), and
-Verrucomicrobia (27±12%). These results demonstrate that antibiotic treatments
-perturbed the structure of the microbial community, leading to 7 distinct
-communities that were associated with varying levels of tumorigenesis.
-
-To examine the role of the microbial community in this variation in
-tumorigenesis, we first considered the diversity of the gut microbiome using
-fecal samples taken at the end the model (Figure 1a). Each antibiotic treatment
-resulted in a significant decrease in the microbial diversity compared to mice
-that did not receive antibiotics. Mice treated with streptomycin or
-metronidazole alone showed intermediate levels of diversity that were
-significantly higher than the remaining treatments (Figure 2A). However, there
-was no direct correlation between changes in diversity and tumorigenicity of the
-microbial community. To determine if there was an association with a decrease in
-bacterial burden in the colon and tumorigenesis, we next looked at overall
-bacterial numbers in the feces. Using qPCR of the 16S rRNA gene we determined
-that there was not a significant decrease in overall bacterial numbers following
-treatment (Supplemental Figure 1). These results indicate that the mere
-bacterial load or diversity of the community was insufficient to explain the
-differences in tumor burden.
-
-Next, we characterized the differences in the structures of the communities by
-calculating the distance between samples using a metric that incorporates the
-OTU membership and relative abundance (i.e. θ~YC~ ) [Yue and Clayton, 2005].
-Each antibiotic treatment group harbored a significantly altered microbiome at
-the end point of the model compared to untreated animals (Figure 2B).
-Furthermore, each treatment resulted in a significantly different community
-structure, as each treatment group clustered separately from one another (Figure
-2B). Similar results were observed when we used phylogenetic-based metrics of
-β-diversity (i.e. weighted and unweighted UniFrac). These results indicate that
-highly disparate community structures can come from mice that harbor similar
-numbers of tumors.
 
 
-**Identification of tumor modulating bacterial populations in the gut microbiome**
+***Antibiotic perturbation of the gut microbiome modulates tumorigenicity.***
+We subjected conventionally-raised C57BL/6 mice to an inflammation-based model
+of colorectal cancer that utilizes azoxymethane (AOM) as a mutatgen and dextran
+sodium sulfate (DSS) to induce inflammation [Zackular et al., 2013; Baxter et
+al. 2014] (Figure 1A). As a test of the hypothesis that the microbiota are
+involved in tumorigenesis, we manipulated the microbiota by administering eight
+antibiotic treatment groups and then quantified the effects of the treatments on
+the number of tumors observed at the end of the model. Specifically, we treated
+mice with (i) no antibiotics, (ii) metronidazole, streptomycin, and vancomycin
+(all antibiotics), (iii) streptomycin and vancomycin ($\Delta$ metronidazole),
+(iv) metronidazole and vancomycin ($\Delta$ streptomycin), (v) metronidazole and
+streptomycin ($\Delta$ vancomycin), (vi) metronidazole, (vii) streptomycin, and
+(viii) vancomycin. Quantitative PCR targeting the 16S rRNA gene indicated that
+the number of copies of the 16S rRNA gene did not differ between the treatment
+groups. The three antibiotics were selected because they were thought to target
+different groups of bacteria including anaerobes (metronidazole), Gram-negatives
+(streptomycin), and Gram-positives (vancomycin). By sequencing the 16S rRNA
+genes that were present in the feces of the mice that were treated with the
+antibiotics it was clear that these treatments resulted in different starting
+communities (Figure 1B); however, the composition of these communities was not a
+predictable result of the antibiotic that was used to treat the mice. In support
+of our hypothesis we observed that antibiotic treatment resulted in a decrease
+in tumor multiplicity relative to the mice that did not receive antibiotics
+(Figure 1CD). These results demonstrated that perturbation of the microbiota
+through the use of antibiotics yields a differential capacity for colon
+tumorigenesis.
 
-The clear differences in community structure and composition coupled with the
-disparate levels of tumorigenesis provided us with an opportunity to identify
-potentially protective or tumor-promoting bacterial populations. To identify
-these tumor-modulating OTUs, we partitioned the treatment groups into high tumor
-incidence (Δmetronidazole, streptomycin only, and vancomycin only; median number
-of tumors=5.5) and low tumor incidence (All antibiotics and Δvancomycin,
-Δstreptomycin and metronidazole only median number of tumors=2.0). We then used
-LeFSe to identify differentially abundant bacterial populations that were
-associated with an increased or decreased tumor burden in mice (Figure 2D). We
-observed that four OTUs were significantly enriched among treatment groups with
-a higher tumor burden. (Figure 3; Supplemental Figure 2). Among the mice in the
-treatments with a low tumor burden there were 12 OTUs that were significantly
-enriched. (Figure 3; Supplemental Figure 2). Using Spearman correlation analysis
-we confirmed that these bacterial populations were highly correlated with an
-increased or decreased tumor burden in mice (Supplemental Figure 3 and
-Supplemental Table 1). These results indicate that there are populations that
-are associated with promoting or protecting against tumorigenesis.
 
-Interestingly, when we investigated the relative abundance of these OTUs for
-each treatment group, we observed that the distribution of these OTUs was patchy
-across the treatment groups (Figure 4). For example, among the three groups with
-the most tumors, β-Proteobacteria (OTU 25) was highly abundant among the
-Δmetronidazole group, significantly less abundant in vancomycin only group, and
-completely absent from the streptomycin only group. In contrast,
-*Mucinispirillum* (OTU 87) was absent in the Δmetronidazole group, but elevated
-in the other two treatment groups. This result suggests that there was not a
-single bacterial population promoting tumorigenesis in mice. Instead it is
-likely that there are populations of tumor promoting bacteria and tumor
-suppressing bacteria that can interact or serve redundant roles to modulate
-tumor burden.
+
+
+
+***The final tumor burden can be predicted from the initial microbiota***
+Because we obtained serial fecal samples it was possible to ascertain the
+composition of the microbiota for each mouse as well as the number of tumors in
+its colon at the end of the model. Using the 16S rRNA gene sequence data
+generated from feces collected on the day of AOM injection, we assigned the
+sequences to operational taxonomic units (OTUs) that were defined as a group of
+sequences that, on average, were not more than 3% different from each other. We
+then used the regression-based random forest machine learning algorithm to
+identify OTUs that would enable us to predict the number of tumors that were
+found in the same mice at the end of the model. The model that included OTUs
+that had an average relative abundance greater than 1.5% resulted in the
+greatest percentage of the variance explained (Supplementary Figure 1). This
+model included 15 OTUs and explained
+62.6% of the variation in the tumor counts (Figure 2).
+As suggested in Figure 2A, when the OTUs were sorted in decreasing order by
+their Gini coefficient, there was a jump between the sixth and seventh OTUs. In
+fact, when we reconstructed the model using only the six OTUs that provided the
+largest Gini coefficients, the model explained
+62.8% of the variation in the tumor
+counts. These six OTUs included members of the Firmicutes (OTU 6), Bacteroidetes
+(OTUs 4 and 19), Proteobacteria (OTU 3), and Tenericutes (OTUs 34 and 35).
+Increased numbers of tumors were associated with decreases in the relative
+abundance of relatives of the Enterobacteriaceae (OTU 3), *Ureaplasma* (OTU 34),
+and *Lactobacillus* (OTU 6) and increases in the relative abundance of the
+*Anaeroplasma* (OTU 35), Porphyromonadaceae (OTU 4), and *Prevotella* (OTU 19).
+Our random forest modeling demonstrated that it was possible to predict the
+number of tumors at the end of the model based on the composition of the
+microbiota at the beginning of the model.
 
 
 **Microbiome dynamics reveal potential associations between bacterial populations that mediate tumorigenesis**
 
-Comparison of the communities in the initial and final fecal samples collected
+7. Comparison of the communities in the initial and final fecal samples collected
 from each treatment group indicated that the groups varied in the amount of
 change over the course of the model. The mice that received streptomycin or
-vancomycin only and the Δstreptomycin mice had significantly less structural
+vancomycin only and the $\Delta$ streptomycin mice had significantly less structural
 change overtime compared to control mice (Fig. 4A). Meanwhile, the mice that
 received the full cocktail maintained a constant community structure throughout
-the model. Conversely, the Δmetronidazole and Δvancomycin mice had the highest
+the model. Conversely, the $\Delta$ metronidazole and $\Delta$ vancomycin mice had the highest
 level of variation across the model (Figure 4A). The amount that the gut
-microbiomes changed was not directly correlated with tumor burden (rho = 0.15, p =
-0.41). This result indicated that the destabilization of the initial community
-structure and the resulting host response was not associated with tumor burden.
+microbiomes changed was not directly correlated with tumor burden ($\rho$=0.15,
+p = 0.41). This result indicated that the destabilization of the initial
+community structure and the resulting host response was not associated with
+tumor burden.
 
-We next determined whether the OTU-level changes across the model could reveal
+8. We next determined whether the OTU-level changes across the model could reveal
 underlying mechanisms associated with this dramatic difference in tumorigenicity
 between treatment groups. Thus, we performed repeated-measures paired group
 analysis of variance to identify features from within the microbiome that were
-significantly enriched or depleted overtime for each treatment group. We used
+significantly enriched or depleted over time for each treatment group. We used
 fecal samples from day 0 and compared those to samples at the endpoint of the
-model for the Δmetronidazole and Δvancomycin treated groups since these
+model for the $\Delta$ metronidazole and $\Delta$ vancomycin treated groups since these
 communities showed the greatest change over the course of the model (Figure 5A).
 In both groups there was a significant enrichment of an OTU associated with the
-*Enterobacteriaceae* (OTU 3) family. In the Δmetronidazole-treated mice, this
+*Enterobacteriaceae* (OTU 3) family. In the $\Delta$ metronidazole-treated mice, this
 enrichment was associated with the simultaneous depletion in the relative
 abundance of *Clostridium* (OTUs 31, 34, and 57), *Streptococcus* (OTU 92), and
-*Enterococcus* (OTU 27). However, Δvancomycin-treated mice only showed a
+*Enterococcus* (OTU 27). However, $\Delta$ vancomycin-treated mice only showed a
 significant decrease in OTUs associated with *Lactobacillus* (OTU 6), while
 maintaining steady levels in each of the depleted populations observed in
 ∆metronidazole treated mice. We also observed enrichment in the relative
@@ -236,7 +208,7 @@ promoting and inhibiting populations are responsible for the final tumor burden.
 
 **Antibiotic intervention narrows possible mechanisms of microbiome involvement in tumorigenesis **
 
-The AOM-DSS model closely mirrors the patterns seen in human CRC. AOM induces
+9. The AOM-DSS model closely mirrors the patterns seen in human CRC. AOM induces
 DNA damage and the DSS induces inflammation. To determine whether the gut
 microbiome facilitates tumorigenesis by modulating AOM-induced mutations or
 inflammation, we performed two antibiotic intervention experiments. We first
@@ -300,7 +272,7 @@ During the time course of tumorigenesis we observed a marked increase in members
 of the *Enterobacteriaceae* associated with two antibiotic treatment groups
 (∆metranidazole and ∆vancomycin). Interestingly, one treatment group
 (∆vancomycin) developed significantly less tumors despite a similar increase in
-this potentially tumor-modulating bacterial clade*.* A recent study by Arthur
+this potentially tumor-modulating bacterial clade. A recent study by Arthur
 and colleagues showed that in an IL-10-deficient colitis-associated mouse model
 of CRC; there is an enrichment of *Enterobacteriaceae* associated with
 inflammation [Arthur et al., 2012]. This leads to an expansion of *E. coli*
@@ -371,9 +343,9 @@ tumors.
 **Antibiotic treatment.** Mice were treated with all possible combinations of
 metronidazole (0.75 g/L), streptomycin (2 g/L), and vancomycin (0.5 g/L) to
 create eight treatment groups: no antibiotics, all antibiotics (n=5)
-(metronidazole, streptomycin, and vancomycin), Δmetronidazole (n=5)
-(streptomycin and vancomycin), Δstreptomycin (n=5) (metronidazole and
-vancomycin), Δvancomycin (n=5) (metronidazole and streptomycin), metronidazole
+(metronidazole, streptomycin, and vancomycin), $\Delta$ metronidazole (n=5)
+(streptomycin and vancomycin), $\Delta$ streptomycin (n=5) (metronidazole and
+vancomycin), $\Delta$ vancomycin (n=5) (metronidazole and streptomycin), metronidazole
 only, streptomycin only, and vancomycin only (n=3). Antibiotics were
 administered in mouse drinking water for 2 weeks prior to and throughout the
 duration of AOM/DSS administration, unless otherwise specified in Figure 1A.
@@ -399,7 +371,7 @@ effects of uneven sampling.
 **16S rRNA quantitative PCR (qPCR) analysis.** Relative bacterial loads were
 quantified by qPCR analysis of bacterial genomic DNA using KAPA SYBR-fast
 Master Mix (KAPA biosciences) and universal 16S rRNA gene primers (F:
-ACTCCTACGGGAGGCAGCAGT. R: ATTACCGCGGCTGCTGGC.) [Vaishnava et al., 2011].
+ACTCCTACGGGAGGCAGCAGT; R: ATTACCGCGGCTGCTGGC) [Vaishnava et al., 2011].
 Samples were normalized to fecal mass and relative fold change was determined
 using untreated stool samples for each replicate mouse. Note that qPCR
 measures relative fold change of 16S gene copy number, not actual bacterial
@@ -554,7 +526,7 @@ numbers.
     intestinal cell lines. World Journal of Gastroenterology 14:
     1067-1076.
 
-    Kaci G, Lakhdari O, Dore J, Ehrlich SD, Renault P, et al. (2011)
+37. Kaci G, Lakhdari O, Dore J, Ehrlich SD, Renault P, et al. (2011)
     Inhibition of the NF-kappa B Pathway in Human Intestinal Epithelial
     Cells by Commensal Streptococcus salivarius. Applied and
     Environmental Microbiology 77: 4681-46
@@ -583,7 +555,7 @@ samples from each mouse on days indicated in Figure 1A. **A.** Inverse
 Simpson’s diversity index of fecal samples taken at the endpoint of the
 model. **B.** Phylum level relative abundance for each treatment group.
 Relative abundance represents the average structure of each treatment
-group at the endpoint of the model. **C.** NMDS ordination based on θyc
+group at the endpoint of the model. **C.** NMDS ordination based on $theta$<sub>YC</sub>
 distances for all mice following the third DSS administration. (AMOVA; P
 \< 0.01; Stress = 0.175)
 
@@ -604,11 +576,11 @@ Abundance data is taken from endpoint of the model for each mouse. Error
 bars represent +/- standard deviation
 
 **Figure 5. Gut microbiome dynamics during tumorigenesis for
-Δmetronidazole and Δvancomycin treatments groups.** **A.** Average
+$\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
 change in the gut microbiome community structure over the time course of
-tumorigenesis. Distances calculated using θyc distances. **B.** and
+tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
 **C.** Change in relative abundance over the time course of
-tumorigenesis for Δmetronidazole and Δvancomycin treatment groups. OTUs
+tumorigenesis for $\Delta$ metronidazole and $\Delta$ vancomycin treatment groups. OTUs
 with relative abundances that were significantly different at day 70
 compared to day 0 are shown. Repeated-measures paired group analysis of
 variance was used to identify significantly altered OTUs. Error bars
