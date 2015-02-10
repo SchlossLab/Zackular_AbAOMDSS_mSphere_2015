@@ -113,7 +113,7 @@ of the gut microbiome mediate the capacity to modulate tumorigenesis.
 
 **Results**
 
-```{r setup}
+```{r setup, cache=TRUE}
 set.seed(6201976)
 source("code/rf_baseline_analysis.R")
 
@@ -167,7 +167,7 @@ through the use of antibiotics yields a differential capacity for colon
 tumorigenesis.
 
 
-```{r predict_tumor_baseline}
+```{r predict_tumor_baseline, cache=TRUE}
 n_trees <- 10000 #number of trees for random forest
 rf_baseline_thresh <- 0.015 #an average of 1.5%
 
@@ -588,6 +588,10 @@ metronidazole, streptomycin, and vancomycin to create eight treatment groups,
 which resulted in considerable differences in the taxonomic composition of the
 gut communities at the start of the model (Day 0) (B). These communities
 resulted in a continuum of tumor burden in the mice (C and D).  
+
+```{r figure1, fig.width=7.5, fig.height=10}
+source("code/build_figure1.R")
+```
 
 
 **Figure 2. A random forest model successfully predicted the number of tumors in
