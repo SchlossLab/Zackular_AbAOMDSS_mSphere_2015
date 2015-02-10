@@ -600,6 +600,14 @@ start of the model (B).** The OTUs in B are ranked in decreasing order of their
 Gini coefficient. The relationships between the first 6 OTUs and the number of
 tumors found in those mice are shown in Figure 3.
 
+```{r figure2, fig.width=7.5, fig.height=3.5}
+layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
+plot_forest_fit(tumor_counts_baseline, rf_baseline_forest, rf_baseline_rabund, treatment_baseline)
+mtext(text="A", line=1.5, side=2, at=23, las=2, cex=2, font=2)
+plot_importance(rf_baseline_forest)
+mtext(text="B", line=9, side=2, at=15, las=2, cex=2, font=2)
+
+```
 
 
 **Figure 3. Relationship between the initial relative abundance of the most

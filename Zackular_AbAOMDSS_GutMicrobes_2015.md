@@ -549,12 +549,14 @@ resulted in a continuum of tumor burden in the mice (C and D).
 
 <img src="results/figures/figure1-1.png" title="plot of chunk figure1" alt="plot of chunk figure1" style="display: block; margin: auto;" />
 
+
 **Figure 2. A random forest model successfully predicted the number of tumors in
 the mice at the end of the model (A) based on their microbiota composition at the
 start of the model (B).** The OTUs in B are ranked in decreasing order of their
 Gini coefficient. The relationships between the first 6 OTUs and the number of
 tumors found in those mice are shown in Figure 3.
 
+<img src="results/figures/figure2-1.png" title="plot of chunk figure2" alt="plot of chunk figure2" style="display: block; margin: auto;" />
 
 
 **Figure 3. Relationship between the initial relative abundance of the most
