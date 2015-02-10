@@ -161,8 +161,12 @@ plot_importance <- function(forest){
     tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
     tax$Taxonomy <- gsub("_", " ", tax$Taxonomy)
-    tax$Taxonomy <- gsub(" sensu stricto", " ", tax$Taxonomy)
-    otu_tax_labels <- paste0(tax[,2]," (",gsub("tu0*", "TU ", rownames(tax)) ,")")
+    tax$Taxonomy <- gsub(" sensu stricto", "", tax$Taxonomy)
+
+    otu_tax_labels <- paste0(tax[,2], " (",gsub("tu0*", "TU ", rownames(tax)) ,")")
+#    otu_tax_labels <- paste0("italic(", tax[,2],")~(",gsub("tu0*", "TU~", rownames(tax)) ,")")
+#    otu_tax_labels <- gsub(" ", "~", otu_tax_labels)
+#    otu_tax_labels <- do.call(expression, as.list(parse(text=otu_tax_labels)))
     names(otu_tax_labels) <- rownames(tax)
 
     importance <- importance(forest)
@@ -173,7 +177,7 @@ plot_importance <- function(forest){
         ylim=c(1, length(sorted_importance)))
     abline(h=1:length(sorted_importance), lty=3, col="gray")
     points(x=rev(sorted_importance), y=1:length(sorted_importance), pch=19)
-    mtext(side=2, line=8.5, adj=0, at=1:length(sorted_importance), text=rev(otu_tax_labels[names(sorted_importance)]), las=2, cex=0.7)
+    mtext(side=2, line=8.25, adj=0, at=1:length(sorted_importance), text=rev(otu_tax_labels[names(sorted_importance)]), las=2, cex=0.7)
     mtext(side=1, text="Gini coefficient", line=2.0)
 
 }
