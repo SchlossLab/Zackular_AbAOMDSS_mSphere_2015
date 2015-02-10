@@ -208,7 +208,11 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
 
 #Plot top features' relative abundance versus the tumor counts for the mice that
 #they came from...
-plot_top_features <- function(tumor_counts, sorted_importance, rabund, treatment){
+plot_top_features <- function(tumor_counts, importance, rabund, treatment){
+
+    importance <- importance(rf_baseline_forest)
+    sorted_importance <- importance[order(importance[,2], decreasing=T),]
+
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
 
@@ -221,7 +225,7 @@ plot_top_features <- function(tumor_counts, sorted_importance, rabund, treatment
     #and combine the OTU name with its taxonomy and Gini coefficient
     otus <- rownames(sorted_importance)[1:6]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", round(sorted_importance[1:6,2], 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", format(round(sorted_importance[1:6,2], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
@@ -278,8 +282,8 @@ plot_top_features <- function(tumor_counts, sorted_importance, rabund, treatment
     }
 
     plot.new()
-    text(x=0.15, y=0.5, label="Number of tumors", cex=2, srt=90)
+    text(x=0.15, y=0.5, label="Observed number of tumors", cex=1.5, srt=90)
 
     plot.new()
-    text(x=0.5, y=0.2, label="Relative abundance (%)", cex=2)
+    text(x=0.5, y=0.2, label="Relative abundance at Day 0 (%)", cex=1.5)
 }

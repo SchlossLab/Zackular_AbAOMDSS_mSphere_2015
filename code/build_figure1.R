@@ -74,7 +74,7 @@ otu_plot <- function(rabunds, ordered_treatments, otu_label){
     segments(x0=seq(1:8)-0.4, x1=seq(1:8)+0.4, y0=means[o], y1=means[o], lwd=3)
 
     box()
-    axis(2, las=2, font=2)
+    axis(2, las=2)
 
     for(i in 1:length(ordered_treatments)){
         stripchart(at=i, x=rabunds[baseline_treatment==ordered_treatments[i]],
@@ -92,15 +92,14 @@ otu_plot(baseline_rabund[,ordered_otus[3]], ordered_treatments, tax[ordered_otus
 otu_plot(baseline_rabund[,ordered_otus[4]], ordered_treatments, tax[ordered_otus[4],"Taxonomy"])
 
 plot.new()
-text(x=0.3, y=0.5, label="Relative abundance (%)", cex=1.0, srt=90, xpd=TRUE, font=2)
-text(label="B", x=-0.8, y=1.03, font=2.5, cex=2, xpd=TRUE)
+text(x=0.3, y=0.5, label="Relative abundance (%)", cex=1.0, srt=90, xpd=TRUE)
+text(label="B", x=-0.8, y=1.03, font=2, cex=2, xpd=TRUE)
 
 
-plot(NA, xlim=c(0.5,8.5), xlab="", ylim=c(0,25), axes=F,
-    ylab="Number of tumors", cex.lab=1.4)
+plot(NA, xlim=c(0.5,8.5), xlab="", ylim=c(0,25), axes=F, cex.lab=1.4)
 segments(x0=seq(1:8)-0.4, x1=seq(1:8)+0.4, y0=means[decreasing_order], y1=means[decreasing_order], lwd=3)
 box()
-axis(2, las=2, font=2)
+axis(2, las=2)
 #axis(1, at=1:8, label=labels[ordered_treatments], las=2, tick=F)
 
 #build a stripchart
@@ -112,12 +111,12 @@ for(i in 1:length(ordered_treatments)){
 
 plot.new()
 par(lheight=0.7)
-text(x=0.2, y=0.5, label="Number of\ntumors", cex=1.0, srt=90, xpd=TRUE, font=2)
-text(label="C", x=-0.8, y=1.03, font=2.5, cex=2, xpd=TRUE)
+text(x=0.2, y=0.5, label="Number of tumors", cex=1.0, srt=90, xpd=TRUE)
+text(label="C", x=-0.8, y=1.03, font=2, cex=2, xpd=TRUE)
 
 
 plot.new()
-text(x=seq(0.05,1,length=8), y=1.2, labels[ordered_treatments], srt=70, cex=0.8, font=2, pos=2, xpd=TRUE)
+text(x=seq(0.05,1,length=8), y=1.2, labels[ordered_treatments], srt=70, cex=0.8, font=1, pos=2, xpd=TRUE)
 
 
 
