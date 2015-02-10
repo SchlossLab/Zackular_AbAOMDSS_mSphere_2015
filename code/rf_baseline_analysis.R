@@ -149,10 +149,10 @@ labels <- c(NoAbs = "No antibiotics",
     StrepMetro = "\u0394 Vancomycin" )
 
 
-
+#forest <- rf_baseline_forest
 plot_importance <- function(forest){
 
-    par(mar=c(5,8,0.5,0.5))
+    par(mar=c(3,10,0.5,0.5))
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
 
@@ -161,30 +161,45 @@ plot_importance <- function(forest){
     tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
     tax$Taxonomy <- gsub("_", " ", tax$Taxonomy)
+    tax$Taxonomy <- gsub(" sensu stricto", " ", tax$Taxonomy)
+    otu_tax_labels <- paste0(tax[,2]," (",gsub("tu0*", "TU ", rownames(tax)) ,")")
+    names(otu_tax_labels) <- rownames(tax)
 
     importance <- importance(forest)
     sorted_importance <- importance[order(importance[,2], decreasing=T),2]
-    labels <- paste0(tax[names(sorted_importance),2]," (",gsub("tu0*", "TU ", rownames(tax)) ,")")
-    names(labels) <- rownames(tax)
 
-    dotchart(x=rev(sorted_importance), labels=rev(labels[names(sorted_importance)]), xlab="Gini coefficient", xlim=c(0, max(sorted_importance)))
+    plot(NA, yaxt="n", xlab="", ylab="",
+        xlim=c(0, max(sorted_importance)),
+        ylim=c(1, length(sorted_importance)))
+    abline(h=1:length(sorted_importance), lty=3, col="gray")
+    points(x=rev(sorted_importance), y=1:length(sorted_importance), pch=19)
+    mtext(side=2, line=8.5, adj=0, at=1:length(sorted_importance), text=rev(otu_tax_labels[names(sorted_importance)]), las=2, cex=0.7)
+    mtext(side=1, text="Gini coefficient", line=2.0)
+
 }
 
 
 #fit the full model back to the original data
 plot_forest_fit <- function(observed, forest, rabund, treatment){
 
+    par(mar=c(3,3,0.5,0.5))
     forest_fit <- predict(forest, rabund)
 
     #want the x and y-axes to have the same limits, so let's find the largest
     #tumor value among the observed and predicted
     max_value <- max(c(forest_fit, observed))
 
+    labels_no_n <- gsub(" \\(.*\\)", "", labels)
+
     plot(forest_fit~observed, pch=pch[treatment],
         col=clrs[treatment], ylim=c(0,max_value), xlim=c(0,max_value),
-        cex=1.5, xlab="Observed number of tumors", ylab="Predicted number of tumors")
-    legend(x=0, y=max_value, legend=labels, pch=pch[names(labels)],
-            col=clrs[names(labels)])
+        cex=1, xlab="", ylab="", yaxt="n")
+    legend(x=-1, y=max_value*1.05, legend=labels_no_n, pch=pch[names(labels)],
+            col=clrs[names(labels)], cex=0.8, bty="n")
+    mtext(side=1, text="Observed number of tumors", line=2.0)
+    mtext(side=2, text="Predicted number of tumors", line=2.0)
+    axis(2, las=2)
+
 }
 
 #Plot top features' relative abundance versus the tumor counts for the mice that
