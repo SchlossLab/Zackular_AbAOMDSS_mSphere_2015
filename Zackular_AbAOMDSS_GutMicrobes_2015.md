@@ -563,8 +563,7 @@ tumors found in those mice are shown in Figure 3.
 informative OTUs from the random forest model with the number of tumors found
 in the mice at the end of the model.**
 
-
-
+<img src="results/figures/figure3-1.png" title="plot of chunk figure3" alt="plot of chunk figure3" style="display: block; margin: auto;" />
 
 
 **Figure 4. Relative abundance of significantly enriched OTUs for each

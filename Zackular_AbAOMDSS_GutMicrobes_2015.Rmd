@@ -615,8 +615,9 @@ mtext(text="B", line=8.5, side=2, at=15, las=2, cex=2, font=2)
 informative OTUs from the random forest model with the number of tumors found
 in the mice at the end of the model.**
 
-
-
+```{r figure3, fig.width=7.5, fig.height=5}
+plot_top_features(tumor_counts_baseline, importance, rf_baseline_rabund, treatment_baseline)
+```
 
 
 **Figure 4. Relative abundance of significantly enriched OTUs for each
