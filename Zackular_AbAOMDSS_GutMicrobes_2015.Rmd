@@ -7,8 +7,8 @@ opts_chunk$set(warning = FALSE)
 opts_chunk$set(fig.align = "center")
 opts_chunk$set(cache = FALSE)
 
-library("randomForest")
-library("png")
+library("randomForest", quietly=TRUE)
+library("png", quietly=TRUE)
 ```
 
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
@@ -607,7 +607,6 @@ plot_forest_fit(tumor_counts_baseline, rf_baseline_forest, rf_baseline_rabund, t
 mtext(text="A", line=1.5, side=2, at=23, las=2, cex=2, font=2)
 plot_importance(rf_baseline_forest)
 mtext(text="B", line=8.5, side=2, at=15, las=2, cex=2, font=2)
-
 ```
 
 
@@ -620,13 +619,7 @@ plot_top_features(tumor_counts_baseline, importance, rf_baseline_rabund, treatme
 ```
 
 
-**Figure 4. Relative abundance of significantly enriched OTUs for each
-treatment group.** Strip charts show relative abundance of OTUs
-identified with LeFSe analysis for each treatment group separately.
-Abundance data is taken from endpoint of the model for each mouse. Error
-bars represent +/- standard deviation
-
-**Figure 5. Gut microbiome dynamics during tumorigenesis for
+**Figure 4. Gut microbiome dynamics during tumorigenesis for
 $\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
 change in the gut microbiome community structure over the time course of
 tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
@@ -637,7 +630,7 @@ compared to day 0 are shown. Repeated-measures paired group analysis of
 variance was used to identify significantly altered OTUs. Error bars
 represent +/- standard error.
 
-**Figure 6. Antibiotic intervention prior to second administration of
+**Figure 5. Antibiotic intervention prior to second administration of
 DSS alleviates tumor burden.** Interventions with an antibiotic cocktail
 of metronidazole, vancomycin, and streptomycin were performed as
 depicted in Figure 1A. **A.** Tumors were enumerated at the end point of

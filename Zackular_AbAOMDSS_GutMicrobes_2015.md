@@ -566,13 +566,7 @@ in the mice at the end of the model.**
 <img src="results/figures/figure3-1.png" title="plot of chunk figure3" alt="plot of chunk figure3" style="display: block; margin: auto;" />
 
 
-**Figure 4. Relative abundance of significantly enriched OTUs for each
-treatment group.** Strip charts show relative abundance of OTUs
-identified with LeFSe analysis for each treatment group separately.
-Abundance data is taken from endpoint of the model for each mouse. Error
-bars represent +/- standard deviation
-
-**Figure 5. Gut microbiome dynamics during tumorigenesis for
+**Figure 4. Gut microbiome dynamics during tumorigenesis for
 $\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
 change in the gut microbiome community structure over the time course of
 tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
@@ -583,7 +577,7 @@ compared to day 0 are shown. Repeated-measures paired group analysis of
 variance was used to identify significantly altered OTUs. Error bars
 represent +/- standard error.
 
-**Figure 6. Antibiotic intervention prior to second administration of
+**Figure 5. Antibiotic intervention prior to second administration of
 DSS alleviates tumor burden.** Interventions with an antibiotic cocktail
 of metronidazole, vancomycin, and streptomycin were performed as
 depicted in Figure 1A. **A.** Tumors were enumerated at the end point of
