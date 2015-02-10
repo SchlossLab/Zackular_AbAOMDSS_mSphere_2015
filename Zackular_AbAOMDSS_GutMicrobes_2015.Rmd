@@ -606,7 +606,7 @@ layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
 plot_forest_fit(tumor_counts_baseline, rf_baseline_forest, rf_baseline_rabund, treatment_baseline)
 mtext(text="A", line=1.5, side=2, at=23, las=2, cex=2, font=2)
 plot_importance(rf_baseline_forest)
-mtext(text="B", line=9, side=2, at=15, las=2, cex=2, font=2)
+mtext(text="B", line=8.5, side=2, at=15, las=2, cex=2, font=2)
 
 ```
 
