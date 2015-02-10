@@ -8,6 +8,7 @@ opts_chunk$set(fig.align = "center")
 opts_chunk$set(cache = FALSE)
 
 library("randomForest")
+library("png")
 ```
 
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
