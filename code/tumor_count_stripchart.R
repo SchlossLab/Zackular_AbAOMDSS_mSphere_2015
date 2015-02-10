@@ -29,7 +29,6 @@ labels <- c(NoAbs = paste0("No antibiotics (N=",counts["NoAbs"],")"),
     StrepMetro = paste0("\U0394Vancomycin (N=",counts["StrepMetro"], ")") )
 
 
-cairo_pdf(file="tumor_counds.pdf", width=4.5,5.5)
 par(mar=c(10, 5, 0.5, 0.5))
 
 plot(1, xlim=c(0.5,8.5), xlab="", ylim=c(0,max(tumors$n_tumors)), axes=F,
@@ -46,6 +45,3 @@ for(i in 1:length(ordered_treatments)){
     vertical=T, method="jitter", col=clrs[ordered_treatments[i]],
     pch=pch[ordered_treatments[i]], jitter=0.25, cex=1.5, add=T)
 }
-
-
-dev.off()
