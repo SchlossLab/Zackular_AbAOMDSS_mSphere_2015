@@ -1,8 +1,4 @@
 
-```
-## randomForest 4.6-10
-## Type rfNews() to see new features/changes/bug fixes.
-```
 
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
