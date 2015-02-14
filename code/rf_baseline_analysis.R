@@ -20,7 +20,7 @@ read_shared_file <- function(shared_file, samples_to_remove){
 # given a table of counts where the rows are the samples and the columns are the
 # otus, output the relative abundance for each OTU in each sample
 
-get_rel_abund <- function(file_name, samples_to_remove){
+get_rel_abund <- function(file_name, samples_to_remove = "DSS"){
 
     shared_table <- read_shared_file(file_name, samples_to_remove)
     #calculate the number of sequences in each sample: assumes every sample
@@ -208,9 +208,9 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
 
 #Plot top features' relative abundance versus the tumor counts for the mice that
 #they came from...
-plot_top_features <- function(tumor_counts, importance, rabund, treatment){
+plot_top_features <- function(tumor_counts, forest, rabund, treatment){
 
-    importance <- importance(rf_baseline_forest)
+    importance <- importance(forest)
     sorted_importance <- importance[order(importance[,2], decreasing=T),]
 
     #read in the taxonomy file
