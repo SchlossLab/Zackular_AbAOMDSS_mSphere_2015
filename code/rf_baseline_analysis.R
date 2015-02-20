@@ -138,6 +138,17 @@ pch <- c(Metro = 19,
     AllAbs = 19,
     NoAbs = 1)
 
+#single Abx get a solid kube, the deletion gets an dashed line
+lty <- c(Metro = 1,
+    VancStrep = 2,
+    Strep = 1,
+    VancMetro = 2,
+    Vanc = 1,
+    StrepMetro = 2,
+    AllAbs = 1,
+    NoAbs = 2)
+
+
 #these are needed for the legend
 labels <- c(NoAbs = "No antibiotics",
     AllAbs = "All antibiotics",
