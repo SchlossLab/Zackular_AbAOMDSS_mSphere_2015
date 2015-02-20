@@ -137,7 +137,7 @@ the number of tumors that were observed?
 tumor_count.file <- paste0("data/process/tumor_counts.tsv")
 tumor_counts <- read.table(file=tumor_count.file, header=T)
 
-tumor_counts_prepost <- tumor_counts[names(start_end_dist)]
+tumor_counts_prepost <- tumor_counts[names(start_end_dist), "n_tumors"]
 dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist, method="spearman")
 
 treatments <- gsub("_.*", "", names(start_end_dist))
@@ -192,11 +192,18 @@ start_end_axes <- axes[c(starts, ends),]
 treatments <- sapply(rownames(start_end_axes), get_treatment)
 
 symbols <- pch[treatments]
+line_type <- lty[treatments]
 
-plot(NA, xlim=range(axes[,1]), ylim=range(axes[,2]), xlab="NMDS Axis 1",
+good_starts <- starts[!is.na(starts)]
+good_ends <- ends[!is.na(starts)]
+good_treats <- treatments[!is.na(starts)]
+plot(NA, xlim=c(-0.7, 0.7), ylim=c(-0.7, 0.7), xlab="NMDS Axis 1",
         ylab="NMDS Axis 2")
-arrows(x0=axes[starts,1], y0=axes[starts,2], x1=axes[ends,1], y1=axes[ends,2], col="gray", lwd=2, length=0.1)
-points(start_end_axes, col=clrs[treatments], pch=symbols)
+arrows(x0=axes[good_starts,1], y0=axes[good_starts,2], x1=axes[good_ends,1], y1=axes[good_ends,2], col=clrs[good_treats], lwd=3, lty=line_type[good_treats], length=0.1)
+#points(axes[good_starts,], col=clrs[good_treats], pch=symbols[good_treats])
+labels_no_n <- gsub(" \\(.*\\)", "", labels)
+legend(x=-0.75, y=0.75, legend=labels_no_n, lty=lty[names(labels)], lwd=2,
+        col=clrs[names(labels)], cex=1.0, bty="n")
 ```
 
 Let's see whether we can build a random forest to predict whether a sample comes
