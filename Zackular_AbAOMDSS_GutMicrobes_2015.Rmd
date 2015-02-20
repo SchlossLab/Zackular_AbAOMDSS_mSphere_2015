@@ -654,7 +654,7 @@ informative OTUs from the random forest model with the number of tumors found
 in the mice at the end of the model.**
 
 ```{r figure3, fig.width=7.5, fig.height=5}
-plot_top_features(tumor_counts_baseline, importance, rf_baseline_rabund, treatment_baseline)
+plot_baseline_features(tumor_counts_baseline, importance, rf_baseline_rabund, treatment_baseline)
 ```
 
 

@@ -219,7 +219,7 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
 
 #Plot top features' relative abundance versus the tumor counts for the mice that
 #they came from...
-plot_top_features <- function(tumor_counts, forest, rabund, treatment){
+plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
 
     importance <- importance(forest)
     sorted_importance <- importance[order(importance[,2], decreasing=T),]
