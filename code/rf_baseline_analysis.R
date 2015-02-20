@@ -298,3 +298,90 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
     plot.new()
     text(x=0.5, y=0.2, label="Relative abundance at Day 0 (%)", cex=1.5)
 }
+
+
+
+
+
+#Plot features' relative abundance at the end of the model versus the tumor
+#counts for the mice that they came from...
+plot_final_features <- function(tumor_counts, forest, rabund, treatment){
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,2], decreasing=T),]
+
+    #read in the taxonomy file
+    tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
+
+    #the next three lines extract the last named taxonomic level for each OTU
+    tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
+
+    #let's just use the top six OTUs, based on our inspection of the importance plot
+    #and combine the OTU name with its taxonomy and Gini coefficient
+    otus <- rownames(sorted_importance)[1:7]
+    pretty_otus <- gsub("Otu0*", "OTU ", otus)
+    otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", format(round(sorted_importance[1:7,2], 1), 1))
+    otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
+
+
+    par(mar=c(0.5,0.5,0.5,0.5))
+
+    design <- matrix(1:8, nrow=2, byrow=T)
+    design <- cbind(c(8,8), design)
+    design <- rbind(design, c(0,9,9,9,9))
+    design[2,5] <- 0
+    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,0.3))
+
+    for(i in 1:7){
+
+        #get the row and column number for each spot in the layout
+        row <- ifelse(i<=4,1,2)
+        column <- ifelse(i<=4, i, i-4)
+
+        #extract the relative abundance data for this OTU
+        rel_abund <- rabund[,otus[i]]
+
+        #plot the relative abundance with the number of tumors for each animal. plot
+        #on consistent log scaled x-axis for all OTUs. will throw errors because it
+        #can't plot zeroes on a log scale
+        plot(rel_abund,tumor_counts, log="x", pch=pch[treatment],
+            col=clrs[treatment], ylab="", xlab="",
+            xlim=c(1e-4, 1), ylim=c(0,27), yaxt="n",
+            xaxt="n", cex.lab=1.5)
+
+        #want to plot the number of tumors for those mice that had a zero relative
+        #abundance
+        zeroes <- rel_abund == 0
+
+        #jitter the points so that they don't fall on top of each other
+        x_zeroes <- runif(sum(zeroes),1.0e-4,1.5e-4)#rep(1.2e-4, sum(zeroes))
+        points(x=x_zeroes, tumor_counts[zeroes], pch=pch[treatment[zeroes]],
+                col=clrs[treatment[zeroes]])
+
+        #create a vertical line to denote the limit of detection
+        abline(v=2.2e-4, col="gray")
+
+        #put the OTU label in the upper left corner of the plot
+        text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
+
+        #if it's on the bottom row, put a customized axis indicating the % rabund
+        if(row == 2){
+            axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
+                    label=c("0", "0.1", "1", "10", "100"),
+                    cex.axis=1.5)
+        }
+
+        #if it's in the first column turn the axis labels to be horizontal
+        if(column == 1){
+            axis(2, las=2, cex.axis=1.5)
+        }
+    }
+
+    plot.new()
+    text(x=0.15, y=0.5, label="Observed number of tumors", cex=1.5, srt=90)
+
+    plot.new()
+    text(x=0.5, y=0.2, label="Relative abundance at Day 73 (%)", cex=1.5)
+}
