@@ -213,6 +213,45 @@ number of tumors at the end of the model based on the composition of the
 microbiota at the beginning of the model.
 
 
+
+
+```{r predict_tumor_final, cache=TRUE}
+get_end_sample <- function(treat_et){
+    treat_et_days <- day[grep(treat_et, names(day))]
+    names(which.max(treat_et_days))
+}
+
+unique_treat_et <- unique(paste(treatment, eartag, sep="_"))
+ends <- sapply(unique_treat_et, get_end_sample)
+
+treatment_final <- treatment[ends]   #update the metadata
+eartag_final <- eartag[ends]         #update the metadata
+dayfinal <- day[ends]               #update the metadata
+rabund_final <- rel_abund[ends, ]
+tumor_counts_final <- tumor_counts[unique_treat_et, 1]
+
+n_trees <- 10000 #number of trees for random forest
+rf_final_thresh <- 0.015 #an average of 1.5%
+
+rf_final_forest <- get_forest(rabund=rabund_final,
+                            dependent=tumor_counts_final,
+                            n_trees=n_trees,
+                            threshold=rf_final_thresh)
+
+rf_final_rabund <- filter_rabund(rabund_final, rf_final_thresh)
+
+rf_simplify_rsq <- simplify_model(tumor_counts_final, rf_final_forest, rabund_final)
+```
+
+***The final tumor burden can be predicted from the final microbiota***
+Similar to our analysis using the initial composition of the microbiota, we
+developed a random forest regression model to predict the number of tumors in
+the mice based on the composition of the microbiota at the end of the model. The
+model included `r ncol(rf_final_rabund)` OTUs after we again applied a filter
+requiring each OTU to have an average relative abundance of at least 1.5%. The
+model explained `r round(100*get_rsq(rf_final_forest), 1)`% of the variation in
+the tumor counts (Supplementary Figure 2).
+
 **Microbiome dynamics reveal potential associations between bacterial populations that mediate tumorigenesis**
 
 7. Comparison of the communities in the initial and final fecal samples collected
@@ -638,3 +677,35 @@ the model. Median tumor counts are shown for each treatment group.
 **B.** Representative images of tumors in the distal colon of mice from
 each treatment group. Statistical analysis was performed using Wilcoxon
 test. \*, P \< 0.01
+
+
+
+
+
+Supplementary Figure 1
+Plot of Rsq vs. filter
+
+
+
+**Supplemental Figure 2. A random forest model successfully predicted the number of tumors in
+the mice at the end of the model (A) based on their microbiota composition at the
+start end of the model (B).** The OTUs in B are ranked in decreasing order of their
+Gini coefficient. The relationships between the first 6 OTUs and the number of
+tumors found in those mice are shown in Supplemental Figure 3.
+
+```{r supp_figure2, fig.width=7.5, fig.height=3.5}
+layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
+plot_forest_fit(tumor_counts_final, rf_final_forest, rf_final_rabund, treatment_final)
+mtext(text="A", line=1.5, side=2, at=23, las=2, cex=2, font=2)
+plot_importance(rf_final_forest)
+mtext(text="B", line=8.5, side=2, at=15, las=2, cex=2, font=2)
+```
+
+
+**Supplemental Figure 3. Relationship between the initial relative abundance of the most
+informative OTUs from the random forest model with the number of tumors found
+in the mice at the end of the model.**
+
+```{r supp_figure3, fig.width=7.5, fig.height=5}
+plot_top_features(tumor_counts_final, importance, rf_final_rabund, treatment_end)
+```
