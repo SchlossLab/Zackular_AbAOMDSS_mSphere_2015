@@ -707,8 +707,6 @@ plot_baseline_features(tumor_counts_baseline, rf_baseline_forest, rf_baseline_ra
 **Figure 4. The murine microbiota is dynamic but the amount of change is not
 associated with the final number of tumors.**
 ```{r figure4, fig.width=3.75, fig.height=5}
-
-pdf(file="test.pdf", width=3.75, height=7)
 design <- matrix(c(2,1,
                     5,3,
                     5,4,
@@ -746,11 +744,6 @@ text(x=0.15, y=0.5, label="Relative abundance (%)", srt=90)
 
 plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
 text(x=0.5, y=0.25, label="Days since AOM administration")
-
-
-dev.off()
-
-
 ```
 
 
