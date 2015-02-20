@@ -7,7 +7,7 @@ par(cex=1)
 start <- -14
 end <- 74
 
-samples <- c(-7, 0, 5, 21, 25, 45, 47, 69, 74)
+samples <- c(0, 21, 25, 45, 47, 69, 74)
 
 plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab='',xlab='',xlim=c(start-1,end+1),ylim=c(-4,5))
 
