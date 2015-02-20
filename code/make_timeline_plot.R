@@ -65,6 +65,6 @@ points(del_vanc_otu06$Group.1-jitter, del_vanc_otu06$x[,"Median"], col=clrs[del_
 points(del_vanc_otu06$Group.1-jitter, del_vanc_otu06$x[,"Median"], pch=21, col=clrs[del_vanc_otu06$Group.2], bg="white", cex=1.5)
 
 axis(2, at=seq(0,0.7,0.1), label=seq(0,70,10), las=2)
-axis(1)
+axis(1, at=seq(0,75,25), label=seq(0,75,25))
 text(x=78, y=0.73, label="Lactobacillus (OTU 6)", pos=2, font=2)
 box()
