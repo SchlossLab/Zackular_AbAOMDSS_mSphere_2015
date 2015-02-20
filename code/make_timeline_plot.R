@@ -28,7 +28,7 @@ del_vanc_otu06 <- otu06[otu06$Group.2 == del_vanc,]
 
 jitter <- 0.5
 
-par(mar=c(0.5,3,0.5,0.5), mfrow=c(2,1))
+#par(mar=c(0.5,3,0.5,0.5))
 plot(NA, ylim=c(0, 0.75), xlim=c(0,75), xlab="", ylab="", axes=F)
 polygon(c(5,5,10,10),c(80,-10,-10,80), col='light blue', border=NA)   # DSS 1 box
 polygon(c(26,26,31,31),c(80,-10,-10,80), col='light blue', border=NA) # DSS 2 box
@@ -45,7 +45,7 @@ points(del_vanc_otu03$Group.1-jitter, del_vanc_otu03$x[,"Median"], col=clrs[del_
 points(del_vanc_otu03$Group.1-jitter, del_vanc_otu03$x[,"Median"], pch=21, col=clrs[del_vanc_otu03$Group.2], bg="white", cex=1.5)
 
 axis(2, at=seq(0,0.7,0.1), label=seq(0,70,10), las=2)
-text(x=78, y=0.75, label="Enterobacteriaceae (OTU 3)", pos=2, font=2)
+text(x=78, y=0.73, label="Enterobacteriaceae (OTU 3)", pos=2, font=2)
 box()
 
 
@@ -65,5 +65,6 @@ points(del_vanc_otu06$Group.1-jitter, del_vanc_otu06$x[,"Median"], col=clrs[del_
 points(del_vanc_otu06$Group.1-jitter, del_vanc_otu06$x[,"Median"], pch=21, col=clrs[del_vanc_otu06$Group.2], bg="white", cex=1.5)
 
 axis(2, at=seq(0,0.7,0.1), label=seq(0,70,10), las=2)
-text(x=78, y=0.75, label="Lactobacillus (OTU 6)", pos=2, font=2)
+axis(1)
+text(x=78, y=0.73, label="Lactobacillus (OTU 6)", pos=2, font=2)
 box()
