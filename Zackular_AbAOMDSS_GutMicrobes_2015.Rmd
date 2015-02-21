@@ -321,7 +321,9 @@ structure over the course of the AOM-DSS model [ref]. In the current study,
 however, there was a non-significant association between the change in the
 community structure as measured by the \theta~YC~ metric of community structure
 similarity and tumor burden (\rho=`r round(dist_tumor_cor$estimate, 2)`,
-P=`r round(dist_tumor_cor$p.value, 2)`; Figure 4A).
+P=`r round(dist_tumor_cor$p.value, 2)`; Figure 4A). The mice that did not
+receive antibiotics and those that received the $\Delta$ vancomycin and $\Delta$
+metronidazole treatments changed the most over the course of the model.
 
 
 
@@ -748,12 +750,13 @@ those used in Figure 1. In panel B, the median relative abundance is indicated
 by the plotting symbol and the range of observed relative abundances is plotted
 by the vertical bar (N=5 mice per treatment).
 
-```{r figure4, fig.width=3.75, fig.height=5}
+```{r figure4, fig.width=3.75, fig.height=7}
 design <- matrix(c(2,1,
-                    5,3,
-                    5,4,
-                    0,6), byrow=T, nrow=4)
-z <- layout(design, width=c(0.15,1), height=c(1.5,1,1,0.3))
+                    6,3,
+                    6,4,
+                    6,5,
+                    0,7), byrow=T, nrow=5)
+z <- layout(design, width=c(0.15,1), height=c(1.5,1,1,1,0.3))
 
 par(mar=c(3,0.5,0.5,0.5))
 treatments <- gsub("_.*", "", names(start_end_dist))
@@ -771,7 +774,7 @@ box()
 
 par(mar=c(0,0,0,0))
 plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.4, y=0.65, label="Number of tumors", srt=90)
+text(x=0.3, y=0.58, label="Number of tumors", srt=90)
 text(x=0.3, y=0.98, label="A", srt=0, cex=2, font=2)
 
 
@@ -780,7 +783,7 @@ source("code/make_timeline_plot.R")
 
 par(mar=c(0,0,0,0))
 plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.4, y=0.5, label="Relative abundance (%)", srt=90)
+text(x=0.3, y=0.5, label="Relative abundance (%)", srt=90)
 text(x=0.3, y=1, label="B", srt=0, cex=2, font=2)
 
 plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
