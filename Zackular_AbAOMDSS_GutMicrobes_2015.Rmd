@@ -766,10 +766,8 @@ axis(2, las=2)
 box()
 
 #labels_no_n <- gsub(" \\(.*\\)", "", labels)
-
 #legend(x=-0.025, y=26, legend=labels_no_n, pch=pch[names(labels)],
 #        col=clrs[names(labels)], cex=0.9, bty="n")
-
 
 par(mar=c(0,0,0,0))
 plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
@@ -786,7 +784,7 @@ text(x=0.4, y=0.5, label="Relative abundance (%)", srt=90)
 text(x=0.3, y=1, label="B", srt=0, cex=2, font=2)
 
 plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
-text(x=0.5, y=0.25, label="Days since AOM administration")
+text(x=0.55, y=0.25, label="Days since AOM administration")
 ```
 
 
