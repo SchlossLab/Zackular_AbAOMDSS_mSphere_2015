@@ -739,16 +739,14 @@ plot_baseline_features(tumor_counts_baseline, rf_baseline_forest,
 
 **Figure 4. The murine microbiota is dynamic but the amount of change is
 not associated with the final number of tumors.** The structure of the gut
-microbiota associated with the $\Delta$ metronidazole and $\Delta$
-vancoymcin-treated mice changed the most throughout the model (A). OTUs 3, 6,
-and 19 were among the most salient features for predicting tumor burden at the
-beginning and end of the model and had different trajectories but similar end
-points in the $\Delta$ metronidazole and $\Delta$ vancoymcin-treated mice; The
-median relative abundance of OTU 19 was not more than 1% of the communities at
-any time in the model (B). The plotting symbols and characters are the same as
-those used in Figure 1. In panel B, the median relative abundance is indicated
-by the plotting symbol and the range of observed relative abundances is plotted
-by the vertical bar (N=5 mice per treatment).
+microbiota associated with untreated and the $\Delta$ metronidazole and $\Delta$
+vancoymcin-treated mice changed the most throughout the model as measured using
+the $\Theta$<sub>YC</sub> distance metric (A). OTUs 3, 6, and 19 were among the
+most salient features for predicting tumor burden at the beginning and end of
+the model (B). The plotting symbols and characters are the same as those used in
+Figure 1. In panel B, the median relative abundance is indicated by the plotting
+symbol and the range of observed relative abundances is plotted by the vertical
+bar. The vertical blue regions indicate when the DSS treatments were applied.
 
 ```{r figure4, fig.width=3.75, fig.height=7}
 design <- matrix(c(2,1,
