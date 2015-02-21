@@ -166,6 +166,48 @@ number of tumors at the end of the model based on the composition of the
 microbiota at the beginning of the model.
 
 
+
+
+
+
+***The final tumor burden can be predicted from the final microbiota***
+Similar to our analysis using the initial composition of the microbiota, we
+developed a random forest regression model to predict the number of tumors in
+the mice based on the composition of the microbiota at the end of the model. The
+model included 11 OTUs after we again applied a filter
+requiring each OTU to have an average relative abundance of at least 1.5%. The
+model explained 52.9% of the variation in
+the tumor counts (Supplementary Figure 2), which is less than we observed when
+we modeled tumor counts based on the initial community composition. The seven
+most important OTUs in the model explained 55.4%
+of the variation and included *Odoribacter* (OTU 70), *Bacteroides* (OTU 5),
+*Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3), *Alloprevotella* (OTU 14),
+*Prevotella* (OTU 19), and Betaproteobacteria (OTU 17) (Supplementary Figure 3).
+These results confirm those of our earlier study where we used mice that did not
+receive antibiotics and the sequencing was performed using the 454 platform
+[ref]. Interestingly, of the OTUs that were predictive of the number of tumor
+counts using the baseline and final community composition data, only three of
+the OTUs overlapped. These included *Lactobacillus* (OTU 6), Enterobacteriaceae
+(OTU 3), and *Prevotella* (OTU 19). When we compared the relationship between the
+relative abundance of these populations and the observed number of tumors, the
+only one of these populations that changed meaningfully was *Prevotella*.
+
+
+
+
+
+***The microbial community is dynamic***
+Using mice that were colonized with human feces, we observed that the the level
+of tumor burden was associated with the amount of change in the community
+structure over the course of the AOM-DSS model [ref]. In the current study,
+however, there was a non-significant association between the change in the
+community structure as measured by the \theta~YC~ metric of community structure
+similarity and tumor burden (\rho=0.26,
+P=0.08; Figure 4).
+
+
+
+
 **Microbiome dynamics reveal potential associations between bacterial populations that mediate tumorigenesis**
 
 7. Comparison of the communities in the initial and final fecal samples collected
@@ -557,9 +599,11 @@ tumors found in those mice are shown in Figure 3.
 
 **Figure 3. Relationship between the initial relative abundance of the most
 informative OTUs from the random forest model with the number of tumors found
-in the mice at the end of the model.**
+in the mice at the end of the model.** The vertical gray line indicates the
+limit of detection.
 
 <img src="results/figures/figure3-1.png" title="plot of chunk figure3" alt="plot of chunk figure3" style="display: block; margin: auto;" />
+
 
 
 **Figure 4. Gut microbiome dynamics during tumorigenesis for
@@ -573,6 +617,17 @@ compared to day 0 are shown. Repeated-measures paired group analysis of
 variance was used to identify significantly altered OTUs. Error bars
 represent +/- standard error.
 
+
+**Figure 4. The murine microbiota is dynamic but the amount of change is not
+associated with the final number of tumors.**
+<img src="results/figures/figure4-1.png" title="plot of chunk figure4" alt="plot of chunk figure4" style="display: block; margin: auto;" />
+
+
+
+
+
+
+
 **Figure 5. Antibiotic intervention prior to second administration of
 DSS alleviates tumor burden.** Interventions with an antibiotic cocktail
 of metronidazole, vancomycin, and streptomycin were performed as
@@ -581,3 +636,28 @@ the model. Median tumor counts are shown for each treatment group.
 **B.** Representative images of tumors in the distal colon of mice from
 each treatment group. Statistical analysis was performed using Wilcoxon
 test. \*, P \< 0.01
+
+
+
+
+
+Supplementary Figure 1
+Plot of Rsq vs. filter
+
+
+
+**Supplemental Figure 2. A random forest model successfully predicted the number of tumors in
+the mice at the end of the model (A) based on their microbiota composition at the
+start end of the model (B).** The OTUs in B are ranked in decreasing order of their
+Gini coefficient. The relationships between the first 6 OTUs and the number of
+tumors found in those mice are shown in Supplemental Figure 3.
+
+<img src="results/figures/supp_figure2-1.png" title="plot of chunk supp_figure2" alt="plot of chunk supp_figure2" style="display: block; margin: auto;" />
+
+
+**Supplemental Figure 3. Relationship between the initial relative abundance of the most
+informative OTUs from the random forest model with the number of tumors found
+in the mice at the end of the model.** The vertical gray line indicates the
+limit of detection.
+
+<img src="results/figures/supp_figure3-1.png" title="plot of chunk supp_figure3" alt="plot of chunk supp_figure3" style="display: block; margin: auto;" />
