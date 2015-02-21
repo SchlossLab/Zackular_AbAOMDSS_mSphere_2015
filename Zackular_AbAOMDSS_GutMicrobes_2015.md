@@ -200,7 +200,9 @@ structure over the course of the AOM-DSS model [ref]. In the current study,
 however, there was a non-significant association between the change in the
 community structure as measured by the \theta~YC~ metric of community structure
 similarity and tumor burden (\rho=0.26,
-P=0.08; Figure 4A).
+P=0.08; Figure 4A). The mice that did not
+receive antibiotics and those that received the $\Delta$ vancomycin and $\Delta$
+metronidazole treatments changed the most over the course of the model.
 
 
 
