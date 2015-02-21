@@ -179,7 +179,8 @@ rf_baseline_forest <- get_forest(rabund=rabund_baseline,
 
 rf_baseline_rabund <- filter_rabund(rabund_baseline, rf_baseline_thresh)
 
-rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest, rabund_baseline)
+rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest,
+    rabund_baseline)
 ```
 
 
@@ -240,7 +241,8 @@ rf_final_forest <- get_forest(rabund=rabund_final,
 
 rf_final_rabund <- filter_rabund(rabund_final, rf_final_thresh)
 
-rf_simplify_rsq <- simplify_model(tumor_counts_final, rf_final_forest, rabund_final)
+rf_simplify_rsq <- simplify_model(tumor_counts_final, rf_final_forest,
+                                                                rabund_final)
 ```
 
 ***The final tumor burden can be predicted from the final microbiota***
@@ -268,8 +270,35 @@ only one of these populations that changed meaningfully was *Prevotella*.
 
 
 ```{r distance_tumor_correlation}
-get_start_end_dist <- function(u_treat_et){
-    subset <- day[treat_et == u_treat_et]
+get_dist_lt <- function(file_name){
+
+    dist_vector <- scan(file_name, what="", sep="\n")
+
+    n_samples <- as.numeric(dist_vector[1])
+    dist_vector <- dist_vector[-1]
+
+    sample_names <- character(n_samples)
+    distance_matrix <- matrix(rep(0, n_samples*n_samples), nrow=n_samples)
+
+    for(i in 1:n_samples){
+
+        split_line <- unlist(strsplit(dist_vector[i], "\t"))
+        sample_names[i] <- split_line[1]
+
+        if(i > 1){
+            distance_matrix[i,1:(i-1)] <- as.numeric(split_line[2:i])
+        }
+    }
+
+    distance_matrix <- distance_matrix + t(distance_matrix)
+    rownames(distance_matrix) <- sample_names
+    colnames(distance_matrix) <- sample_names
+    distance_matrix
+}
+
+
+get_start_end_dist <- function(u_treat_et, days){
+    subset <- days[treat_et == u_treat_et]
     start <- names(subset[subset==0])
     end <- names(sort(subset, decreasing=TRUE))[1]
     distances[start, end]
@@ -279,10 +308,13 @@ get_start_end_dist <- function(u_treat_et){
 dist_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist"
 
 distances <- get_dist_lt(dist_file)
-start_end_dist <- unlist(sapply(unique(treat_et), get_start_end_dist))
+treat_et <- gsub("_d.*", "", rownames(distances))
+days <- sapply(rownames(distances), get_day)
+start_end_dist <- unlist(sapply(unique(treat_et), get_start_end_dist, days))
 
 tumor_counts_prepost <- tumor_counts[names(start_end_dist), "n_tumors"]
-dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist, method="spearman")
+dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist,
+                                method="spearman")
 ```
 
 ***The microbial community is dynamic***
@@ -700,8 +732,22 @@ in the mice at the end of the model.** The vertical gray line indicates the
 limit of detection.
 
 ```{r figure3, fig.width=7.5, fig.height=5}
-plot_baseline_features(tumor_counts_baseline, rf_baseline_forest, rf_baseline_rabund, treatment_baseline)
+plot_baseline_features(tumor_counts_baseline, rf_baseline_forest,
+                                        rf_baseline_rabund, treatment_baseline)
 ```
+
+
+
+**Figure 4. Gut microbiome dynamics during tumorigenesis for
+$\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
+change in the gut microbiome community structure over the time course of
+tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
+**C.** Change in relative abundance over the time course of
+tumorigenesis for $\Delta$ metronidazole and $\Delta$ vancomycin treatment groups. OTUs
+with relative abundances that were significantly different at day 70
+compared to day 0 are shown. Repeated-measures paired group analysis of
+variance was used to identify significantly altered OTUs. Error bars
+represent +/- standard error.
 
 
 **Figure 4. The murine microbiota is dynamic but the amount of change is not
@@ -711,7 +757,7 @@ design <- matrix(c(2,1,
                     5,3,
                     5,4,
                     0,6), byrow=T, nrow=4)
-z <- layout(design, width=c(0.1,1), height=c(1.5,1,1,0.2))
+z <- layout(design, width=c(0.15,1), height=c(1.5,1,1,0.3))
 
 par(mar=c(3,0.5,0.5,0.5))
 treatments <- gsub("_.*", "", names(start_end_dist))
@@ -731,7 +777,8 @@ box()
 
 par(mar=c(0,0,0,0))
 plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.15, y=0.65, label="Number of tumors", srt=90)
+text(x=0.4, y=0.65, label="Number of tumors", srt=90)
+text(x=0.3, y=0.98, label="A", srt=0, cex=2, font=2)
 
 
 par(mar=c(0.5,0.5,0.5,0.5))
@@ -739,8 +786,8 @@ source("code/make_timeline_plot.R")
 
 par(mar=c(0,0,0,0))
 plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.15, y=0.5, label="Relative abundance (%)", srt=90)
-
+text(x=0.4, y=0.5, label="Relative abundance (%)", srt=90)
+text(x=0.3, y=1, label="B", srt=0, cex=2, font=2)
 
 plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
 text(x=0.5, y=0.25, label="Days since AOM administration")
@@ -748,16 +795,6 @@ text(x=0.5, y=0.25, label="Days since AOM administration")
 
 
 
-**Figure 4. Gut microbiome dynamics during tumorigenesis for
-$\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
-change in the gut microbiome community structure over the time course of
-tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
-**C.** Change in relative abundance over the time course of
-tumorigenesis for $\Delta$ metronidazole and $\Delta$ vancomycin treatment groups. OTUs
-with relative abundances that were significantly different at day 70
-compared to day 0 are shown. Repeated-measures paired group analysis of
-variance was used to identify significantly altered OTUs. Error bars
-represent +/- standard error.
 
 
 
