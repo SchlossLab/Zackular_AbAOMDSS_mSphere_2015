@@ -183,15 +183,12 @@ most important OTUs in the model explained 55.4%
 of the variation and included *Odoribacter* (OTU 70), *Bacteroides* (OTU 5),
 *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3), *Alloprevotella* (OTU 14),
 *Prevotella* (OTU 19), and Betaproteobacteria (OTU 17) (Supplementary Figure 3).
-These results confirm those of our earlier study where we used mice that did not
-receive antibiotics and the sequencing was performed using the 454 platform
-[ref]. Interestingly, of the OTUs that were predictive of the number of tumor
-counts using the baseline and final community composition data, only three of
-the OTUs overlapped. These included *Lactobacillus* (OTU 6), Enterobacteriaceae
-(OTU 3), and *Prevotella* (OTU 19). When we compared the relationship between the
-relative abundance of these populations and the observed number of tumors, the
-only one of these populations that changed meaningfully was *Prevotella*.
-
+Interestingly, of the OTUs that were predictive of the number of tumor counts
+using the baseline and final community composition data, only three of the OTUs
+overlapped. These included *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3),
+and *Prevotella* (OTU 19). These results confirm those of our earlier study
+where we used mice that did not receive antibiotics and the sequencing was
+performed using the 454 platform [ref].
 
 
 
@@ -203,7 +200,7 @@ structure over the course of the AOM-DSS model [ref]. In the current study,
 however, there was a non-significant association between the change in the
 community structure as measured by the \theta~YC~ metric of community structure
 similarity and tumor burden (\rho=0.26,
-P=0.08; Figure 4).
+P=0.08; Figure 4A).
 
 
 
@@ -606,20 +603,19 @@ limit of detection.
 
 
 
-**Figure 4. Gut microbiome dynamics during tumorigenesis for
-$\Delta$ metronidazole and $\Delta$ vancomycin treatments groups.** **A.** Average
-change in the gut microbiome community structure over the time course of
-tumorigenesis. Distances calculated using $theta$<sub>YC</sub> distances. **B.** and
-**C.** Change in relative abundance over the time course of
-tumorigenesis for $\Delta$ metronidazole and $\Delta$ vancomycin treatment groups. OTUs
-with relative abundances that were significantly different at day 70
-compared to day 0 are shown. Repeated-measures paired group analysis of
-variance was used to identify significantly altered OTUs. Error bars
-represent +/- standard error.
+**Figure 4. The murine microbiota is dynamic but the amount of change is
+not associated with the final number of tumors.** The structure of the gut
+microbiota associated with the $\Delta$ metronidazole and $\Delta$
+vancoymcin-treated mice changed the most throughout the model (A). OTUs 3, 6,
+and 19 were among the most salient features for predicting tumor burden at the
+beginning and end of the model and had different trajectories but similar end
+points in the $\Delta$ metronidazole and $\Delta$ vancoymcin-treated mice; The
+median relative abundance of OTU 19 was not more than 1% of the communities at
+any time in the model (B). The plotting symbols and characters are the same as
+those used in Figure 1. In panel B, the median relative abundance is indicated
+by the plotting symbol and the range of observed relative abundances is plotted
+by the vertical bar (N=5 mice per treatment).
 
-
-**Figure 4. The murine microbiota is dynamic but the amount of change is not
-associated with the final number of tumors.**
 <img src="results/figures/figure4-1.png" title="plot of chunk figure4" alt="plot of chunk figure4" style="display: block; margin: auto;" />
 
 
