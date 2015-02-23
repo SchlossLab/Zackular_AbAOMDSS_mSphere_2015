@@ -184,7 +184,7 @@ rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest,
 ```
 
 
-***The final tumor burden can be predicted from the initial microbiota***
+***The final tumor burden can be predicted from the initial microbiota.***
 Because we obtained serial fecal samples it was possible to ascertain the
 composition of the microbiota for each mouse as well as the number of tumors in
 its colon at the end of the model. Using the 16S rRNA gene sequence data
@@ -245,7 +245,7 @@ rf_simplify_rsq <- simplify_model(tumor_counts_final, rf_final_forest,
                                                                 rabund_final)
 ```
 
-***The final tumor burden can be predicted from the final microbiota***
+***The final tumor burden can be predicted from the final microbiota.***
 Similar to our analysis using the initial composition of the microbiota, we
 developed a random forest regression model to predict the number of tumors in
 the mice based on the composition of the microbiota at the end of the model. The
@@ -314,7 +314,7 @@ dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist,
                                 method="spearman")
 ```
 
-***The microbial community is dynamic***
+***The microbial community is dynamic.***
 Using mice that were colonized with human feces, we observed that the the level
 of tumor burden was associated with the amount of change in the community
 structure over the course of the AOM-DSS model [ref]. In the current study,
@@ -330,9 +330,8 @@ structure we observed a dynamic progression across the model.
 
 
 
-**Antibiotic intervention narrows possible mechanisms of microbiome involvement
-in tumorigenesis **
-
+***Antibiotic intervention narrows possible mechanisms of microbiome involvement
+in tumorigenesis.***
 The AOM-DSS model has been shown to reproduce the patterns seen in human CRC.
 AOM induces DNA damage and the DSS treatments induces inflammation. To determine
 whether the gut microbiome facilitates tumorigenesis by modulating AOM-induced
