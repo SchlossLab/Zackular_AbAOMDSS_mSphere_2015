@@ -585,22 +585,14 @@ bar. The vertical blue regions indicate when the DSS treatments were applied.
 <img src="results/figures/figure4-1.png" title="plot of chunk figure4" alt="plot of chunk figure4" style="display: block; margin: auto;" />
 
 
-
-
-
-
-
 **Figure 5. Antibiotic intervention prior to second administration of
 DSS alleviates tumor burden.** Interventions with an antibiotic cocktail
 of metronidazole, vancomycin, and streptomycin were performed as
-depicted in Figure 1A. **A.** Tumors were enumerated at the end point of
-the model. Median tumor counts are shown for each treatment group.
-**B.** Representative images of tumors in the distal colon of mice from
-each treatment group. Statistical analysis was performed using Wilcoxon
-test. \*, P \< 0.01
+depicted in Figure 1A with enumeration of tumors performed at the end point of
+the model (A). Representative images of tumors in the distal colon of mice from
+each treatment group (B).
 
-
-
+<img src="results/figures/figure5-1.png" title="plot of chunk figure5" alt="plot of chunk figure5" style="display: block; margin: auto;" />
 
 
 Supplementary Figure 1
