@@ -595,9 +595,13 @@ each treatment group (B).
 <img src="results/figures/figure5-1.png" title="plot of chunk figure5" alt="plot of chunk figure5" style="display: block; margin: auto;" />
 
 
-Supplementary Figure 1
-Plot of Rsq vs. filter
+**Supplementary Figure 1. Quality of random forest regression fit as a function
+of the minimum average relative abundance an OTU must have to be included in the
+model.** The integers displayed across the plot indicate the number of OTUs that
+were included in the model. Because a minimum average relative abundance of 1.5%
+yielded the best R<sup>2</sup>, it was used for the remainder of the analysis.
 
+<img src="results/figures/supp_figure1-1.png" title="plot of chunk supp_figure1" alt="plot of chunk supp_figure1" style="display: block; margin: auto;" />
 
 
 **Supplemental Figure 2. A random forest model successfully predicted the number of tumors in
