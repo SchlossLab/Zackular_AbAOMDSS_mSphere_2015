@@ -328,7 +328,7 @@ metronidazole treatments changed the most over the course of the model. When we
 investigated the temporal progression of the three OTUs that were important in
 predicting the number of tumors based on the starting and final community
 structure (i.e. OTUs 3, 6, and 19) we observed a dynamic progression across the
-model.
+model. Not sure what else to say here...
 
 
 
