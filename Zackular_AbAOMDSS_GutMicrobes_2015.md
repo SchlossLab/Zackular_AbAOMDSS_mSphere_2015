@@ -119,7 +119,7 @@ mice with (i) no antibiotics, (ii) metronidazole, streptomycin, and vancomycin
 streptomycin ($\Delta$ vancomycin), (vi) metronidazole, (vii) streptomycin, and
 (viii) vancomycin. Quantitative PCR targeting the 16S rRNA gene indicated that
 the number of copies of the 16S rRNA gene did not differ between the treatment
-groups. The three antibiotics were selected because they were thought to target
+groups. The three antibiotics were selected because they were thought to target
 different groups of bacteria including anaerobes (metronidazole), Gram-negatives
 (streptomycin), and Gram-positives (vancomycin). By sequencing the 16S rRNA
 genes that were present in the feces of the mice that were treated with the
