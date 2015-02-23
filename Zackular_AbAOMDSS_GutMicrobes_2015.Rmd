@@ -758,11 +758,9 @@ text(x=0.55, y=0.25, label="Days since AOM administration")
 **Figure 5. Antibiotic intervention prior to second administration of
 DSS alleviates tumor burden.** Interventions with an antibiotic cocktail
 of metronidazole, vancomycin, and streptomycin were performed as
-depicted in Figure 1A. **A.** Tumors were enumerated at the end point of
-the model. Median tumor counts are shown for each treatment group.
-**B.** Representative images of tumors in the distal colon of mice from
-each treatment group. Statistical analysis was performed using Wilcoxon
-test. \*, P \< 0.01
+depicted in Figure 1A with enumeration of tumors performed at the end point of
+the model (A). Representative images of tumors in the distal colon of mice from
+each treatment group (B).
 
 ```{r figure5, fig.width=3.5, fig.height=3.5}
 abx <- read.table(file="data/process/tumor_counts.tsv", header=T)
