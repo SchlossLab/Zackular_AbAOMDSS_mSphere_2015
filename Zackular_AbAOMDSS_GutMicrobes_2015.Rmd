@@ -359,7 +359,7 @@ demonstrated that manipulation of the murine gut microbiome with an assortment
 of antibiotic treatments resulted in non-overlapping community structures with a
 disparate level of tumorigenesis. Enrichment in the relative abundance of
 several bacterial populations was associated with high and low levels of colonic
-tumors. We determined that out growth of potentially inflammatory members of the
+tumors. We determined that outgrowth of potentially inflammatory members of the
 gut microbiome only mediated increased tumorigenesis when there was a
 corresponding decrease in potentially protective, butyrate producing, bacteria.
 By perturbing the community at various time points in the AOM/DSS model, we
@@ -370,7 +370,7 @@ strategy for the amelioration of colon tumorigenesis.
 
 In recent years, there has been a focus on identifying bacterial populations
 that are etiologic agents of CRC. Several commensal bacteria, including
-*Fusobacterium* *nucleatum* and enterotoxigenic *Bacteroides fragilis* (ETBF)
+*Fusobacterium nucleatum* and enterotoxigenic *Bacteroides fragilis* (ETBF)
 have been linked to CRC in humans [Arthur et al., 2013; Rubinstein et al.; 2013,
 Sears et al., 2008]. *F. nuceleatum* can manipulate the inflammatory environment
 on in the tumor microenvironment in multiple intestinal neoplasia mice and in
@@ -380,24 +380,25 @@ the colon of multiple intestinal neoplasia mice through the action of a secreted
 metalloprotease toxin. It has been estimated that between 5-35% of people carry
 ETBF [Housseau and Sears, 2010]. Although there is substantial evidence for a
 role in potentiating tumorigenesis, the fact that each of these bacteria is only
-associated with a fraction of CRCs suggests that there isn’t likely one
-microbial agent that causes cancer. Rather, the gut microbiome’s role in CRC is
-likely polymicrobial. The results in the present study support this hypothesis,
-as we demonstrated that non-overlapping community structures could confer
-similar levels of tumorigenesis in mice. When we examined the relative abundance
-of bacterial populations associated with increased tumor burden, we never
-observed all three treatment groups with high tumor levels (vancomycin only,
-streptomycin only, and ∆metronidazole) showing a consistent enrichment. The same
-was observed with potentially protective populations across all treatment groups
-that developed significantly less tumors (All antibiotics, ∆vancomycin,
-∆streptomycin, and metronidazole only). This suggests that various bacteria
-within the gut microbiome may confer the same function and be playing redundant
-tumor-modulating roles.
+associated with a fraction of CRCs suggests that it is unlikely that there is a
+single microbial agent that causes cancer. Rather, the gut microbiome’s role in
+CRC is likely polymicrobial. The results in the present study support this
+hypothesis, as we demonstrated that non-overlapping community structures could
+confer similar levels of tumorigenesis in mice. When we examined the relative
+abundance of bacterial populations associated with increased tumor burden, we
+never observed all three treatment groups with high tumor levels (vancomycin
+only, streptomycin only, and ∆metronidazole) showing a consistent enrichment.
+The same was observed with potentially protective populations across all
+treatment groups that developed significantly less tumors (All antibiotics,
+∆vancomycin, ∆streptomycin, and metronidazole only). This suggests that various
+bacteria within the gut microbiome may confer the same function and be playing
+redundant tumor-modulating roles.
+
 
 During the time course of tumorigenesis we observed a marked increase in members
 of the *Enterobacteriaceae* associated with two antibiotic treatment groups
 (∆metranidazole and ∆vancomycin). Interestingly, one treatment group
-(∆vancomycin) developed significantly less tumors despite a similar increase in
+(∆vancomycin) developed fewer tumors despite a similar increase in
 this potentially tumor-modulating bacterial clade. A recent study by Arthur
 and colleagues showed that in an IL-10-deficient colitis-associated mouse model
 of CRC; there is an enrichment of *Enterobacteriaceae* associated with
