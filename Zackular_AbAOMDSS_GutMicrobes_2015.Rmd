@@ -796,9 +796,37 @@ text(label="B", x=-30.0, y=143, font=2.5, cex=2, xpd=TRUE)
 ```
 
 
-Supplementary Figure 1
-Plot of Rsq vs. filter
+**Supplementary Figure 1. Quality of random forest regression fit as a function
+of the minimum average relative abundance an OTU must have to be included in the
+model.** The integers displayed across the plot indicate the number of OTUs that
+were included in the model. Because a minimum average relative abundance of 1.5%
+yielded the best R<sup>2</sup>, it was used for the remainder of the analysis.
 
+```{r supp_figure1, fig.width=5.0, fig.height=5.0}
+threshold <- seq(0,0.03, 0.005)
+n_trees <- 10000 #number of trees for random forest
+
+rf_thresholds <- lapply(X=threshold, FUN=get_forest, rabund=rabund_baseline,
+                         dependent=tumor_counts_baseline, n_trees=n_trees)
+
+thresh_rsq <- sapply(rf_thresholds, get_rsq)
+
+max_index <- which.max(thresh_rsq)
+rf_baseline_forest <- rf_thresholds[[max_index]]    #get the forest
+rf_baseline_thresh <- threshold[max_index]          #get the threshold that was used
+
+#get filtered rabund table
+rf_baseline_rabund <- filter_rabund(rabund_baseline, rf_baseline_thresh)
+
+par(mar=c(5,5,0.5,0.5))
+plot(thresh_rsq~threshold, pch=19, xlab="Minimum average relative abundance (%)",
+                axes=FALSE, ylab=expression(R^2),
+                ylim=c(0.4, 1.05*max(thresh_rsq)))
+text(x=threshold, y=0.45, label=sapply(rf_thresholds, get_n_otus), cex=0.75)
+axis(1, at=threshold, label=format(100*threshold, 1))
+axis(2, las=2)
+box()
+```
 
 
 **Supplemental Figure 2. A random forest model successfully predicted the number of tumors in
