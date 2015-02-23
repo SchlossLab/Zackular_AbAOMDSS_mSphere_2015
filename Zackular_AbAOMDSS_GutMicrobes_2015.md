@@ -136,7 +136,7 @@ tumorigenesis.
 
 
 
-***The final tumor burden can be predicted from the initial microbiota***
+***The final tumor burden can be predicted from the initial microbiota.***
 Because we obtained serial fecal samples it was possible to ascertain the
 composition of the microbiota for each mouse as well as the number of tumors in
 its colon at the end of the model. Using the 16S rRNA gene sequence data
@@ -170,7 +170,7 @@ microbiota at the beginning of the model.
 
 
 
-***The final tumor burden can be predicted from the final microbiota***
+***The final tumor burden can be predicted from the final microbiota.***
 Similar to our analysis using the initial composition of the microbiota, we
 developed a random forest regression model to predict the number of tumors in
 the mice based on the composition of the microbiota at the end of the model. The
@@ -193,73 +193,39 @@ performed using the 454 platform [ref].
 
 
 
-***The microbial community is dynamic***
+***The microbial community is dynamic.***
 Using mice that were colonized with human feces, we observed that the the level
 of tumor burden was associated with the amount of change in the community
 structure over the course of the AOM-DSS model [ref]. In the current study,
 however, there was a non-significant association between the change in the
-community structure as measured by the \theta~YC~ metric of community structure
+community structure as measured by the \theta<sub>YC</sub> metric of community structure
 similarity and tumor burden (\rho=0.26,
 P=0.08; Figure 4A). The mice that did not
 receive antibiotics and those that received the $\Delta$ vancomycin and $\Delta$
-metronidazole treatments changed the most over the course of the model.
+metronidazole treatments changed the most over the course of the model. When we
+investigated the temporal progression of the three OTUs that were important in
+predicting the number of tumors based on the starting and final community
+structure we observed a dynamic progression across the model.
 
 
 
-
-**Microbiome dynamics reveal potential associations between bacterial populations that mediate tumorigenesis**
-
-7. Comparison of the communities in the initial and final fecal samples collected
-from each treatment group indicated that the groups varied in the amount of
-change over the course of the model. The mice that received streptomycin or
-vancomycin only and the $\Delta$ streptomycin mice had significantly less structural
-change overtime compared to control mice (Fig. 4A). Meanwhile, the mice that
-received the full cocktail maintained a constant community structure throughout
-the model. Conversely, the $\Delta$ metronidazole and $\Delta$ vancomycin mice had the highest
-level of variation across the model (Figure 4A). The amount that the gut
-microbiomes changed was not directly correlated with tumor burden ($\rho$=0.15,
-p = 0.41). This result indicated that the destabilization of the initial
-community structure and the resulting host response was not associated with
-tumor burden.
-
-8. We next determined whether the OTU-level changes across the model could reveal
-underlying mechanisms associated with this dramatic difference in tumorigenicity
-between treatment groups. Thus, we performed repeated-measures paired group
-analysis of variance to identify features from within the microbiome that were
-significantly enriched or depleted over time for each treatment group. We used
-fecal samples from day 0 and compared those to samples at the endpoint of the
-model for the $\Delta$ metronidazole and $\Delta$ vancomycin treated groups since these
-communities showed the greatest change over the course of the model (Figure 5A).
-In both groups there was a significant enrichment of an OTU associated with the
-*Enterobacteriaceae* (OTU 3) family. In the $\Delta$ metronidazole-treated mice, this
-enrichment was associated with the simultaneous depletion in the relative
-abundance of *Clostridium* (OTUs 31, 34, and 57), *Streptococcus* (OTU 92), and
-*Enterococcus* (OTU 27). However, $\Delta$ vancomycin-treated mice only showed a
-significant decrease in OTUs associated with *Lactobacillus* (OTU 6), while
-maintaining steady levels in each of the depleted populations observed in
-∆metronidazole treated mice. We also observed enrichment in the relative
-abundance of *Turicibacter* (OTU 91) and Bacillales (OTU 225) in ∆vancomycin
-treated mice. These results support the hypothesis that the balance of tumor
-promoting and inhibiting populations are responsible for the final tumor burden.
-
-
-**Antibiotic intervention narrows possible mechanisms of microbiome involvement in tumorigenesis **
-
-9. The AOM-DSS model closely mirrors the patterns seen in human CRC. AOM induces
-DNA damage and the DSS induces inflammation. To determine whether the gut
-microbiome facilitates tumorigenesis by modulating AOM-induced mutations or
-inflammation, we performed two antibiotic intervention experiments. We first
-treated mice with the full antibiotic cocktail two weeks prior to the
+***Antibiotic intervention narrows possible mechanisms of microbiome involvement
+in tumorigenesis.***
+The AOM-DSS model has been shown to reproduce the patterns seen in human CRC.
+AOM induces DNA damage and the DSS treatments induces inflammation. To determine
+whether the gut microbiome facilitates tumorigenesis by modulating AOM-induced
+mutations or inflammation, we performed two antibiotic intervention experiments.
+We first treated mice with the full antibiotic cocktail two weeks prior to the
 administration of AOM and up until the first round of DSS (Figure 1A). We found
-that these mice had a similar tumor burden to untreated mice (Figure 6A). Next,
+that these mice had a similar tumor burden to untreated mice (Figure 5). Next,
 we treated mice before the second round of DSS administration, following the
-initiation of AOM/DSS mediated tumorigenesis and inflammation (Figure 1a). In
-this treatment, there was a significant decrease in the number of tumors. These
-results suggest that the gut microbiome mediated affect on CRC is independent of
-AOM carcinogenesis. Furthermore, it shows that targeting the gut microbiome at
-later stages of tumor growth is a viable option for minimizing tumorigenesis and
-highlights microbiome manipulation as a potential therapeutic in CRC.
-
+initiation of AOM/DSS mediated tumorigenesis and inflammation (Figure 1A). In
+this treatment, there was a significant decrease in the number of tumors (Figure
+5). These results suggest that the gut microbiome mediated affect on CRC is
+independent of AOM carcinogenesis. Furthermore, it shows that targeting the gut
+microbiome at later stages of tumor growth is a viable option for minimizing
+tumorigenesis and highlights microbiome manipulation as a potential therapeutic
+in CRC.  
 
 
 **Discussion**
@@ -607,16 +573,14 @@ limit of detection.
 
 **Figure 4. The murine microbiota is dynamic but the amount of change is
 not associated with the final number of tumors.** The structure of the gut
-microbiota associated with the $\Delta$ metronidazole and $\Delta$
-vancoymcin-treated mice changed the most throughout the model (A). OTUs 3, 6,
-and 19 were among the most salient features for predicting tumor burden at the
-beginning and end of the model and had different trajectories but similar end
-points in the $\Delta$ metronidazole and $\Delta$ vancoymcin-treated mice; The
-median relative abundance of OTU 19 was not more than 1% of the communities at
-any time in the model (B). The plotting symbols and characters are the same as
-those used in Figure 1. In panel B, the median relative abundance is indicated
-by the plotting symbol and the range of observed relative abundances is plotted
-by the vertical bar (N=5 mice per treatment).
+microbiota associated with untreated and the $\Delta$ metronidazole and $\Delta$
+vancoymcin-treated mice changed the most throughout the model as measured using
+the $\Theta$<sub>YC</sub> distance metric (A). OTUs 3, 6, and 19 were among the
+most salient features for predicting tumor burden at the beginning and end of
+the model (B). The plotting symbols and characters are the same as those used in
+Figure 1. In panel B, the median relative abundance is indicated by the plotting
+symbol and the range of observed relative abundances is plotted by the vertical
+bar. The vertical blue regions indicate when the DSS treatments were applied.
 
 <img src="results/figures/figure4-1.png" title="plot of chunk figure4" alt="plot of chunk figure4" style="display: block; margin: auto;" />
 
