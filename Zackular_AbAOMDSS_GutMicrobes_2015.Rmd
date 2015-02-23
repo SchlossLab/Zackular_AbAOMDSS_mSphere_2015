@@ -319,14 +319,16 @@ Using mice that were colonized with human feces, we observed that the the level
 of tumor burden was associated with the amount of change in the community
 structure over the course of the AOM-DSS model [ref]. In the current study,
 however, there was a non-significant association between the change in the
-community structure as measured by the \theta<sub>YC</sub> metric of community structure
-similarity and tumor burden (\rho=`r round(dist_tumor_cor$estimate, 2)`,
+community structure as measured by the \theta<sub>YC</sub> metric of community
+structure similarity and tumor burden
+(\rho=`r round(dist_tumor_cor$estimate, 2)`,
 P=`r round(dist_tumor_cor$p.value, 2)`; Figure 4A). The mice that did not
 receive antibiotics and those that received the $\Delta$ vancomycin and $\Delta$
 metronidazole treatments changed the most over the course of the model. When we
 investigated the temporal progression of the three OTUs that were important in
 predicting the number of tumors based on the starting and final community
-structure we observed a dynamic progression across the model.
+structure (i.e. OTUs 3, 6, and 19) we observed a dynamic progression across the
+model.
 
 
 
