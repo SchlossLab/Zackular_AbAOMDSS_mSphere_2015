@@ -478,6 +478,14 @@ administered in mouse drinking water for 2 weeks prior to and throughout the
 duration of AOM/DSS administration, unless otherwise specified in Figure 1A.
 Tumors were enumerated at the end of the model.
 
+**16S rRNA quantitative PCR (qPCR) analysis.** Relative bacterial loads were
+quantified by qPCR analysis of bacterial genomic DNA using KAPA SYBR-fast
+Master Mix (KAPA biosciences) and universal 16S rRNA gene primers (F:
+ACTCCTACGGGAGGCAGCAGT; R: ATTACCGCGGCTGCTGGC) [Vaishnava et al., 2011].
+Samples were normalized to fecal mass and relative fold change was determined
+using untreated stool samples for each replicate mouse. Note that qPCR
+measures relative fold change of 16S gene copy number, not actual bacterial
+numbers.
 
 **DNA extraction and 16S rRNA gene sequencing** Fecal samples were collected
 daily from the mice throughout the AOM/DSS protocol and immediately frozen for
@@ -491,18 +499,14 @@ curated as described previously using the mothur software package [Schloss et
 al., 2009]. Briefly, we reduced sequencing and PCR errors, aligned the resulting
 sequences to the SILVA 16S rRNA sequence database [Pruesse et al., 2007], and
 removed any chimeric sequences flagged by UCHIME [Edgar, 2011]. Sequences had a
-median length of 253 bp and we rareified to 2,500 sequences per sample to limit
-effects of uneven sampling.
+median length of 253 bp and we rarefied to 2,500 sequences per sample to limit
+effects of uneven sampling. The complete analysis methods and this document as
+an R-executable document are available at
+https://github.com/SchlossLab/Zackular_AbAOMDSS_GutMicrobes_2015. All FASTQ
+sequence data can be obtained from the Sequece Read Archive at NCBI (Need
+to deposit data).
 
 
-**16S rRNA quantitative PCR (qPCR) analysis.** Relative bacterial loads were
-quantified by qPCR analysis of bacterial genomic DNA using KAPA SYBR-fast
-Master Mix (KAPA biosciences) and universal 16S rRNA gene primers (F:
-ACTCCTACGGGAGGCAGCAGT; R: ATTACCGCGGCTGCTGGC) [Vaishnava et al., 2011].
-Samples were normalized to fecal mass and relative fold change was determined
-using untreated stool samples for each replicate mouse. Note that qPCR
-measures relative fold change of 16S gene copy number, not actual bacterial
-numbers.
 
 
 
