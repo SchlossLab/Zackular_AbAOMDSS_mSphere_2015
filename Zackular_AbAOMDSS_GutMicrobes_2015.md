@@ -2,8 +2,8 @@
 
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
-Joseph P. Zackular^1^, Nielson T. Baxter^1^, Grace Y. Chen^2^, and
-Patrick D. Schloss^1^
+Joseph P. Zackular<sup>1</sup>, Nielson T. Baxter<sup>1</sup>, Grace Y.
+Chen<sup>2</sup>, and Patrick D. Schloss<sup>1*</sup>
 
 \* To whom correspondence should be addressed.
 
@@ -198,14 +198,16 @@ Using mice that were colonized with human feces, we observed that the the level
 of tumor burden was associated with the amount of change in the community
 structure over the course of the AOM-DSS model [ref]. In the current study,
 however, there was a non-significant association between the change in the
-community structure as measured by the \theta<sub>YC</sub> metric of community structure
-similarity and tumor burden (\rho=0.26,
+community structure as measured by the \theta<sub>YC</sub> metric of community
+structure similarity and tumor burden
+(\rho=0.26,
 P=0.08; Figure 4A). The mice that did not
 receive antibiotics and those that received the $\Delta$ vancomycin and $\Delta$
 metronidazole treatments changed the most over the course of the model. When we
 investigated the temporal progression of the three OTUs that were important in
 predicting the number of tumors based on the starting and final community
-structure we observed a dynamic progression across the model.
+structure (i.e. OTUs 3, 6, and 19) we observed a dynamic progression across the
+model. Not sure what else to say here...
 
 
 
@@ -236,7 +238,7 @@ demonstrated that manipulation of the murine gut microbiome with an assortment
 of antibiotic treatments resulted in non-overlapping community structures with a
 disparate level of tumorigenesis. Enrichment in the relative abundance of
 several bacterial populations was associated with high and low levels of colonic
-tumors. We determined that out growth of potentially inflammatory members of the
+tumors. We determined that outgrowth of potentially inflammatory members of the
 gut microbiome only mediated increased tumorigenesis when there was a
 corresponding decrease in potentially protective, butyrate producing, bacteria.
 By perturbing the community at various time points in the AOM/DSS model, we
@@ -247,7 +249,7 @@ strategy for the amelioration of colon tumorigenesis.
 
 In recent years, there has been a focus on identifying bacterial populations
 that are etiologic agents of CRC. Several commensal bacteria, including
-*Fusobacterium* *nucleatum* and enterotoxigenic *Bacteroides fragilis* (ETBF)
+*Fusobacterium nucleatum* and enterotoxigenic *Bacteroides fragilis* (ETBF)
 have been linked to CRC in humans [Arthur et al., 2013; Rubinstein et al.; 2013,
 Sears et al., 2008]. *F. nuceleatum* can manipulate the inflammatory environment
 on in the tumor microenvironment in multiple intestinal neoplasia mice and in
@@ -257,24 +259,25 @@ the colon of multiple intestinal neoplasia mice through the action of a secreted
 metalloprotease toxin. It has been estimated that between 5-35% of people carry
 ETBF [Housseau and Sears, 2010]. Although there is substantial evidence for a
 role in potentiating tumorigenesis, the fact that each of these bacteria is only
-associated with a fraction of CRCs suggests that there isn’t likely one
-microbial agent that causes cancer. Rather, the gut microbiome’s role in CRC is
-likely polymicrobial. The results in the present study support this hypothesis,
-as we demonstrated that non-overlapping community structures could confer
-similar levels of tumorigenesis in mice. When we examined the relative abundance
-of bacterial populations associated with increased tumor burden, we never
-observed all three treatment groups with high tumor levels (vancomycin only,
-streptomycin only, and ∆metronidazole) showing a consistent enrichment. The same
-was observed with potentially protective populations across all treatment groups
-that developed significantly less tumors (All antibiotics, ∆vancomycin,
-∆streptomycin, and metronidazole only). This suggests that various bacteria
-within the gut microbiome may confer the same function and be playing redundant
-tumor-modulating roles.
+associated with a fraction of CRCs suggests that it is unlikely that there is a
+single microbial agent that causes cancer. Rather, the gut microbiome’s role in
+CRC is likely polymicrobial. The results in the present study support this
+hypothesis, as we demonstrated that non-overlapping community structures could
+confer similar levels of tumorigenesis in mice. When we examined the relative
+abundance of bacterial populations associated with increased tumor burden, we
+never observed all three treatment groups with high tumor levels (vancomycin
+only, streptomycin only, and ∆metronidazole) showing a consistent enrichment.
+The same was observed with potentially protective populations across all
+treatment groups that developed significantly less tumors (All antibiotics,
+∆vancomycin, ∆streptomycin, and metronidazole only). This suggests that various
+bacteria within the gut microbiome may confer the same function and be playing
+redundant tumor-modulating roles.
+
 
 During the time course of tumorigenesis we observed a marked increase in members
 of the *Enterobacteriaceae* associated with two antibiotic treatment groups
 (∆metranidazole and ∆vancomycin). Interestingly, one treatment group
-(∆vancomycin) developed significantly less tumors despite a similar increase in
+(∆vancomycin) developed fewer tumors despite a similar increase in
 this potentially tumor-modulating bacterial clade. A recent study by Arthur
 and colleagues showed that in an IL-10-deficient colitis-associated mouse model
 of CRC; there is an enrichment of *Enterobacteriaceae* associated with
@@ -354,6 +357,14 @@ administered in mouse drinking water for 2 weeks prior to and throughout the
 duration of AOM/DSS administration, unless otherwise specified in Figure 1A.
 Tumors were enumerated at the end of the model.
 
+**16S rRNA quantitative PCR (qPCR) analysis.** Relative bacterial loads were
+quantified by qPCR analysis of bacterial genomic DNA using KAPA SYBR-fast
+Master Mix (KAPA biosciences) and universal 16S rRNA gene primers (F:
+ACTCCTACGGGAGGCAGCAGT; R: ATTACCGCGGCTGCTGGC) [Vaishnava et al., 2011].
+Samples were normalized to fecal mass and relative fold change was determined
+using untreated stool samples for each replicate mouse. Note that qPCR
+measures relative fold change of 16S gene copy number, not actual bacterial
+numbers.
 
 **DNA extraction and 16S rRNA gene sequencing** Fecal samples were collected
 daily from the mice throughout the AOM/DSS protocol and immediately frozen for
@@ -367,18 +378,19 @@ curated as described previously using the mothur software package [Schloss et
 al., 2009]. Briefly, we reduced sequencing and PCR errors, aligned the resulting
 sequences to the SILVA 16S rRNA sequence database [Pruesse et al., 2007], and
 removed any chimeric sequences flagged by UCHIME [Edgar, 2011]. Sequences had a
-median length of 253 bp and we rareified to 2,500 sequences per sample to limit
-effects of uneven sampling.
+median length of 253 bp and we rarefied to 2,500 sequences per sample to limit
+effects of uneven sampling. The complete analysis methods and this document as
+an R-executable document are available at
+https://github.com/SchlossLab/Zackular_AbAOMDSS_GutMicrobes_2015. All FASTQ
+sequence data can be obtained from the Sequece Read Archive at NCBI (Need
+to deposit data).
 
 
-**16S rRNA quantitative PCR (qPCR) analysis.** Relative bacterial loads were
-quantified by qPCR analysis of bacterial genomic DNA using KAPA SYBR-fast
-Master Mix (KAPA biosciences) and universal 16S rRNA gene primers (F:
-ACTCCTACGGGAGGCAGCAGT; R: ATTACCGCGGCTGCTGGC) [Vaishnava et al., 2011].
-Samples were normalized to fecal mass and relative fold change was determined
-using untreated stool samples for each replicate mouse. Note that qPCR
-measures relative fold change of 16S gene copy number, not actual bacterial
-numbers.
+**Acknowledgements**
+
+This work was supported by grants from the National Institutes for Health to PDS
+(R01GM095356, R01HG005975, P30DK034933, University of Michigan GI SPORE) and GYC
+(University of Michigan GI SPORE and ARRA Supplement P30CA4659-22S3).
 
 
 

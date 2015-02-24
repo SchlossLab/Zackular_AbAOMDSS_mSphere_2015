@@ -5,7 +5,7 @@ opts_chunk$set(echo = FALSE)
 opts_chunk$set(fig.show = "hold")
 opts_chunk$set(warning = FALSE)
 opts_chunk$set(fig.align = "center")
-opts_chunk$set(cache = FALSE)
+opts_chunk$set(cache = TRUE)
 
 library("randomForest", quietly=TRUE)
 library("png", quietly=TRUE)
@@ -13,8 +13,8 @@ library("png", quietly=TRUE)
 
 **Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis**
 
-Joseph P. Zackular^1^, Nielson T. Baxter^1^, Grace Y. Chen^2^, and
-Patrick D. Schloss^1^
+Joseph P. Zackular<sup>1</sup>, Nielson T. Baxter<sup>1</sup>, Grace Y.
+Chen<sup>2</sup>, and Patrick D. Schloss<sup>1*</sup>
 
 \* To whom correspondence should be addressed.
 
@@ -508,6 +508,7 @@ to deposit data).
 
 
 **Acknowledgements**
+
 This work was supported by grants from the National Institutes for Health to PDS
 (R01GM095356, R01HG005975, P30DK034933, University of Michigan GI SPORE) and GYC
 (University of Michigan GI SPORE and ARRA Supplement P30CA4659-22S3).
