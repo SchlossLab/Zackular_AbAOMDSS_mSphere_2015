@@ -95,7 +95,7 @@ get_n_otus <- function(forest){
 
 #see what the rsquared value looks like for forests that are built stepwise
 simplify_model <- function(dependent, forest, rabund){
-    #gini coefficient is in the second column of the importance data frame
+    #mean decrease in MSE is in the second column of the importance data frame
     importance <- importance(forest)
     sorted_importance <- importance[order(importance[,2], decreasing=T),]
 
@@ -189,7 +189,7 @@ plot_importance <- function(forest){
     abline(h=1:length(sorted_importance), lty=3, col="gray")
     points(x=rev(sorted_importance), y=1:length(sorted_importance), pch=19)
     mtext(side=2, line=8.25, adj=0, at=1:length(sorted_importance), text=rev(otu_tax_labels[names(sorted_importance)]), las=2, cex=0.7)
-    mtext(side=1, text="Gini coefficient", line=2.0)
+    mtext(side=1, text="Mean decrease in Mean Squared Error", line=2.0)
 
 }
 
@@ -233,10 +233,10 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
 
     #let's just use the top six OTUs, based on our inspection of the importance plot
-    #and combine the OTU name with its taxonomy and Gini coefficient
+    #and combine the OTU name with its taxonomy and Mean Decrease in MSE coefficient
     otus <- rownames(sorted_importance)[1:6]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", format(round(sorted_importance[1:6,2], 1), 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\Mean Decrease in MSE: ", format(round(sorted_importance[1:6,2], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
@@ -319,10 +319,10 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
 
     #let's just use the top six OTUs, based on our inspection of the importance plot
-    #and combine the OTU name with its taxonomy and Gini coefficient
+    #and combine the OTU name with its taxonomy and Mean Decrease in MSE
     otus <- rownames(sorted_importance)[1:7]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", format(round(sorted_importance[1:7,2], 1), 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\Mean Decrease in MSE: ", format(round(sorted_importance[1:7,2], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 

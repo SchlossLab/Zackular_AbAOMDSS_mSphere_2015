@@ -222,9 +222,9 @@ greatest percentage of the variance explained (Supplementary Figure 1). This
 model included `r get_n_otus(rf_baseline_forest)` OTUs and explained
 `r round(100*get_rsq(rf_baseline_forest), 1)`% of the variation in the tumor counts (Figure 2).
 As suggested in Figure 2A, when the OTUs were sorted in decreasing order by
-their Gini coefficient, there was a jump between the sixth and seventh OTUs. In
+their mean decrease in the mean squared error (MSE), there was a jump between the sixth and seventh OTUs. In
 fact, when we reconstructed the model using only the six OTUs that provided the
-largest Gini coefficients, the model explained
+largest mean decrease in the MSE, the model explained
 `r round(100*rf_simplify_rsq[6], 1)`% of the variation in the tumor
 counts. These six OTUs included members of the Firmicutes (OTU 6), Bacteroidetes
 (OTUs 4 and 19), Proteobacteria (OTU 3), and Tenericutes (OTUs 34 and 35).
@@ -577,8 +577,8 @@ source("code/build_figure1.R")
 **Figure 2. A random forest model successfully predicted the number of tumors in
 the mice at the end of the model (A) based on their microbiota composition at the
 start of the model (B).** The OTUs in B are ranked in decreasing order of their
-Gini coefficient. The relationships between the first 6 OTUs and the number of
-tumors found in those mice are shown in Figure 3.
+mean decrease in the MSE. The relationships between the first 6 OTUs and the
+number of tumors found in those mice are shown in Figure 3.
 
 ```{r figure2, fig.width=7.5, fig.height=3.5}
 layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
@@ -727,11 +727,12 @@ box()
 ```
 
 
-**Supplemental Figure 2. A random forest model successfully predicted the number of tumors in
-the mice at the end of the model (A) based on their microbiota composition at the
-start end of the model (B).** The OTUs in B are ranked in decreasing order of their
-Gini coefficient. The relationships between the first 6 OTUs and the number of
-tumors found in those mice are shown in Supplemental Figure 3.
+**Supplemental Figure 2. A random forest model successfully predicted the number
+of tumors in the mice at the end of the model (A) based on their microbiota
+composition at the start end of the model (B).** The OTUs in B are ranked in
+decreasing order of their mean decrease in the MSE. The relationships between
+the first 6 OTUs and the number of tumors found in those mice are shown in
+Supplemental Figure 3.
 
 ```{r supp_figure2, fig.width=7.5, fig.height=3.5}
 layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
