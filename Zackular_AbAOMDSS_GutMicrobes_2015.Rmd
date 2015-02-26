@@ -139,7 +139,7 @@ of the gut microbiome mediate the capacity to modulate tumorigenesis.
 
 **Results**
 
-```{r setup, cache=TRUE}
+```{r setup}
 
 shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
 rel_abund <- get_rel_abund(paste0(PROJHOME, "/", shared_file), "DSS")

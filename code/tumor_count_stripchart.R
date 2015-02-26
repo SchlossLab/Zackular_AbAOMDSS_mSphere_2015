@@ -21,8 +21,8 @@ counts <- table(treatments)
 
 labels <- c(NoAbs = paste0("No antibiotics (N=",counts["NoAbs"],")"),
     AllAbs = paste0("All antibiotics (N=",counts["AllAbs"] , ")"),
-    Metro = paste0("Metronidozole (N=",counts["Metro"] , ")"),
-    VancStrep = paste0("\U0394Metronidozole (N=", counts["Metro"], ")"),
+    Metro = paste0("Metronidazole (N=",counts["Metro"] , ")"),
+    VancStrep = paste0("\U0394Metronidazole (N=", counts["Metro"], ")"),
     Strep = paste0("Streptomycin (N=",counts["Strep"] , ")"),
     VancMetro = paste0("\U0394Streptomycin (N=",counts["Strep"] , ")"),
     Vanc = paste0("Vancomycin", " (N=",counts["Vanc"] , ")"),
