@@ -52,7 +52,7 @@ microbial ecology, microbiome
 
 The mammalian gastrointestinal tract is home to a complex and dynamic community
 of microorganisms, termed the gut microbiome, which is essential for maintaining
-host health {Bäckhed, 2005 #834}. Among the bacterial populations that make
+host health {Bäckhed, 2005 #834}. Among the bacterial populations that
 make up the gut microbiome there are complex interactions that have an important
 effect on host health {Levy, 2013 #3476; Marino, 2014 #3290; Lepp, 2004 #844}.
 The number of diseases that are associated with abnormalities in the
@@ -91,12 +91,11 @@ tumorigenesis in the colon. This is supported by several studies that have
 explored the gut microbiome associated with individuals with CRC {Chen, 2013
 #2734;Chen, 2012 #2684;Kostic, 2011 #2435;Geng, 2013 #2686;Shen, 2010
 #2687;Sobhani, 2011 #2444;Wang, 2012 #3286;Ahn, 2013 #3263;Zackular, 2014
-#3457}. Each of these studies reported abnormal shifts in the gut microbiome;
-#however, there were no specific CRC-associated bacterial populations that were
-#consistently identified across all individuals or studies. This is likely due
-#to the fact that there is significant functional redundancy within the gut
-microbiome and various bacterial populations may fill similar roles in
-tumorigenesis {Lepage, 2013 #3479; Turnbaugh, 2009 #2387; Qin, 2010 #2337}.
+#3457}. With each study, the number of CRC-associated bacterial populations that
+likely play a role in tumorigenesis continues to grow. This is likely due to the
+fact that there is significant functional redundancy within the gut microbiome
+and various bacterial populations may fill similar roles in tumorigenesis
+{Lepage, 2013 #3479; Turnbaugh, 2009 #2387; Qin, 2010 #2337}.
 Furthermore, some bacterial populations have been hypothesized be protective
 against CRC {Louis, 2009 #3480; Appleyard, 2011 #3494}. This protective
 phenotype may be mediated through metabolite production, induction of
@@ -130,7 +129,7 @@ of the gut microbiome mediate the capacity to modulate tumorigenesis.
 
 ***Antibiotic perturbation of the gut microbiome modulates tumorigenicity.***
 We subjected conventionally-raised C57BL/6 mice to an inflammation-based model
-of colorectal cancer that utilizes azoxymethane (AOM) as a mutatgen and dextran
+of colorectal cancer that utilizes azoxymethane (AOM) as a mutagen and dextran
 sodium sulfate (DSS) to induce inflammation {Zackular, 2013 #3305; Baxter, 2014
 #3469} (Figure 1A). As a test of the hypothesis that the microbiota are
 involved in tumorigenesis, we manipulated the microbiota by administering eight
@@ -142,18 +141,18 @@ mice with (i) no antibiotics, (ii) metronidazole, streptomycin, and vancomycin
 streptomycin ($\Delta$ vancomycin), (vi) metronidazole, (vii) streptomycin, and
 (viii) vancomycin. Quantitative PCR targeting the 16S rRNA gene indicated that
 the number of copies of the 16S rRNA gene did not differ between the treatment
-groups. The three antibiotics were selected because they were thought to target
+groups. The three antibiotics were selected because they were thought to target
 different groups of bacteria including anaerobes (metronidazole), Gram-negatives
 (streptomycin), and Gram-positives (vancomycin). By sequencing the 16S rRNA
 genes that were present in the feces of the mice that were treated with the
-antibiotics it was clear that these treatments resulted in different starting
-communities (Figure 1B); however, the composition of these communities was not a
-predictable result of the antibiotic that was used to treat the mice. In support
-of our hypothesis we observed that antibiotic treatment resulted in a decrease
-in tumor multiplicity relative to the mice that did not receive antibiotics
-(Figure 1CD). These results demonstrated that perturbation of the microbiota
-through the use of antibiotics yields a differential capacity for colon
-tumorigenesis.
+antibiotics it was clear that these treatments treatments generated different
+starting communities (Figure 1B); however, the composition of these communities
+was not a predictable result of the antibiotic that was used to treat the mice.
+In support of our hypothesis we observed that antibiotic treatment resulted in a
+decrease in tumor multiplicity relative to the mice that did not receive
+antibiotics (Figure 1CD). These results demonstrated that perturbation of the
+microbiota through the use of antibiotics yields a differential capacity for
+colon tumorigenesis.
 
 
 
@@ -217,39 +216,42 @@ performed using the 454 platform {Zackular, 2013 #3305}.
 
 
 ***The microbial community is dynamic.***
-Using mice that were colonized with human feces, we observed that the the level
-of tumor burden was associated with the amount of change in the community
-structure over the course of the AOM-DSS model {Baxter, 2014 #3469}. In the
-current study, however, there was a non-significant association between the
-change in the community structure as measured by the \theta<sub>YC</sub> metric
-of community structure similarity and tumor burden (\rho=0.26,
-P=0.08; Figure 4A). The mice that did not
-receive antibiotics and those that received the $\Delta$ vancomycin and $\Delta$
-metronidazole treatments changed the most over the course of the model. When we
-investigated the temporal progression of the three OTUs that were important in
+Using mice that were colonized with human feces, we previously reported that
+tumor burden was associated with the amount of change in the community structure
+over the course of the AOM-DSS model {Baxter, 2014 #3469}. In the current study,
+however, there was a non-significant association between the change in the
+community structure as measured by the $\theta$<sub>YC</sub> metric of community
+structure similarity and tumor burden ($\rho$=0.26, P=0.08; Figure 4A). We did observe that
+mice that did not receive antibiotics and those that received the $\Delta$
+vancomycin and $\Delta$ metronidazole treatments changed the most over the
+course of the model. When Interestingly, when we investigated the temporal
+progression of the three OTUs that were important most important for in
 predicting the number of tumors based on the starting and final community
-structure (i.e. OTUs 3, 6, and 19) we observed a dynamic progression across the
-model. Not sure what else to say here...
-
+structure (i.e. OTUs 3, 6, and 19; Figure 2B) we observed a dynamic progression
+across the model. These data suggest that the magnitude of change that occurs in
+a microbial community during tumorigenesis may not influence tumor burden.
+Instead, specific changes in community structure and the abundance of
+tumor-associated bacterial populations mediate tumor burden.
 
 
 ***Antibiotic intervention narrows possible mechanisms of microbiome involvement
 in tumorigenesis.***
-The AOM-DSS model has been shown to reproduce the patterns seen in human CRC.
-AOM induces DNA damage and the DSS treatments induces inflammation. To determine
-whether the gut microbiome facilitates tumorigenesis by modulating AOM-induced
-mutations or inflammation, we performed two antibiotic intervention experiments.
-We first treated mice with the full antibiotic cocktail two weeks prior to the
-administration of AOM and up until the first round of DSS (Figure 1A). We found
-that these mice had a similar tumor burden to untreated mice (Figure 5). Next,
-we treated mice before the second round of DSS administration, following the
-initiation of AOM/DSS mediated tumorigenesis and inflammation (Figure 1A). In
-this treatment, there was a significant decrease in the number of tumors (Figure
-5). These results suggest that the gut microbiome mediated affect on CRC is
-independent of AOM carcinogenesis. Furthermore, it shows that targeting the gut
-microbiome at later stages of tumor growth is a viable option for minimizing
-tumorigenesis and highlights microbiome manipulation as a potential therapeutic
-in CRC.  
+Antibiotic intervention narrows possible mechanisms of microbiome involvement in
+tumorigenesis. The AOM-DSS model has been shown to reproduce the patterns seen
+in human CRC, but the microbial contribution has not been elucidated. To
+determine whether the gut microbiome facilitates tumorigenesis by modulating
+AOM-induced mutations or DSS-induced inflammation, we performed two antibiotic
+intervention experiments. We first treated mice with the full antibiotic
+cocktail two weeks prior to the administration of AOM and up until the first
+round of DSS (Figure 1A). We found that these mice had a similar tumor burden to
+untreated mice (Figure 5). Next, we treated mice before the second round of DSS
+administration, following the initiation of AOM/DSS mediated tumorigenesis and
+inflammation (Figure 1A). In this treatment, there was a significant decrease in
+the number of tumors (Figure 5). These results suggest that the gut microbiome
+mediated affect on CRC is independent of AOM-mediated carcinogenesis.
+Furthermore, it shows that targeting the gut microbiome at later stages of tumor
+growth is a viable option for minimizing tumorigenesis and highlights microbiome
+manipulation as a potential therapeutic in CRC.
 
 
 **Discussion**
@@ -434,7 +436,7 @@ This work was supported by grants from the National Institutes for Health to PDS
 **Figure legends**
 
 **Figure 1. Antibiotic perturbation drives changes in microbial community
-structure and final tumor burden.** The AOM-DSS model was applied to C57BL/6
+structure and final tumor burden.** The AOM-DSS model was administered to C57BL/6
 mice reared under standard pathogen free (SPF) conditions with different
 antibiotic perturbations; Black arrows indicate fecal samples that used for our
 analysis (A). The mice were treated with all possible combinations of
@@ -449,8 +451,8 @@ resulted in a continuum of tumor burden in the mice (C and D).
 **Figure 2. A random forest model successfully predicted the number of tumors in
 the mice at the end of the model (A) based on their microbiota composition at the
 start of the model (B).** The OTUs in B are ranked in decreasing order of their
-mean decrease in the MSE. The relationships between the first 6 OTUs and the
-number of tumors found in those mice are shown in Figure 3.
+mean decrease in the mean squared error. The relationships between the first 6
+OTUs and the number of tumors found in those mice are shown in Figure 3.
 
 <img src="results/figures/figure2-1.png" title="plot of chunk figure2" alt="plot of chunk figure2" style="display: block; margin: auto;" />
 
