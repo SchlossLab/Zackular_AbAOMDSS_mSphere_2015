@@ -5,10 +5,13 @@ opts_chunk$set(echo = FALSE)
 opts_chunk$set(fig.show = "hold")
 opts_chunk$set(warning = FALSE)
 opts_chunk$set(fig.align = "center")
-opts_chunk$set(cache = TRUE)
+opts_chunk$set(cache = FALSE)
 
 library("randomForest", quietly=TRUE)
 library("png", quietly=TRUE)
+
+set.seed(6201976)
+source("code/rf_baseline_analysis.R")
 ```
 
 **Manipulation of the Gut Microbiota Reveals Role for Microbial Community
@@ -138,8 +141,6 @@ of the gut microbiome mediate the capacity to modulate tumorigenesis.
 **Results**
 
 ```{r setup, cache=TRUE}
-set.seed(6201976)
-source("code/rf_baseline_analysis.R")
 
 shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
 rel_abund <- get_rel_abund(paste0(PROJHOME, "/", shared_file), "DSS")
@@ -191,7 +192,7 @@ through the use of antibiotics yields a differential capacity for colon
 tumorigenesis.
 
 
-```{r predict_tumor_baseline, cache=TRUE}
+```{r predict_tumor_baseline}
 n_trees <- 10000 #number of trees for random forest
 rf_baseline_thresh <- 0.015 #an average of 1.5%
 
@@ -239,7 +240,7 @@ microbiota at the beginning of the model.
 
 
 
-```{r predict_tumor_final, cache=TRUE}
+```{r predict_tumor_final}
 get_end_sample <- function(treat_et){
     treat_et_days <- day[grep(treat_et, names(day))]
     names(which.max(treat_et_days))
@@ -748,6 +749,6 @@ informative OTUs from the random forest model with the number of tumors found
 in the mice at the end of the model.** The vertical gray line indicates the
 limit of detection.
 
-```{r supp_figure3, fig.width=7.5, fig.height=5}
+```{r supp_figure3, fig.width=10, fig.height=5}
 plot_final_features(tumor_counts_final, rf_final_forest, rf_final_rabund, treatment_final)
 ```
