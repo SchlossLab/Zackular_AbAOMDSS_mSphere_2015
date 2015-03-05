@@ -1,18 +1,4 @@
-```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-opts_chunk$set("dev" = c("png", "cairo_pdf"))
-opts_chunk$set(results = "hold")
-opts_chunk$set(echo = FALSE)
-opts_chunk$set(fig.show = "hold")
-opts_chunk$set(warning = FALSE)
-opts_chunk$set(fig.align = "center")
-opts_chunk$set(cache = FALSE)
 
-library("randomForest", quietly=TRUE)
-library("png", quietly=TRUE)
-
-set.seed(6201976)
-source("code/rf_baseline_analysis.R")
-```
 
 **Manipulation of the Gut Microbiota Reveals Role of Gut Microbiota in Colon
 Tumorigenesis**
@@ -40,7 +26,7 @@ outgrowth of bacterial populations that induce genomic mutations or exacerbate
 tumor-promoting inflammation. In addition, it is likely that the loss of key
 bacterial populations may result in the loss of protective functions that are
 normally provided by a healthy microbiota. Using an inflammation-based murine
-model of colorectal cancer, we explored the role of the gut microbiome in colon
+model of colorectal cancer, we explored the role of the gut microbiota in colon
 tumorigenesis. We observed that the number of tumors that developed in the model
 could be altered by perturbing the microbiota with different combinations of
 antibiotics. One particular antibiotic combination, specifically, metronidazole
@@ -67,20 +53,20 @@ microbial ecology, microbiome
 **Introduction**
 
 The mammalian gastrointestinal tract is home to a complex and dynamic community
-of microorganisms, termed the gut microbiome, which is essential for maintaining
+of microorganisms, termed the gut microbiota, which is essential for maintaining
 host health {Bäckhed, 2005 #834}. There are complex interactions among bacterial
 populations in the gut that have an important effect on host health {Levy, 2013
 #3476;Marino, 2014 #3290;Lepp, 2004 #844}. The number of diseases that are
-associated with abnormalities in the gut microbiome highlights the importance of
+associated with abnormalities in the gut microbiota highlights the importance of
 these ecological interactions {Turnbaugh, 2006 #1519;Tamboli, 2004
 #3477;Saulnier, 2011 #3478}. Over the last several years, it has been well
 documented that perturbations to this community are associated with colorectal
 cancer (CRC) in humans and mice {Chen, 2013 #2734;Chen, 2012 #2684;Kostic, 2011
 #2435;Geng, 2013 #2686;Shen, 2010 #2687;Sobhani, 2011 #2444;Wang, 2012
 #3286;Ahn, 2013 #3263}. We have previously shown that CRC-associated changes in
-the gut microbiome directly potentiate colon tumorigenesis in a mouse model of
+the gut microbiota directly potentiate colon tumorigenesis in a mouse model of
 CRC {Zackular, 2013 #3305}. In that study we observed clear shifts in the
-microbiome that were associated with a stepwise progression in the number of
+microbiota that were associated with a stepwise progression in the number of
 tumors that developed in the colon. In addition, we showed that transfer of the
 tumor-associated microbiota to germ-free mice resulted in increased tumor
 formation relative to germ-free mice that received the microbiota of healthy
@@ -90,7 +76,7 @@ starting communities yielded significant variation in the number of tumors that
 formed {Baxter, 2014 #3469}. Combined, these results demonstrate that the
 microbiota interact with the host to affect tumor susceptibility.  A critical
 question that remains unanswered is what factors and ecological principles
-mediate the gut microbiome's influence on tumor development. Deciphering how
+mediate the gut microbiota's influence on tumor development. Deciphering how
 changes in microbial community composition and structure alters gut homeostasis,
 and subsequently modulate tumorigenesis, is an essential step in understanding
 the etiology of CRC.
@@ -104,65 +90,43 @@ microenvironment {Kostic, 2013 #3285;Rubinstein, 2013 #3264}. Although
 individual bacterial populations undoubtedly modulate colorectal
 carcinogenesis, there are likely a myriad of commensal bacteria that work
 together to influence tumorigenesis in the colon. This is supported by several
-studies that have explored the gut microbiome associated with individuals with
+studies that have explored the gut microbiota associated with individuals with
 CRC {Chen, 2013 #2734;Chen, 2012 #2684;Kostic, 2011 #2435;Geng, 2013
 #2686;Shen, 2010 #2687;Sobhani, 2011 #2444;Wang, 2012 #3286;Ahn, 2013
 #3263;Zackular, 2014 #3457}. With each study, the number of CRC-associated
 bacterial populations that likely play a role in tumorigenesis continues to
 grow. This is likely due to the fact that there is significant functional
-redundancy within the gut microbiome and various bacterial populations may fill
+redundancy within the gut microbiota and various bacterial populations may fill
 similar roles in tumorigenesis {Lepage, 2013 #3479;Turnbaugh, 2009 #2387;Qin,
 2010 #2337}. Furthermore, some bacterial populations have been hypothesized to
 be protective against CRC {Louis, 2009 #3480;Appleyard, 2011 #3494}. This
 protective phenotype may be mediated through metabolite production, induction
 of immunotolerance, or an ability to outcompete pathogenic bacteria {Zhu, 2011
-#3497}. We hypothesize that multiple bacteria in the gut microbiome have the
+#3497}. We hypothesize that multiple bacteria in the gut microbiota have the
 potential to play pro-tumorigenic or tumor-suppressive roles; thus, the gut
-microbiome's influence on CRC is likely to be driven by complex interactions
+microbiota's influence on CRC is likely to be driven by complex interactions
 within the microbiota and the colonic epithelium.
 
 We have shown that conventionally-raised mice treated with a cocktail of
 metronidazole, streptomycin, and vancomycin in their drinking water had a
 significant decrease in tumor numbers using an inflammation-based model of CRC
 {Zackular, 2014 #3457}. In the current study, we explored how differential
-alterations in the microbiome by different antibiotic treatments affected the
-composition of the microbiome and how changes in bacterial community structure
+alterations in the microbiota by different antibiotic treatments affected the
+composition of the microbiota and how changes in bacterial community structure
 affected tumor susceptibility. Our results confirmed our hypothesis that the
-microbiome is capable of driving tumorigenesis, and that an antibiotic-based
+microbiota is capable of driving tumorigenesis, and that an antibiotic-based
 intervention during tumor induction can arrest tumorigenesis. Our analysis
 further supports the model that individual bacterial populations play an
 important role in CRC, but the ecological interactions and community structure
-of the gut microbiome mediate the capacity to modulate tumorigenesis.
+of the gut microbiota mediate the capacity to modulate tumorigenesis.
 
 
 
 **Results**
 
-```{r setup}
 
-shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
-rel_abund <- get_rel_abund(paste0(PROJHOME, "/", shared_file), "DSS")
 
-treatment <- sapply(rownames(rel_abund), get_treatment)
-eartag <- sapply(rownames(rel_abund), get_eartag)
-day <- sapply(rownames(rel_abund), get_day)
-
-baseline <- day == 0                        #baseline samples are from day 0
-treatment_baseline <- treatment[baseline]   #update the metadata
-eartag_baseline <- eartag[baseline]         #update the metadata
-day_baseline <- day[baseline]               #update the metadata
-rabund_baseline <- rel_abund[baseline,]     #extract the baseline samples
-
-#what mice do we have baseline data for? necessary because the tumor data
-#is indexed by `treatment_eartag`
-mice_baseline <- paste(treatment_baseline, eartag_baseline, sep="_")
-
-tumor_count.file <- paste0(PROJHOME, "/data/process/tumor_counts.tsv")
-tumor_counts <- read.table(file=tumor_count.file, header=T)
-tumor_counts_baseline <- tumor_counts[mice_baseline,]   #get the tumor count data
-```
-
-***Antibiotic perturbation of the gut microbiome modulates tumorigenicity.***
+***Antibiotic perturbation of the gut microbiota modulates tumorigenicity.***
 We subjected specific pathogen-free (SPF) C57BL/6 mice to an inflammation-based
 model of colorectal cancer that utilizes azoxymethane (AOM) as a mutagen and
 dextran sodium sulfate (DSS) to induce inflammation {Zackular, 2013
@@ -190,20 +154,7 @@ of the antibiotic that was used to treat the mice (Figure 1C,D). These results
 demonstrated that perturbation of the microbiota through the use of antibiotics
 yields a differential capacity for colon tumorigenesis.
 
-```{r predict_tumor_baseline}
-n_trees <- 10000 #number of trees for random forest
-rf_baseline_thresh <- 0.015 #an average of 1.5%
 
-rf_baseline_forest <- get_forest(rabund=rabund_baseline,
-                            dependent=tumor_counts_baseline,
-                            n_trees=n_trees,
-                            threshold=rf_baseline_thresh)
-
-rf_baseline_rabund <- filter_rabund(rabund_baseline, rf_baseline_thresh)
-
-rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest,
-    rabund_baseline)
-```
 
 
 ***Tumor burden can be predicted from the initial microbiota.***
@@ -218,15 +169,15 @@ random forest machine learning algorithm to identify OTUs that would enable us
 to predict the number of tumors that developed at the end of the model. The
 model that included OTUs that had an average relative abundance greater than
 1.5% resulted in the greatest percentage of the variance explained
-(Supplementary Figure 1).This model included `r get_n_otus(rf_baseline_forest)`
-OTUs and explained `r round(100*get_rsq(rf_baseline_forest), 1)`% of the
+(Supplementary Figure 1).This model included 15
+OTUs and explained 62.6% of the
 variation in the tumor counts (Figure 2). The OTUs were ranked by their
 importance in the random forest model as measured by the percent the mean
 squared error increases when the OTU was removed. When the OTUs were sorted in
 decreasing order by the percent they contributed to increasing the mean squared
 error (MSE) of the model, there was a jump between the sixth and seventh OTUs
 (Figure 2A). In fact, when we reconstructed the model using only the six OTUs
-that provided the greatest change in the MSE, the model explained `r round(100*rf_simplify_rsq[6], 1)`%
+that provided the greatest change in the MSE, the model explained 67%
 of the variation in the observed tumor counts was indicating that the model
 based on the reduced dataset explained as much of the variation in tumor counts
 as the model based on all of the OTUs. These six OTUs included members of the
@@ -240,45 +191,18 @@ that it was possible to predict the number of tumors at the end of the model
 based on the composition of the microbiota at the beginning of the model.
 
 
-```{r predict_tumor_final}
-get_end_sample <- function(treat_et){
-    treat_et_days <- day[grep(treat_et, names(day))]
-    names(which.max(treat_et_days))
-}
 
-unique_treat_et <- unique(paste(treatment, eartag, sep="_"))
-ends <- sapply(unique_treat_et, get_end_sample)
-
-treatment_final <- treatment[ends]   #update the metadata
-eartag_final <- eartag[ends]         #update the metadata
-dayfinal <- day[ends]               #update the metadata
-rabund_final <- rel_abund[ends, ]
-tumor_counts_final <- tumor_counts[unique_treat_et, 1]
-
-n_trees <- 10000 #number of trees for random forest
-rf_final_thresh <- 0.015 #an average of 1.5%
-
-rf_final_forest <- get_forest(rabund=rabund_final,
-                            dependent=tumor_counts_final,
-                            n_trees=n_trees,
-                            threshold=rf_final_thresh)
-
-rf_final_rabund <- filter_rabund(rabund_final, rf_final_thresh)
-
-rf_simplify_rsq <- simplify_model(tumor_counts_final, rf_final_forest,
-                                                                rabund_final)
-```
 
 ***Tumor burden can be predicted from the microbiota at the end of the model.***
 Similar to our analysis using the initial composition of the microbiota, we
 developed a random forest regression model to predict the number of tumors in
 the mice based on the composition of the microbiota at the end of the model. The
-model included `r ncol(rf_final_rabund)` OTUs after we again applied a filter
+model included 11 OTUs after we again applied a filter
 requiring each OTU to have an average relative abundance of at least 1.5%. The
-model explained `r round(100*get_rsq(rf_final_forest), 1)`% of the variation in
+model explained 52.9% of the variation in
 the tumor counts (Supplementary Figure 2), which is less than we observed when
 we modeled tumor counts based on the initial community composition. The seven
-most important OTUs in the model explained `r round(100*rf_simplify_rsq[7], 1)`%
+most important OTUs in the model explained 55.4%
 of the variation and included *Odoribacter* (OTU 70), *Bacteroides* (OTU 5),
 *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3), *Alloprevotella* (OTU 14),
 *Prevotella* (OTU 19), and Betaproteobacteria (OTU 17) (Supplementary Figure 3).
@@ -288,53 +212,7 @@ overlapped. These included *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3),
 and *Prevotella* (OTU 19).
 
 
-```{r distance_tumor_correlation}
-get_dist_lt <- function(file_name){
 
-    dist_vector <- scan(file_name, what="", sep="\n")
-
-    n_samples <- as.numeric(dist_vector[1])
-    dist_vector <- dist_vector[-1]
-
-    sample_names <- character(n_samples)
-    distance_matrix <- matrix(rep(0, n_samples*n_samples), nrow=n_samples)
-
-    for(i in 1:n_samples){
-
-        split_line <- unlist(strsplit(dist_vector[i], "\t"))
-        sample_names[i] <- split_line[1]
-
-        if(i > 1){
-            distance_matrix[i,1:(i-1)] <- as.numeric(split_line[2:i])
-        }
-    }
-
-    distance_matrix <- distance_matrix + t(distance_matrix)
-    rownames(distance_matrix) <- sample_names
-    colnames(distance_matrix) <- sample_names
-    distance_matrix
-}
-
-
-get_start_end_dist <- function(u_treat_et, days){
-    subset <- days[treat_et == u_treat_et]
-    start <- names(subset[subset==0])
-    end <- names(sort(subset, decreasing=TRUE))[1]
-    distances[start, end]
-}
-
-
-dist_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist"
-
-distances <- get_dist_lt(dist_file)
-treat_et <- gsub("_d.*", "", rownames(distances))
-days <- sapply(rownames(distances), get_day)
-start_end_dist <- unlist(sapply(unique(treat_et), get_start_end_dist, days))
-
-tumor_counts_prepost <- tumor_counts[names(start_end_dist), "n_tumors"]
-dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist,
-                                method="spearman")
-```
 
 ***The microbial community is dynamic during inflammation-associated tumorigenesis.***
 Using mice that were colonized with human feces, we previously reported that
@@ -342,8 +220,8 @@ tumor burden was associated with the amount of change in the community structure
 over the course of the AOM-DSS model {Baxter, 2014 #3469}. In the current study,
 however, there was a non-significant association between the change in the
 community structure as measured by the $\theta$<sub>YC</sub> metric of community
-structure similarity and tumor burden ($\rho$=`r round(dist_tumor_cor$estimate,2)`,
-P=`r round(dist_tumor_cor$p.value, 2)`; Figure 4A). We did observe that mice
+structure similarity and tumor burden ($\rho$=0.26,
+P=0.08; Figure 4A). We did observe that mice
 that did not receive antibiotics and those that received the Δvancomycin and
 Δmetronidazole treatments changed the most over the course of the model.
 Interestingly, when we investigated the temporal progression of the three OTUs
@@ -360,7 +238,7 @@ tumor-associated bacterial populations dictate tumor burden.
 The AOM-DSS model reproduces certain characteristics observed with human CRC,
 but microbial contributions to tumorigenesis have not been elucidated
 {De Robertis, 2011 #3300}. To
-determine whether the gut microbiome modulates tumorigenesis by affecting
+determine whether the gut microbiota modulates tumorigenesis by affecting
 AOM-induced mutagenesis or DSS-induced inflammation, we performed two antibiotic
 intervention experiments. We first treated mice with the vancomycin,
 metronidazole and streptomycin two weeks prior to the administration of AOM and
@@ -370,10 +248,10 @@ between the first and second round of DSS administration, when inflammatory
 responses were the greatest and aberrant changes in microbial community
 structure occurs {Zackular, 2013 #3305} (Figure 1A). With this treatment, there
 was a significant decrease in the number of tumors (Figure 5). These results
-suggest that the gut microbiome-mediated effect on CRC is independent of
+suggest that the gut microbiota-mediated effect on CRC is independent of
 AOM-mediated carcinogenesis. Furthermore, it shows that targeting the gut
-microbiome at later stages of tumor growth is a viable option for minimizing
-tumorigenesis and highlights microbiome manipulation as a potential therapeutic
+microbiota at later stages of tumor growth is a viable option for minimizing
+tumorigenesis and highlights microbiota manipulation as a potential therapeutic
 in CRC.
 
 
@@ -381,17 +259,17 @@ in CRC.
 
 In the present study, we established the importance of the microbial community
 structure in determining the extent of tumorigenesis.  We demonstrated that
-manipulation of the murine gut microbiome with different antibiotic regimens
+manipulation of the murine gut microbiota with different antibiotic regimens
 resulted in non-overlapping community structures that were associated with
 disparate levels of tumorigenesis. Enrichment in the relative abundance of
 several bacterial populations was associated with high and low levels of colon
 tumors. We determined that the outgrowth of potentially inflammatory members of
-the gut microbiome was associated with increased tumorigenesis only when there
+the gut microbiota was associated with increased tumorigenesis only when there
 was a corresponding decrease in potentially protective, butyrate producing
 bacteria. By perturbing the bacterial community at two different time points
-during the AOM/DSS model, we determined that the gut microbiome affects
+during the AOM/DSS model, we determined that the gut microbiota affects
 tumorigenesis via a mechanism that does not involve AOM-induced carcinogenesis.
-Our experiments also demonstrated that targeting the gut microbiome at the
+Our experiments also demonstrated that targeting the gut microbiota at the
 emergence of dysbiosis (i.e. after the first round of DSS in the AOM/DSS model)
 is a viable strategy for the amelioration of colon tumorigenesis.
 
@@ -409,7 +287,7 @@ ETBF {Housseau, 2010 #3498}. Although there is substantial evidence for a role
 in potentiating tumorigenesis, the fact that each of these bacteria is only
 associated with a fraction of CRCs suggests that it is unlikely that there is a
 single microbial agent that causes cancer. Rather, the role of the gut
-microbiome in CRC is likely polymicrobial in nature. The results in the present
+microbiota in CRC is likely polymicrobial in nature. The results in the present
 study support this hypothesis, as we demonstrated that non-overlapping community
 structures confer similar levels of tumorigenesis in mice. When we examined the
 relative abundance of bacterial populations associated with increased tumor
@@ -420,7 +298,7 @@ bacterial populations were not consistently depleted across treatment groups
 that developed the fewest tumors (All antibiotics, ∆vancomycin, ∆streptomycin,
 and metronidazole only). This suggests that there may be redundancy in
 tumor-modulating roles amongst different bacteria populations within the gut
-microbiome.
+microbiota.
 
 During tumor induction, we observed a marked increase in members of the
 Enterobacteriaceae associated with two antibiotic treatment groups
@@ -439,18 +317,18 @@ examined the two antibiotic treatment groups, we observed that mice with an
 increased tumor burden had a corresponding decrease in several potentially
 anti-inflammatory and butyrate producing bacterial populations. These
 observations support a model by which the pathogenicity potential of individual
-members of the gut microbiome is ultimately determined by the overall community
-structure and ecological interactions within the gut microbiome. We hypothesize
+members of the gut microbiota is ultimately determined by the overall community
+structure and ecological interactions within the gut microbiota. We hypothesize
 that inflammatory and carcinogenic commensal bacteria, such as
 Enterobacteriaceae, can only mediate a pathogenic phenotype if the context of
 the community structure is conducive.
 
 One possible mechanism by which community structure mediates tumorigenicity is
 by shifting the balance of immunomodulatory metabolites and signals. During
-health, the gut microbiome is an important mediator of immunotolerance, but when
+health, the gut microbiota is an important mediator of immunotolerance, but when
 the balance of pro- and anti-inflammatory signals is disrupted, gut pathologies
 can arise {Kelly, 2005 #3506}. In our mice, Enterobacteriaceae is likely acting
-as an inflammatory member of the gut microbiome. However, we only observed an
+as an inflammatory member of the gut microbiota. However, we only observed an
 increase in tumorigenesis when there was a corresponding depletion of
 potentially protective members of the genera Clostridium, Enterococcus, and
 Streptococcus that have reported protective roles against inflammation and
@@ -465,14 +343,14 @@ these bacterial populations have the ability to antagonize inflammatory clades
 the microbial community structure disrupts this homeostasis, opportunistic
 pathogens can potentiate tumorigenesis.
 
-In our previous work, we demonstrated that dysbiosis of the gut microbiome
+In our previous work, we demonstrated that dysbiosis of the gut microbiota
 generates a pro-inflammatory environment which results in a self-reinforcing
-pathogenic cascade between the gut microbiome and the host {Zackular, 2013
+pathogenic cascade between the gut microbiota and the host {Zackular, 2013
 #3305;Baxter, 2014 #3469}. In this study, we demonstrated that antibiotic
-manipulation of the gut microbiome during the onset of inflammation can
+manipulation of the gut microbiota during the onset of inflammation can
 significantly decrease tumorigenesis in mice. This highlights the efficacy of
-targeting the gut microbiome in CRC. Additional studies are needed to explore
-the viability of manipulating the gut microbiome in CRC with methods such as
+targeting the gut microbiota in CRC. Additional studies are needed to explore
+the viability of manipulating the gut microbiota in CRC with methods such as
 diet, probiotics, and prebiotics.
 
 
@@ -496,11 +374,11 @@ tumors.
 
 **Antibiotic treatment.** Mice were treated with all possible combinations of
 metronidazole (0.75 g/L), streptomycin (2 g/L), and vancomycin (0.5 g/L) to
-create eight treatment groups: no antibiotics, all antibiotics (n=5)
+create eight treatment groups: no antibiotics (N=12), all antibiotics (n=9)
 (metronidazole, streptomycin, and vancomycin), $\Delta$ metronidazole (n=5)
 (streptomycin and vancomycin), $\Delta$ streptomycin (n=5) (metronidazole and
 vancomycin), $\Delta$ vancomycin (n=5) (metronidazole and streptomycin), metronidazole
-only, streptomycin only, and vancomycin only (n=3). Antibiotics were
+only (N=5), streptomycin only (N=5), and vancomycin only (N=3). Antibiotics were
 administered in mouse drinking water for 2 weeks prior to and throughout the
 duration of AOM/DSS administration, unless otherwise specified in Figure 1A.
 Tumors were enumerated at the end of the model.
@@ -514,12 +392,7 @@ using untreated stool samples for each replicate mouse. Note that qPCR
 measures relative fold change of 16S rRNA gene copy number, not actual bacterial
 numbers.
 
-```{r error_rate}
-error <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.error.summary", header=T, row.names=1)
-error_nochim <- error[error$numparents==1,]
-error_rate <- 100 * sum(error_nochim$weight*error_nochim$mismatches) /
-                    sum(error_nochim$weight*error_nochim$total)
-```
+
 
 **DNA extraction and 16S rRNA gene sequencing.** Fecal samples were collected
 daily from the mice throughout the AOM/DSS protocol and immediately frozen for
@@ -542,7 +415,7 @@ were culled {Edgar, 2011 #2406}. The resulting sequences had a median length of
 253 nt and we rarefied to 2,500 sequences per sample to limit effects of uneven
 sampling. A mock community was sequenced and processed in parallel to the fecal
 samples. Based on the mock community data we observed a sequencing error rate of
-`r round(error_rate, 2)`%. The complete analysis methods and this document as an R-executable
+0.05%. The complete analysis methods and this document as an R-executable
 document are available at
 https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015. All FASTQ
 sequence data can be obtained from the Sequence Read Archive at NCBI (Need to
@@ -589,9 +462,7 @@ resulted in a continuum of tumor burden in the mice (C and D). The stars
 indicate which treatments yielded a significantly (P<0.05) different number of
 tumors when compared to the treatment with the vertical line.
 
-```{r figure1, fig.width=7.5, fig.height=10}
-source("code/build_figure1.R")
-```
+<img src="results/figures/figure1-1.png" title="plot of chunk figure1" alt="plot of chunk figure1" style="display: block; margin: auto;" />
 
 
 **Figure 2. A random forest model successfully predicted the number of tumors in
@@ -600,13 +471,7 @@ start of the model (B).** The OTUs in B are ranked in decreasing order of their
 mean decrease in the mean squared error. The relationships between the first 6
 OTUs and the number of tumors found in those mice are shown in Figure 3.
 
-```{r figure2, fig.width=7.5, fig.height=3.5}
-layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
-plot_forest_fit(tumor_counts_baseline, rf_baseline_forest, rf_baseline_rabund, treatment_baseline)
-mtext(text="A", line=1.5, side=2, at=23, las=2, cex=2, font=2)
-plot_importance(rf_baseline_forest)
-mtext(text="B", line=8.5, side=2, at=15, las=2, cex=2, font=2)
-```
+<img src="results/figures/figure2-1.png" title="plot of chunk figure2" alt="plot of chunk figure2" style="display: block; margin: auto;" />
 
 
 **Figure 3. Relationship between the initial relative abundance of the most
@@ -615,10 +480,7 @@ in the mice at the end of the model.** The vertical gray line indicates the
 limit of detection. Panels are ordered in decreasing order of the percent
 increase in the mean squared error of the model when that OTU was removed.
 
-```{r figure3, fig.width=7.5, fig.height=5}
-plot_baseline_features(tumor_counts_baseline, rf_baseline_forest,
-                                        rf_baseline_rabund, treatment_baseline)
-```
+<img src="results/figures/figure3-1.png" title="plot of chunk figure3" alt="plot of chunk figure3" style="display: block; margin: auto;" />
 
 
 
@@ -633,45 +495,7 @@ Figure 1. In panel B, the median relative abundance is indicated by the plotting
 symbol and the range of observed relative abundances is plotted by the vertical
 bar. The vertical blue regions indicate when the DSS treatments were applied.
 
-```{r figure4, fig.width=3.75, fig.height=7}
-design <- matrix(c(2,1,
-                    6,3,
-                    6,4,
-                    6,5,
-                    0,7), byrow=T, nrow=5)
-z <- layout(design, width=c(0.15,1), height=c(1.5,1,1,1,0.3))
-
-par(mar=c(3,0.5,0.5,0.5))
-treatments <- gsub("_.*", "", names(start_end_dist))
-plot(tumor_counts_prepost~start_end_dist, ylim=c(0,25), xlim=c(0,1),
-    col=clrs[treatments],
-    pch=pch[treatments], axes=FALSE, xlab="", ylab="")
-mtext(side=1, text="Distance between communities on days 0 and 74", line=2, cex=0.7)
-axis(1)
-axis(2, las=2)
-box()
-
-#labels_no_n <- gsub(" \\(.*\\)", "", labels)
-#legend(x=-0.025, y=26, legend=labels_no_n, pch=pch[names(labels)],
-#        col=clrs[names(labels)], cex=0.9, bty="n")
-
-par(mar=c(0,0,0,0))
-plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.3, y=0.58, label="Number of tumors", srt=90, cex=1.5)
-text(x=0.3, y=0.98, label="A", srt=0, cex=2, font=2)
-
-
-par(mar=c(0.5,0.5,0.5,0.5))
-source("code/make_timeline_plot.R")
-
-par(mar=c(0,0,0,0))
-plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.3, y=0.5, label="Relative abundance (%)", srt=90, cex=1.5)
-text(x=0.3, y=1, label="B", srt=0, cex=2, font=2)
-
-plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
-text(x=0.55, y=0.25, label="Days since AOM administration")
-```
+<img src="results/figures/figure4-1.png" title="plot of chunk figure4" alt="plot of chunk figure4" style="display: block; margin: auto;" />
 
 
 **Figure 5. Antibiotic intervention prior to second administration of
@@ -681,38 +505,7 @@ depicted in Figure 1A with enumeration of tumors performed at the end point of
 the model (A). Representative images of tumors in the distal colon of mice from
 each treatment group (B).
 
-```{r figure5, fig.width=3.5, fig.height=3.5}
-abx <- read.table(file="data/process/tumor_counts.tsv", header=T)
-intervention <- read.table(file="data/process/intervention_tumor_counts.tsv", header=T)
-
-layout(matrix(c(1,2), byrow=T, nrow=1), width=c(1.5,1.20), height=1)
-
-par(mar=c(6,4,0.5,0.25))
-
-plot(NA, xlim=c(0.5,4.5), ylim=c(0,25), xlab="", ylab="Number of tumors", axes=F)
-stripchart(at=1, x=abx[grepl("NoAbs", rownames(abx)), "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=1, jitter=0.15, cex=1.0, add=T)
-stripchart(at=2, x=abx[grepl("AllAbs", rownames(abx)), "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=19, jitter=0.15, cex=1.0, add=T)
-stripchart(at=3, x=intervention[intervention$experiment=="Intervention1", "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=18, jitter=0.15, cex=1.5, add=T)
-stripchart(at=4, x=intervention[intervention$experiment=="Intervention2", "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=17, jitter=0.15, cex=1.5, add=T)
-
-text(y=-9, x=(1:4)-0.6, label=c("No antibiotics", "All antibiotics", "Intervention 1", "Intervention 2"), srt=70, cex=0.8, xpd=TRUE)
-axis(2, las=1)
-axis(1, tick=TRUE, labels=FALSE)
-box()
-mtext(text="A", side=2, line=2.5, at=25, font=2.5, cex=2, las=2, xpd=TRUE)
-
-
-par(mar=c(6,1.5,0.0,0.0))
-plot(c(0, 150), c(0, 150), type = "n", xlab = "", ylab = "", axes=FALSE)
-img <- readPNG("results/pictures/tumor_images_intervention.png")
-lim <- par()
-rasterImage(img, -10, -10, 160, 160, xpd=TRUE)
-text(label="B", x=-30.0, y=143, font=2.5, cex=2, xpd=TRUE)
-```
+<img src="results/figures/figure5-1.png" title="plot of chunk figure5" alt="plot of chunk figure5" style="display: block; margin: auto;" />
 
 
 **Supplementary Figure 1. Quality of random forest regression fit as a function
@@ -721,31 +514,7 @@ model.** The integers displayed across the plot indicate the number of OTUs that
 were included in the model. Because a minimum average relative abundance of 1.5%
 yielded the best R<sup>2</sup>, it was used for the remainder of the analysis.
 
-```{r supp_figure1, fig.width=5.0, fig.height=5.0}
-threshold <- seq(0,0.03, 0.005)
-n_trees <- 10000 #number of trees for random forest
-
-rf_thresholds <- lapply(X=threshold, FUN=get_forest, rabund=rabund_baseline,
-                         dependent=tumor_counts_baseline, n_trees=n_trees)
-
-thresh_rsq <- sapply(rf_thresholds, get_rsq)
-
-max_index <- which.max(thresh_rsq)
-rf_baseline_forest <- rf_thresholds[[max_index]]    #get the forest
-rf_baseline_thresh <- threshold[max_index]          #get the threshold that was used
-
-#get filtered rabund table
-rf_baseline_rabund <- filter_rabund(rabund_baseline, rf_baseline_thresh)
-
-par(mar=c(5,5,0.5,0.5))
-plot(thresh_rsq~threshold, pch=19, xlab="Minimum average relative abundance (%)",
-                axes=FALSE, ylab=expression(R^2),
-                ylim=c(0.4, 1.05*max(thresh_rsq)))
-text(x=threshold, y=0.45, label=sapply(rf_thresholds, get_n_otus), cex=0.75)
-axis(1, at=threshold, label=format(100*threshold, 1))
-axis(2, las=2)
-box()
-```
+<img src="results/figures/supp_figure1-1.png" title="plot of chunk supp_figure1" alt="plot of chunk supp_figure1" style="display: block; margin: auto;" />
 
 
 **Supplemental Figure 2. A random forest model successfully predicted the number
@@ -755,13 +524,7 @@ decreasing order of their mean decrease in the MSE. The relationships between
 the first 6 OTUs and the number of tumors found in those mice are shown in
 Supplemental Figure 3.
 
-```{r supp_figure2, fig.width=7.5, fig.height=3.5}
-layout(matrix(c(1,2), nrow=1), width=c(1,1.2), height=0.8)
-plot_forest_fit(tumor_counts_final, rf_final_forest, rf_final_rabund, treatment_final)
-mtext(text="A", line=1.5, side=2, at=23, las=2, cex=2, font=2)
-plot_importance(rf_final_forest)
-mtext(text="B", line=8.5, side=2, at=11, las=2, cex=2, font=2)
-```
+<img src="results/figures/supp_figure2-1.png" title="plot of chunk supp_figure2" alt="plot of chunk supp_figure2" style="display: block; margin: auto;" />
 
 
 **Supplemental Figure 3. Relationship between the initial relative abundance of the most
@@ -769,6 +532,4 @@ informative OTUs from the random forest model with the number of tumors found
 in the mice at the end of the model.** The vertical gray line indicates the
 limit of detection.
 
-```{r supp_figure3, fig.width=10, fig.height=5}
-plot_final_features(tumor_counts_final, rf_final_forest, rf_final_rabund, treatment_final)
-```
+<img src="results/figures/supp_figure3-1.png" title="plot of chunk supp_figure3" alt="plot of chunk supp_figure3" style="display: block; margin: auto;" />
