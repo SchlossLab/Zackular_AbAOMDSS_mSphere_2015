@@ -8,21 +8,17 @@ tumor-promoting inflammation. In addition, it is likely that the loss of key
 bacterial populations may result in the loss of protective functions that are
 normally provided by a healthy microbiota. Using an inflammation-based murine
 model of colorectal cancer, we explored the role of the gut microbiota in colon
-tumorigenesis. We observed that the number of tumors that developed in the model
-could be altered by perturbing the microbiota with different combinations of
-antibiotics. One particular antibiotic combination, specifically, metronidazole
-and streptomycin, was superior to other antibiotic combinations tested and was
-sufficient to completely suppress tumor development that was not due to changes
-in bacterial load. Using the random forest machine learning algorithm we were
-able to create a regression model that predicted the number of tumors that
-developed over the course of 73 days based on the composition of the microbiota
-on the first day. Finally, the timing of antibiotic treatment was an important
-determinant of tumor outcome as colon tumorigenesis was arrested with the use of
-antibiotics during the inflammation period of the murine model. These results
-suggest that it is possible to predict colon tumorigenesis based on knowledge of
-the microbiota and that altering the structure of the gut microbiota can alter
-the course of colorectal cancer.
-
+tumorigenesis. We observed that perturbing the microbiota with different
+combinations of antibiotics did not change the bacterial load and resulted in a
+reduced number at the end of the model. Using the random forest machine learning
+algorithm we were able to create a regression model that predicted the number of
+tumors that developed over the course of 73 days based on the composition of the
+microbiota on the first day. Finally, the timing of antibiotic treatment was an
+important determinant of tumor outcome as colon tumorigenesis was arrested with
+the use of antibiotics during the inflammation period of the murine model. These
+results suggest that it is possible to predict colon tumorigenesis based on
+knowledge of the microbiota and that altering the structure of the gut
+microbiota can alter the course of colorectal cancer.
 
 Overview
 --------
