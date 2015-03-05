@@ -553,7 +553,7 @@ for statistical computing. All R source code is available on our GitHub
 repository at https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015.
 All random forest models were made using the randomForest package with 10,000
 trees {Breiman, 2001 #2526}. Diagnostic plots indicated that the percent of the
-variance explained had stabilized with this number of trees. Comparision of
+variance explained had stabilized with this number of trees. Comparison of
 tumor counts were made by carrying out non-parametric pairwise Wilcoxon tests.
 The resulting p-values were corrected for multiple comparisons using the
 Benjamini-Hochberg procedure using an experiment-wide Type I error rate of 0.05.
