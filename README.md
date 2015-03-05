@@ -2,25 +2,26 @@ Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structur
 =======
 
 There is growing evidence that individuals with colonic adenomas and carcinomas
-harbor a distinct microbiota. These alterations may allow the outgrowth of
-populations that induce mutations or exacerbate inflammation. In addition, it is
-likely that the loss of key populations may result in the loss of protective
-functions that are provided for by a healthy microbiota. Using an
-inflammation-based murine model of colorectal cancer we explored the
-host-microbiota relationship to better understand the role of various
-populations through the process of tumorigenesis. By perturbing the microbiota
-with mixtures of antibiotics that targeted distinct groups of bacteria we
-observed that it was possible to predict the number of tumors that the animals
-would harbor by the end of the model. It was apparent that distinct microbiota
-could lead to similar numbers of tumors and that variation in the composition of
-the microbiota could also lead to wide variation in the number of colonic tumors
-that formed. Furthermore, without altering the number of bacteria in the colon,
-we were able to fully suppress tumor formation using a combination of
-metronidazole and streptomycin. Finally, by altering when the antibiotics were
-given to the model we showed that the role of the microbiota in tumorigenesis is
-most pronounced during the period of inflammation rather than in the processing
-of the mutagen. These results suggest that altering the structure and function
-of the gut microbiota can arrest the course of colorectal cancer.
+harbor a distinct microbiota. Alterations in the gut microbiota may allow the
+outgrowth of bacterial populations that induce genomic mutations or exacerbate
+tumor-promoting inflammation. In addition, it is likely that the loss of key
+bacterial populations may result in the loss of protective functions that are
+normally provided by a healthy microbiota. Using an inflammation-based murine
+model of colorectal cancer, we explored the role of the gut microbiota in colon
+tumorigenesis. We observed that the number of tumors that developed in the model
+could be altered by perturbing the microbiota with different combinations of
+antibiotics. One particular antibiotic combination, specifically, metronidazole
+and streptomycin, was superior to other antibiotic combinations tested and was
+sufficient to completely suppress tumor development that was not due to changes
+in bacterial load. Using the random forest machine learning algorithm we were
+able to create a regression model that predicted the number of tumors that
+developed over the course of 73 days based on the composition of the microbiota
+on the first day. Finally, the timing of antibiotic treatment was an important
+determinant of tumor outcome as colon tumorigenesis was arrested with the use of
+antibiotics during the inflammation period of the murine model. These results
+suggest that it is possible to predict colon tumorigenesis based on knowledge of
+the microbiota and that altering the structure of the gut microbiota can alter
+the course of colorectal cancer.
 
 
 Overview
