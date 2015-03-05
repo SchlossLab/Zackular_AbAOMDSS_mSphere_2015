@@ -553,7 +553,10 @@ for statistical computing. All R source code is available on our GitHub
 repository at https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015.
 All random forest models were made using the randomForest package with 10,000
 trees {Breiman, 2001 #2526}. Diagnostic plots indicated that the percent of the
-variance explained had stabilized with this number of trees.
+variance explained had stabilized with this number of trees. Comparision of
+tumor counts were made by carrying out non-parametric pairwise Wilcoxon tests.
+The resulting p-values were corrected for multiple comparisons using the
+Benjamini-Hochberg procedure using an experiment-wide Type I error rate of 0.05.
 
 
 **Acknowledgements**
@@ -582,7 +585,9 @@ analysis (A). The mice were treated with all possible combinations of
 metronidazole, streptomycin, and vancomycin to create eight treatment groups,
 which resulted in considerable differences in the taxonomic composition of the
 gut communities at the start of the model (Day 0) (B). These communities
-resulted in a continuum of tumor burden in the mice (C and D).  
+resulted in a continuum of tumor burden in the mice (C and D). The stars
+indicate which treatments yielded a significantly (P<0.05) different number of
+tumors when compared to the treatment with the vertical line.
 
 ```{r figure1, fig.width=7.5, fig.height=10}
 source("code/build_figure1.R")
