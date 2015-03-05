@@ -149,8 +149,8 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM)
 ################################################################################
 
 write.paper :
-	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_GutMicrobes_2015.Rmd', 'Zackular_AbAOMDSS_GutMicrobes_2015.html')"; \
-	pandoc -f markdown -t docx Zackular_AbAOMDSS_GutMicrobes_2015.md -o Zackular_AbAOMDSS_GutMicrobes_2015.docx
+	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_SciReports_2015.Rmd', 'Zackular_AbAOMDSS_SciReports_2015.html')"; \
+	pandoc -f markdown -t docx Zackular_AbAOMDSS_SciReports_2015.md -o Zackular_AbAOMDSS_SciReports_2015.docx
 
 
 
