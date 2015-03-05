@@ -95,9 +95,9 @@ get_n_otus <- function(forest){
 
 #see what the rsquared value looks like for forests that are built stepwise
 simplify_model <- function(dependent, forest, rabund){
-    #mean decrease in MSE is in the second column of the importance data frame
+    #%IncMSE is in the first column of the importance data frame
     importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,2], decreasing=T),]
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
 
     notus <- nrow(importance)
     rf_simplify_rsq <- rep(0, notus)
@@ -181,7 +181,7 @@ plot_importance <- function(forest){
     names(otu_tax_labels) <- rownames(tax)
 
     importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,2], decreasing=T),2]
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),"%IncMSE"]
 
     plot(NA, yaxt="n", xlab="", ylab="",
         xlim=c(0, max(sorted_importance)),
@@ -222,7 +222,7 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
 plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
 
     importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,2], decreasing=T),]
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
 
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
@@ -236,7 +236,7 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
     #and combine the OTU name with its taxonomy and Mean Decrease in MSE coefficient
     otus <- rownames(sorted_importance)[1:6]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\nDecrease in MSE: ", format(round(sorted_importance[1:6,2], 1), 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\nDecrease in MSE: ", format(round(sorted_importance[1:6,"%IncMSE"], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
@@ -302,13 +302,13 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
 
 
 
-
+
 #Plot features' relative abundance at the end of the model versus the tumor
 #counts for the mice that they came from...
 plot_final_features <- function(tumor_counts, forest, rabund, treatment){
 
     importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,2], decreasing=T),]
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
 
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
@@ -322,7 +322,7 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
     #and combine the OTU name with its taxonomy and Mean Decrease in MSE
     otus <- rownames(sorted_importance)[1:7]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\nDecrease in MSE: ", format(round(sorted_importance[1:7,2], 1), 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\nDecrease in MSE: ", format(round(sorted_importance[1:7,"%IncMSE"], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
