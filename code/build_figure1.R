@@ -108,6 +108,32 @@ for(i in 1:length(ordered_treatments)){
     vertical=T, method="jitter", col=clrs[ordered_treatments[i]],
     pch=pch[ordered_treatments[i]], jitter=0.25, cex=1.0, add=T)
 }
+segments(x0=1,x1=8, y0=25, y1=25, lwd=2, col="gray")
+segments(x0=1,x1=1, y0=25, y1=24, lwd=2)
+text(x=c(3,4,5,6,7,8), y=rep(25, 6), label="*", cex=1.5)
+
+segments(x0=2,x1=8, y0=22, y1=22, lwd=2, col="gray")
+segments(x0=2,x1=2, y0=22, y1=21, lwd=2)
+#
+
+segments(x0=3,x1=8, y0=19, y1=19, lwd=2, col="gray")
+segments(x0=3,x1=3, y0=19, y1=18, lwd=2)
+text(x=c(7,8), y=rep(19, 2), label="*", cex=1.5)
+
+segments(x0=4,x1=8, y0=16, y1=16, lwd=2, col="gray")
+segments(x0=4,x1=4, y0=16, y1=15, lwd=2)
+text(x=c(5,7,8), y=rep(16, 3), label="*", cex=1.5)
+
+segments(x0=5,x1=8, y0=13, y1=13, lwd=2, col="gray")
+segments(x0=5,x1=5, y0=13, y1=12, lwd=2)
+text(x=c(8), y=rep(13, 1), label="*", cex=1.5)
+
+segments(x0=6,x1=8, y0=10, y1=10, lwd=2, col="gray")
+segments(x0=6,x1=6, y0=10, y1=9, lwd=2)
+text(x=c(7), y=rep(10, 1), label="*", cex=1.5)
+
+segments(x0=7,x1=8, y0=7, y1=7, lwd=2, col="gray")
+segments(x0=7,x1=7, y0=7, y1=6, lwd=2)
 
 plot.new()
 par(lheight=0.7)

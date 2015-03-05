@@ -302,7 +302,6 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
 
 
 
-
 #Plot features' relative abundance at the end of the model versus the tumor
 #counts for the mice that they came from...
 plot_final_features <- function(tumor_counts, forest, rabund, treatment){
