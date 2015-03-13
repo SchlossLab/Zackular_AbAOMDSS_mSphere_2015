@@ -416,8 +416,7 @@ samples. Based on the mock community data we observed a sequencing error rate of
 0.05%. The complete analysis methods and this document as an R-executable
 document are available at
 https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015. All FASTQ
-sequence data can be obtained from the Sequence Read Archive at NCBI (Need to
-deposit data).
+sequence data can be obtained from the Sequence Read Archive at NCBI (BioProejct Accession PRJNA278126).
 
 **Statistical analysis.** The microbiota data were analyzed using the R project
 for statistical computing. All R source code is available on our GitHub
