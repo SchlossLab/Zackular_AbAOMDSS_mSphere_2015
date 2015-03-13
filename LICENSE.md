@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 20XX XXXXXXXXX and Patrick D. Schloss
+Copyright (c) 2015 Joseph P. Zackular and Patrick D. Schloss
 
 
 

@@ -20,7 +20,7 @@ read_shared_file <- function(shared_file, samples_to_remove){
 # given a table of counts where the rows are the samples and the columns are the
 # otus, output the relative abundance for each OTU in each sample
 
-get_rel_abund <- function(file_name, samples_to_remove){
+get_rel_abund <- function(file_name, samples_to_remove = "DSS"){
 
     shared_table <- read_shared_file(file_name, samples_to_remove)
     #calculate the number of sequences in each sample: assumes every sample
@@ -56,7 +56,7 @@ get_day <- function(sample_name){
     text.day <- get_name_part(sample_name, column=3)
     text.day <- gsub("d", "", text.day)
     text.day <- gsub("neg", "-", text.day)
-    text.day <- as.numeric(text.day)
+    as.numeric(text.day)
 }
 
 
@@ -95,9 +95,9 @@ get_n_otus <- function(forest){
 
 #see what the rsquared value looks like for forests that are built stepwise
 simplify_model <- function(dependent, forest, rabund){
-    #gini coefficient is in the second column of the importance data frame
+    #%IncMSE is in the first column of the importance data frame
     importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,2], decreasing=T),]
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
 
     notus <- nrow(importance)
     rf_simplify_rsq <- rep(0, notus)
@@ -138,39 +138,92 @@ pch <- c(Metro = 19,
     AllAbs = 19,
     NoAbs = 1)
 
+#single Abx get a solid kube, the deletion gets an dashed line
+lty <- c(Metro = 1,
+    VancStrep = 2,
+    Strep = 1,
+    VancMetro = 2,
+    Vanc = 1,
+    StrepMetro = 2,
+    AllAbs = 1,
+    NoAbs = 2)
+
+
 #these are needed for the legend
 labels <- c(NoAbs = "No antibiotics",
     AllAbs = "All antibiotics",
-    Metro = "Metronidozole",
-    VancStrep = expression(paste(Delta, "Metronidozole")),
+    Metro = "Metronidazole",
+    VancStrep = "\u0394 Metronidazole",
     Strep = "Streptomycin",
-    VancMetro = expression(paste(Delta, "Streptomycin")),
+    VancMetro = "\u0394 Streptomycin",
     Vanc = "Vancomycin",
-    StrepMetro = expression(paste(Delta, "Vancomycin")) )
+    StrepMetro = "\u0394 Vancomycin" )
 
+
+#forest <- rf_baseline_forest
+plot_importance <- function(forest){
+
+    par(mar=c(3,10,0.5,0.5))
+    #read in the taxonomy file
+    tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
+
+    #the next three lines extract the last named taxonomic level for each OTU
+    tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("_", " ", tax$Taxonomy)
+    tax$Taxonomy <- gsub(" sensu stricto", "", tax$Taxonomy)
+
+    otu_tax_labels <- paste0(tax[,2], " (",gsub("tu0*", "TU ", rownames(tax)) ,")")
+#    otu_tax_labels <- paste0("italic(", tax[,2],")~(",gsub("tu0*", "TU~", rownames(tax)) ,")")
+#    otu_tax_labels <- gsub(" ", "~", otu_tax_labels)
+#    otu_tax_labels <- do.call(expression, as.list(parse(text=otu_tax_labels)))
+    names(otu_tax_labels) <- rownames(tax)
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),"%IncMSE"]
+
+    plot(NA, yaxt="n", xlab="", ylab="",
+        xlim=c(0, max(sorted_importance)),
+        ylim=c(1, length(sorted_importance)))
+    abline(h=1:length(sorted_importance), lty=3, col="gray")
+    points(x=rev(sorted_importance), y=1:length(sorted_importance), pch=19)
+    mtext(side=2, line=8.25, adj=0, at=1:length(sorted_importance), text=rev(otu_tax_labels[names(sorted_importance)]), las=2, cex=0.7)
+    mtext(side=1, text="% Increase in MSE", line=2.0)
+
+}
 
 
 #fit the full model back to the original data
 plot_forest_fit <- function(observed, forest, rabund, treatment){
 
+    par(mar=c(3,3,0.5,0.5))
     forest_fit <- predict(forest, rabund)
 
     #want the x and y-axes to have the same limits, so let's find the largest
     #tumor value among the observed and predicted
     max_value <- max(c(forest_fit, observed))
 
+    labels_no_n <- gsub(" \\(.*\\)", "", labels)
+
     plot(forest_fit~observed, pch=pch[treatment],
         col=clrs[treatment], ylim=c(0,max_value), xlim=c(0,max_value),
-        cex=1.5, xlab="Observed number of tumors", ylab="Predicted number of tumors")
-    legend(x=0, y=max_value, legend=labels, pch=pch[names(labels)],
-            col=clrs[names(labels)])
+        cex=1, xlab="", ylab="", yaxt="n")
+    legend(x=-1, y=max_value*1.05, legend=labels_no_n, pch=pch[names(labels)],
+            col=clrs[names(labels)], cex=0.8, bty="n")
+    mtext(side=1, text="Observed number of tumors", line=2.0)
+    mtext(side=2, text="Predicted number of tumors", line=2.0)
+    axis(2, las=2)
+
 }
-
-
 
 #Plot top features' relative abundance versus the tumor counts for the mice that
 #they came from...
-plot_top_features <- function(tumor_counts, sorted_importance, rabund, treatment){
+plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
+
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
 
@@ -180,10 +233,10 @@ plot_top_features <- function(tumor_counts, sorted_importance, rabund, treatment
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
 
     #let's just use the top six OTUs, based on our inspection of the importance plot
-    #and combine the OTU name with its taxonomy and Gini coefficient
+    #and combine the OTU name with its taxonomy and % Increase in MSE coefficient
     otus <- rownames(sorted_importance)[1:6]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\nGini: ", round(sorted_importance[1:6,2], 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[1:6,"%IncMSE"], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
@@ -240,8 +293,94 @@ plot_top_features <- function(tumor_counts, sorted_importance, rabund, treatment
     }
 
     plot.new()
-    text(x=0.15, y=0.5, label="Number of tumors", cex=2, srt=90)
+    text(x=0.15, y=0.5, label="Observed number of tumors", cex=1.5, srt=90)
 
     plot.new()
-    text(x=0.5, y=0.2, label="Relative abundance (%)", cex=2)
+    text(x=0.5, y=0.2, label="Relative abundance at Day 0 (%)", cex=1.5)
+}
+
+
+
+
+#Plot features' relative abundance at the end of the model versus the tumor
+#counts for the mice that they came from...
+plot_final_features <- function(tumor_counts, forest, rabund, treatment){
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
+
+    #read in the taxonomy file
+    tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
+
+    #the next three lines extract the last named taxonomic level for each OTU
+    tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
+
+    #let's just use the top six OTUs, based on our inspection of the importance plot
+    #and combine the OTU name with its taxonomy and % Increase in MSE
+    otus <- rownames(sorted_importance)[1:7]
+    pretty_otus <- gsub("Otu0*", "OTU ", otus)
+    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[1:7,"%IncMSE"], 1), 1))
+    otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
+
+
+    par(mar=c(0.5,0.5,0.5,0.5))
+
+    design <- matrix(1:8, nrow=2, byrow=T)
+    design <- cbind(c(8,8), design)
+    design <- rbind(design, c(0,9,9,9,9))
+    design[2,5] <- 0
+    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,0.3))
+
+    for(i in 1:7){
+
+        #get the row and column number for each spot in the layout
+        row <- ifelse(i<=4,1,2)
+        column <- ifelse(i<=4, i, i-4)
+
+        #extract the relative abundance data for this OTU
+        rel_abund <- rabund[,otus[i]]
+
+        #plot the relative abundance with the number of tumors for each animal. plot
+        #on consistent log scaled x-axis for all OTUs. will throw errors because it
+        #can't plot zeroes on a log scale
+        plot(rel_abund,tumor_counts, log="x", pch=pch[treatment],
+            col=clrs[treatment], ylab="", xlab="",
+            xlim=c(1e-4, 1), ylim=c(0,27), yaxt="n",
+            xaxt="n", cex.lab=1.5)
+
+        #want to plot the number of tumors for those mice that had a zero relative
+        #abundance
+        zeroes <- rel_abund == 0
+
+        #jitter the points so that they don't fall on top of each other
+        x_zeroes <- runif(sum(zeroes),1.0e-4,1.5e-4)#rep(1.2e-4, sum(zeroes))
+        points(x=x_zeroes, tumor_counts[zeroes], pch=pch[treatment[zeroes]],
+                col=clrs[treatment[zeroes]])
+
+        #create a vertical line to denote the limit of detection
+        abline(v=2.2e-4, col="gray")
+
+        #put the OTU label in the upper left corner of the plot
+        text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
+
+        #if it's on the bottom row, put a customized axis indicating the % rabund
+        if(row == 2){
+            axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
+                    label=c("0", "0.1", "1", "10", "100"),
+                    cex.axis=1.5)
+        }
+
+        #if it's in the first column turn the axis labels to be horizontal
+        if(column == 1){
+            axis(2, las=2, cex.axis=1.5)
+        }
+    }
+
+    plot.new()
+    text(x=0.15, y=0.5, label="Observed number of tumors", cex=1.5, srt=90)
+
+    plot.new()
+    text(x=0.5, y=0.2, label="Relative abundance at Day 73 (%)", cex=1.5)
 }

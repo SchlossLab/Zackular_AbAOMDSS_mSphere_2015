@@ -1,0 +1,278 @@
+# Time course analysis
+
+
+**Purpose:** We want to characterize the change in the microbiome over the
+course of the model
+
+
+### Setup
+
+```{r setup, results = "hold", message=FALSE}
+library(randomForest, quietly=TRUE)
+library(knitr, quietly=TRUE)
+sessionInfo()
+
+set.seed(6201976)
+
+source("code/rf_baseline_analysis.R")
+
+```
+
+```{r knitr_settings, echo=FALSE, eval=TRUE}
+opts_chunk$set(dev = c("png", "cairo_pdf"))
+opts_chunk$set(results = "hold")
+opts_chunk$set(fig.show = "hold")
+opts_chunk$set(warning = FALSE)
+opts_chunk$set(fig.align = "center")
+opts_chunk$set(echo = FALSE)
+opts_chunk$set(cache = FALSE)
+```
+
+First, we want to read in the distance matrix and see which treatments are
+changing the most...
+
+```{r start_to_end}
+
+get_dist_lt <- function(file_name){
+
+    dist_vector <- scan(file_name, what="", sep="\n")
+
+    n_samples <- as.numeric(dist_vector[1])
+    dist_vector <- dist_vector[-1]
+
+    sample_names <- character(n_samples)
+    distance_matrix <- matrix(rep(0, n_samples*n_samples), nrow=n_samples)
+
+    for(i in 1:n_samples){
+
+        split_line <- unlist(strsplit(dist_vector[i], "\t"))
+        sample_names[i] <- split_line[1]
+
+        if(i > 1){
+            distance_matrix[i,1:(i-1)] <- as.numeric(split_line[2:i])
+        }
+    }
+
+    distance_matrix <- distance_matrix + t(distance_matrix)
+    rownames(distance_matrix) <- sample_names
+    colnames(distance_matrix) <- sample_names
+    distance_matrix
+}
+
+get_start_end_dist <- function(u_treat_et){
+    subset <- day[treat_et == u_treat_et]
+    start <- names(subset[subset==0])
+    end <- names(sort(subset, decreasing=TRUE))[1]
+    distances[start, end]
+}
+
+
+dist_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist"
+
+distances <- get_dist_lt(dist_file)
+
+treat_et <- gsub("_d.*", "", rownames(distances))
+day <- sapply(rownames(distances), get_day)
+eartag <- sapply(rownames(distances), get_eartag)
+
+is_dss_only <- grepl("DSS", treat_et)
+treat_et <- treat_et[!is_dss_only]
+day <- day[!is_dss_only]
+eartag <- eartag[!is_dss_only]
+distances <- distances[!is_dss_only, !is_dss_only]
+
+start_end_dist <- unlist(sapply(unique(treat_et), get_start_end_dist))
+treatment <- sapply(names(start_end_dist), get_treatment)
+
+aggregate(start_end_dist, by=list(treatment), summary)
+```
+
+Was surprised that the "AllAbs" seemed bimodal. Of the mice, 5 didn't move at
+all and 3 moved a fair amount. Curious to see how well they replicated each other
+at the beginning and the end of the model.
+
+
+```{r compare_start}
+
+get_start_dists <- function(single_treat){
+    subset <- day[treatment==single_treat]
+    start <- names(subset[subset==0])
+    start_dists <- distances[start, start]
+    summary(start_dists[lower.tri(start_dists)])
+}
+
+treatment <- sapply(rownames(distances), get_treatment)
+uniq_treatments <- levels(factor(treatment))
+
+sapply(uniq_treatments, get_start_dists)
+```
+
+Again, I was struck by the variation among the Day 0 samples for all
+antibiotics. Let's see what it looks like at the end of the model...
+
+```{r compare_end}
+
+get_end_dists <- function(single_treat){
+    subset_day <- day[treatment==single_treat]
+    subset_et <- eartag[treatment==single_treat]
+
+    terminal <- aggregate(subset_day, by=list(subset_et), max)
+
+    end <- paste0(single_treat, "_", terminal$Group.1, "_d", terminal$x)
+    end_dists <- distances[end, end]
+    summary(end_dists[lower.tri(end_dists)])
+}
+
+sapply(uniq_treatments, get_end_dists)
+
+```
+
+More variation at the end point.
+
+What happens when we plot the distance changed between day 0 and the end with
+the number of tumors that were observed?
+
+
+```{r distance_tumor_corr}
+tumor_count.file <- paste0("data/process/tumor_counts.tsv")
+tumor_counts <- read.table(file=tumor_count.file, header=T)
+
+tumor_counts_prepost <- tumor_counts[names(start_end_dist), "n_tumors"]
+dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist, method="spearman")
+
+treatments <- gsub("_.*", "", names(start_end_dist))
+plot(tumor_counts_prepost ~start_end_dist, col=clrs[treatments],
+    pch=pch[treatments], ylab="Number of tumors",
+    xlab="Distance between start and end")
+```
+
+My eye wants to see some type of saturation curve where the more distance
+between the start and end point, the more tumors occur. But... the $\rho$
+statistic was `r round(dist_tumor_cor$estimate, 2)` (P=
+`r round(dist_tumor_cor$p.value, 2)`).
+
+Let's break down and build an ordination...
+
+```{r}
+get_start_sample <- function(treat_et){
+    treat_et_days <- day[grep(treat_et, names(day))]
+    names(treat_et_days[treat_et_days==0])
+}
+
+get_end_sample <- function(treat_et){
+    treat_et_days <- day[grep(treat_et, names(day))]
+    names(which.max(treat_et_days))
+}
+
+get_start_end_sample <- function(treat_et){
+    c(get_start_sample(treat_et), get_end_sample(treat_et))
+}
+
+unique_treat_et <- unique(treat_et)
+
+starts <- sapply(unique_treat_et, get_start_sample)
+starts[sapply(starts, length)==0] <- NA
+starts <- unlist(starts)
+
+ends <- sapply(unique_treat_et, get_end_sample)
+ends[sapply(ends, length)==0] <- NA
+ends <- unlist(ends)
+
+starts_ends <- c(starts, ends)
+starts_ends <- starts_ends[!is.na(starts_ends)]
+
+write(file="data/process/start_end_samples.dist", length(starts_ends))
+write.table(file="data/process/start_end_samples.dist", distances[starts_ends, starts_ends], col.names=F, quote=FALSE, append=T)
+system('mothur "#nmds(phylip=data/process/start_end_samples.dist)"')
+
+axes_file <- "data/process/start_end_samples.nmds.axes"
+
+axes <- read.table(file=axes_file, header=T, row.names=1)
+start_end_axes <- axes[c(starts, ends),]
+treatments <- sapply(rownames(start_end_axes), get_treatment)
+
+symbols <- pch[treatments]
+line_type <- lty[treatments]
+
+good_starts <- starts[!is.na(starts)]
+good_ends <- ends[!is.na(starts)]
+good_treats <- treatments[!is.na(starts)]
+
+par(mar=c(5,5,0.5, 0.5))
+plot(NA, xlim=c(-0.7, 0.7), ylim=c(-0.7, 0.7), xlab="NMDS Axis 1",
+        ylab="NMDS Axis 2")
+arrows(x0=axes[good_starts,1], y0=axes[good_starts,2], x1=axes[good_ends,1], y1=axes[good_ends,2], col=clrs[good_treats], lwd=3, lty=line_type[good_treats], length=0.1)
+#points(axes[good_starts,], col=clrs[good_treats], pch=symbols[good_treats])
+labels_no_n <- gsub(" \\(.*\\)", "", labels)
+legend(x=-0.76, y=0.75, legend=labels_no_n, lty=lty[names(labels)], lwd=3,
+        col=clrs[names(labels)], cex=0.9, bty="n")
+```
+
+Let's see whether we can build a random forest to predict whether a sample comes
+from the beginning or the end of the model.
+
+```{r}
+n_trees <- 20000
+
+rabund <- get_rel_abund("data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared", "DSS")
+
+start_end_rabund <- rabund[starts_ends,]
+filter_start_end_rabund <- filter_rabund(start_end_rabund, 0.0075)
+period <- rep("end", nrow(filter_start_end_rabund))
+period[sapply(rownames(filter_start_end_rabund), get_day) == 0] <- "begin"
+
+rf <- randomForest(filter_start_end_rabund, factor(period), importance=TRUE, ntree=n_trees)
+
+```
+
+Looks pretty crappy. Here's the confusion matrix:
+
+`r kable(rf$confusion)`
+
+The out of bag error rate was `r round(100*rf$err.rate[n_trees,"OOB"], 1)`%.
+
+
+How about if we do it based on the final samples and see whether there was
+overlap with the OTUs we detected at the beginning of the model.
+
+```{r}
+n_trees <- 10000
+threshold <- 0.015
+
+rabund <- get_rel_abund("data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared", "DSS")
+
+end_rabund <- rabund[ends,]
+
+end_tumor_counts <- tumor_counts[gsub("_d.*", "", rownames(end_rabund)),1]
+
+end_rf <- get_forest(end_rabund, end_tumor_counts, threshold, n_trees=10000)
+
+plot_forest_fit(end_tumor_counts, end_rf, end_rabund, sapply(rownames(end_rabund), get_treatment))
+plot_importance(end_rf)
+plot_top_features(end_tumor_counts,end_rf, end_rabund, sapply(rownames(end_rabund), get_treatment))
+end_simple <- simplify_model(end_tumor_counts, end_rf, end_rabund)
+```
+
+This model does a pretty good job of predicting the number of tumors, but it
+is pretty redundant with the mBio paper and the baseline model.
+
+
+Let's try building a model to connect change in relative abundance between
+baseline and the end point with the number of tumors
+
+
+```{r}
+in_both <- !is.na(starts) & !is.na(ends)
+good_starts <- starts[in_both]
+good_ends <- ends[in_both]
+
+rabund_starts <- rabund[good_starts,]
+rabund_ends <- rabund[good_ends,]
+
+rabund_diffs <- rabund_ends - rabund_starts
+decent_move <- apply(rabund_diffs, 2, mean) > 0.01
+decent_rabund_diffs <- rabund_diffs[,decent_move]
+```
+
+This results in 4 OTUs - Ecoli, Bacteroidetes, Odoribacter, and
+Beta-proteobacteria. Not sure what it really says...

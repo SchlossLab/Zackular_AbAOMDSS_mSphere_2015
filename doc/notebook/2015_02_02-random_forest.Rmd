@@ -17,7 +17,7 @@ source("code/rf_baseline_analysis.R")
 ```
 
 ```{r knitr_settings, echo=TRUE, eval=TRUE}
-opts_chunk$set(dev = c("png", "pdf"))
+opts_chunk$set(dev = c("png", "cairo_pdf"))
 opts_chunk$set(results = "hold")
 opts_chunk$set(fig.show = "hold")
 opts_chunk$set(warning = FALSE)
@@ -94,8 +94,9 @@ Looks like the model has stabilized at `r n_trees` trees. Let's see the
 importance plots:
 
 ```{r importance_plot, tidy=TRUE}
-par(mar=c(5,5,0,0))
-varImpPlot(rf_baseline_forest, main="")
+#par(mar=c(5,5,0,0))
+#varImpPlot(rf_baseline_forest, main="")
+plot_importance(rf_baseline_forest)
 ```
 
 Inspection of the Gini coefficient plot (right side of above plot) suggests that
@@ -135,7 +136,7 @@ Let's generate a plot with the number of tumors on the y-axis and the OTU's
 relative abundance on the x-axis:
 
 ```{r rabund_tumor_plot, fig.width=7.5, fig.height=5}
-plot_top_features(tumor_counts_baseline, sorted_importance, rf_baseline_rabund, treatment_baseline)
+plot_top_features(tumor_counts_baseline, rf_baseline_forest, rf_baseline_rabund, treatment_baseline)
 ```
 
 These plots highlight a few important results:
