@@ -36,23 +36,23 @@ University of Michigan, Ann Arbor, MI
 **Abstract**
 
 There is growing evidence that individuals with colonic adenomas and carcinomas
-harbor a distinct microbiota. Alterations in the gut microbiota may allow the
+harbor a distinct microbiota. Alterations to the gut microbiota may allow the
 outgrowth of bacterial populations that induce genomic mutations or exacerbate
 tumor-promoting inflammation. In addition, it is likely that the loss of key
 bacterial populations may result in the loss of protective functions that are
-normally provided by a healthy microbiota. Using an inflammation-based murine
-model of colorectal cancer, we explored the role of the gut microbiota in colon
-tumorigenesis. We observed that perturbing the microbiota with different
-combinations of antibiotics did not change the bacterial load and resulted in a
-reduced number at the end of the model. Using the random forest machine learning
-algorithm we were able to create a regression model that predicted the number of
-tumors that developed over the course of 73 days based on the composition of the
-microbiota on the first day. Finally, the timing of antibiotic treatment was an
-important determinant of tumor outcome as colon tumorigenesis was arrested with
-the use of antibiotics during the inflammation period of the murine model. These
-results suggest that it is possible to predict colon tumorigenesis based on
-knowledge of the microbiota and that altering the structure of the gut
-microbiota can alter the course of colorectal cancer.
+normally provided by the microbiota. We explored the role of the gut microbiota
+in colon tumorigenesis using an inflammation-based murine model. We observed
+that perturbing the microbiota with different combinations of antibiotics did
+not change the bacterial load but reduced the number of tumors at the end of the
+model. Using the random forest machine learning algorithm we successfully
+modeled the number of tumors that developed over the course of the model based
+on the composition of the microbiota at the beginning. The timing of antibiotic
+treatment was an important determinant of tumor outcome as colon tumorigenesis
+was arrested with the use of antibiotics during the inflammation period of the
+murine model. Together, these results indicate that it is possible to predict
+colon tumorigenesis based on the composition of the microbiota and that altering
+the gut microbiota can alter the course of tumorigenesis.
+
 
 **Keywords:** azoxymethane, dextran sodium sulfate, 16S rRNA gene sequencing,
 microbial ecology, microbiome
@@ -481,7 +481,8 @@ diet, probiotics, and prebiotics.
 old) age-matched C57BL/6 male mice that were maintained under SPF conditions.
 Mice were co-housed in groups of five and fed the same autoclaved chow diet. All
 animal experiments were approved by the University Committee on Use and Care of
-Animals at the University of Michigan.
+Animals at the University of Michigan and carried out in accordance with the
+approved guidelines.
 
 **Inflammation-induced colon tumorigenesis.** Mice received a single
 intraperitoneal (i.p.) injection of azoxymethane (10 mg/kg). Water containing
@@ -543,7 +544,7 @@ samples. Based on the mock community data we observed a sequencing error rate of
 `r round(error_rate, 2)`%. The complete analysis methods and this document as an R-executable
 document are available at
 https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015. All FASTQ
-sequence data can be obtained from the Sequence Read Archive at NCBI (BioProejct Accession PRJNA278126).
+sequence data can be obtained from the Sequence Read Archive at NCBI (Accession SRP056144).
 
 **Statistical analysis.** The microbiota data were analyzed using the R project
 for statistical computing. All R source code is available on our GitHub
@@ -564,12 +565,25 @@ This work was supported by grants from the National Institutes for Health to PDS
 CA166879).
 
 
-
 **References**
 
 
 
-\newpage
+
+
+
+
+
+**Contributions**
+All authors contributed to the design of the experiments. JPZ and NTB carried
+out the experiments and generated the data. JPZ and PDS analyzed the data. All
+authors participated in interpreting the results. JPZ and PDS wrote the
+manuscript and NTB and GYC helped with the final editing of the text.
+
+
+**Competing financial interests**
+The authors declare no competing financial interests.
+
 
 
 **Figure legends**

@@ -1,24 +1,8 @@
 Manipulation of the Gut Microbiome Reveals Role for Microbial Community Structure in Colon Tumorigenesis
 =======
 
-There is growing evidence that individuals with colonic adenomas and carcinomas
-harbor a distinct microbiota. Alterations in the gut microbiota may allow the
-outgrowth of bacterial populations that induce genomic mutations or exacerbate
-tumor-promoting inflammation. In addition, it is likely that the loss of key
-bacterial populations may result in the loss of protective functions that are
-normally provided by a healthy microbiota. Using an inflammation-based murine
-model of colorectal cancer, we explored the role of the gut microbiota in colon
-tumorigenesis. We observed that perturbing the microbiota with different
-combinations of antibiotics did not change the bacterial load and resulted in a
-reduced number at the end of the model. Using the random forest machine learning
-algorithm we were able to create a regression model that predicted the number of
-tumors that developed over the course of 73 days based on the composition of the
-microbiota on the first day. Finally, the timing of antibiotic treatment was an
-important determinant of tumor outcome as colon tumorigenesis was arrested with
-the use of antibiotics during the inflammation period of the murine model. These
-results suggest that it is possible to predict colon tumorigenesis based on
-knowledge of the microbiota and that altering the structure of the gut
-microbiota can alter the course of colorectal cancer.
+There is growing evidence that individuals with colonic adenomas and carcinomas harbor a distinct microbiota. Alterations to the gut microbiota may allow the outgrowth of bacterial populations that induce genomic mutations or exacerbate tumor-promoting inflammation. In addition, it is likely that the loss of key bacterial populations may result in the loss of protective functions that are normally provided by the microbiota. We explored the role of the gut microbiota in colon tumorigenesis using an inflammation-based murine model. We observed that perturbing the microbiota with different combinations of antibiotics did not change the bacterial load but reduced the number of tumors at the end of the model. Using the random forest machine learning algorithm we successfully modeled the number of tumors that developed over the course of the model based on the composition of the microbiota at the beginning. The timing of antibiotic treatment was an important determinant of tumor outcome as colon tumorigenesis was arrested with the use of antibiotics during the inflammation period of the murine model. Together, these results indicate that it is possible to predict colon tumorigenesis based on the composition of the microbiota and that altering the gut microbiota can alter the course of tumorigenesis.
+
 
 Overview
 --------
