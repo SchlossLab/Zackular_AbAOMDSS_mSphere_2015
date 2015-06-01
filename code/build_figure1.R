@@ -1,17 +1,19 @@
+pdf("test1.pdf", width=7.5, height=10)
+
 library("png")
 source("code/rf_baseline_analysis.R")
 
 design <- c(1,1,10,
-            6,2,10,
-            6,3,10,
-            6,4,10,
-            6,5,10,
-            8,7,10,
-            0,9,10)
+            3,2,10,
+            8,4,10,
+            8,5,10,
+            8,6,11,
+            8,7,11,
+            0,9,11)
 
 design <- matrix(design, ncol=3, byrow=TRUE)
 
-z <- layout(design, width=c(0.2, 1, 1), height=c(2,1,1,1,1,2,1.2))
+z <- layout(design, width=c(0.2, 1, 1.2), height=c(2,2,1,1,1,1,1.2))
 
 
 source("code/aomdss_timeline.R")
@@ -62,41 +64,8 @@ labels <- c(NoAbs = paste0("No antibiotics (N=",counts["NoAbs"],")"),
     Vanc = paste0("Vancomycin", " (N=",counts["Vanc"] , ")"),
     StrepMetro = paste0("\U0394Vancomycin (N=",counts["StrepMetro"], ")") )
 
-
-otu_plot <- function(rabunds, ordered_treatments, otu_label){
-    means <- aggregate(rabunds, by=list(baseline_treatment), mean)$x
-    o <- c(3, 6, 4, 8, 2, 7, 1, 5)
-
-    par(mar=c(0.75, 2, 0.75, 0.5))
-
-    plot(NA, xlim=c(0.75,8.25), xlab="", ylim=c(0,max(rabunds)), axes=F, cex.lab=1.4)
-
-    segments(x0=seq(1:8)-0.4, x1=seq(1:8)+0.4, y0=means[o], y1=means[o], lwd=3)
-
-    box()
-    axis(2, las=2)
-
-    for(i in 1:length(ordered_treatments)){
-        stripchart(at=i, x=rabunds[baseline_treatment==ordered_treatments[i]],
-        vertical=T, method="jitter", col=clrs[ordered_treatments[i]],
-        pch=pch[ordered_treatments[i]], jitter=0.25, cex=1.0, add=T)
-    }
-
-    text(x=0.35, y=1.15*max(rabunds), label=otu_label, pos=4, font=2, cex=0.8, xpd=TRUE)
-}
-
-
-otu_plot(baseline_rabund[,ordered_otus[1]], ordered_treatments, tax[ordered_otus[1],"Taxonomy"])
-otu_plot(baseline_rabund[,ordered_otus[2]], ordered_treatments, tax[ordered_otus[2],"Taxonomy"])
-otu_plot(baseline_rabund[,ordered_otus[3]], ordered_treatments, tax[ordered_otus[3],"Taxonomy"])
-otu_plot(baseline_rabund[,ordered_otus[4]], ordered_treatments, tax[ordered_otus[4],"Taxonomy"])
-
-plot.new()
-text(x=0.3, y=0.5, label="Relative abundance (%)", cex=1.0, srt=90, xpd=TRUE)
-text(label="B", x=-0.8, y=1.03, font=2, cex=2, xpd=TRUE)
-
-
-plot(NA, xlim=c(0.5,8.5), xlab="", ylim=c(0,25), axes=F, cex.lab=1.4)
+par(mar=c(0.75, 2, 0.75, 0.5))
+plot(NA, xlim=c(0.75,8.25), xlab="", ylim=c(0,25), axes=F, cex.lab=1.4)
 segments(x0=seq(1:8)-0.4, x1=seq(1:8)+0.4, y0=means[decreasing_order], y1=means[decreasing_order], lwd=3)
 box()
 axis(2, las=2)
@@ -137,8 +106,45 @@ segments(x0=7,x1=7, y0=7, y1=6, lwd=2)
 
 plot.new()
 par(lheight=0.7)
-text(x=0.2, y=0.5, label="Number of tumors", cex=1.0, srt=90, xpd=TRUE)
+text(x=0.3, y=0.5, label="Number of tumors", cex=1.0, srt=90, xpd=TRUE)
 text(label="C", x=-0.8, y=1.03, font=2, cex=2, xpd=TRUE)
+
+
+
+otu_plot <- function(rabunds, ordered_treatments, otu_label){
+    means <- aggregate(rabunds, by=list(baseline_treatment), mean)$x
+    o <- c(3, 6, 4, 8, 2, 7, 1, 5)
+
+    par(mar=c(0.75, 2, 0.75, 0.5))
+
+    plot(NA, xlim=c(0.75,8.25), xlab="", ylim=c(0,max(rabunds)), axes=F, cex.lab=1.4)
+
+    segments(x0=seq(1:8)-0.4, x1=seq(1:8)+0.4, y0=means[o], y1=means[o], lwd=3)
+
+    box()
+    axis(2, las=2)
+
+    for(i in 1:length(ordered_treatments)){
+        stripchart(at=i, x=rabunds[baseline_treatment==ordered_treatments[i]],
+        vertical=T, method="jitter", col=clrs[ordered_treatments[i]],
+        pch=pch[ordered_treatments[i]], jitter=0.25, cex=1.0, add=T)
+    }
+
+    text(x=0.35, y=1.15*max(rabunds), label=otu_label, pos=4, font=2, cex=0.8, xpd=TRUE)
+}
+
+
+otu_plot(baseline_rabund[,ordered_otus[1]], ordered_treatments, tax[ordered_otus[1],"Taxonomy"])
+otu_plot(baseline_rabund[,ordered_otus[2]], ordered_treatments, tax[ordered_otus[2],"Taxonomy"])
+otu_plot(baseline_rabund[,ordered_otus[3]], ordered_treatments, tax[ordered_otus[3],"Taxonomy"])
+otu_plot(baseline_rabund[,ordered_otus[4]], ordered_treatments, tax[ordered_otus[4],"Taxonomy"])
+
+
+plot.new()
+text(x=0.3, y=0.5, label="Relative abundance (%)", cex=1.0, srt=90, xpd=TRUE)
+text(label="D", x=-0.8, y=1.03, font=2, cex=2, xpd=TRUE)
+
+
 
 
 plot.new()
@@ -147,7 +153,29 @@ text(x=seq(0.05,1,length=8), y=1.2, labels[ordered_treatments], srt=70, cex=0.8,
 
 
 plot.new()
+par(mar=c(0,0,0,0))
 img <- readPNG("results/pictures/tumor_images.png")
-lim <- par()
-rasterImage(img, -0.1, 0.5, 1.0, 1.0)
-text(label="D", x=0.0, y=1.03, font=2.5, cex=2, xpd=TRUE)
+rasterImage(img, -0.1, 0.0, 1.0, 0.95)
+text(label="B", x=-0.1, y=1.03, font=2.5, cex=2, xpd=TRUE)
+
+
+
+nmds_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.axes"
+nmds <- read.table(file=nmds_file, header=T, stringsAsFactors=FALSE)
+treatment_group <- gsub("^([^_]*)_.*", "\\1", nmds$group)
+par(mar=c(4,4,0.5,0.5))
+plot(nmds$axis2~nmds$axis1, xlab="NMDS Axis 1", ylab="NMDS Axis 2", col=clrs[treatment_group],pch=pch[treatment_group], ylim=c(-0.8,0.8), axes=FALSE)
+box()
+axis(1, label=format(seq(-0.6,0.6,0.3), nsmall=1), at=seq(-0.6,0.6,0.3))
+axis(2, label=format(seq(-0.6,0.6,0.3), nsmall=1), at=seq(-0.6,0.6,0.3), las=1)
+
+text(label="E", x=-0.88, y=0.83, font=2.5, cex=2, xpd=TRUE)
+
+
+
+
+
+
+
+
+dev.off()

@@ -47,12 +47,12 @@ points(x=samples, y=rep(line,length(samples))+0.35, pch=25, bg="black", cex=1)
 
 abx_line <- line-3.5
 polygon(c(start, start, end, end),c(abx_line+0.5,abx_line-0.5,abx_line-0.5,abx_line+0.5), col='gray', border=NA)     # AOM box
-text((end+start)/2, abx_line, label="Antibiotic treatment", cex=0.7, font=2)
+text((end+start)/2, abx_line, label="Intervention 1", cex=0.7, font=2)
 
 intervention_line <- abx_line-1.2
 polygon(c(start, start, 5, 5),c(intervention_line+0.5,intervention_line-0.5,intervention_line-0.5,intervention_line+0.5), col='gray', border=NA)     # AOM box
-text((5+start)/2, intervention_line, label="Intervention 1", cex=0.7, font=2)
+text((5+start)/2, intervention_line, label="Intervention 2", cex=0.7, font=2)
 
 intervention_line <- intervention_line-1.2
 polygon(c(26, 26, end, end),c(intervention_line+0.5,intervention_line-0.5,intervention_line-0.5,intervention_line+0.5), col='gray', border=NA)     # AOM box
-text((end+26)/2, intervention_line, label="Intervention 2", cex=0.7, font=2)
+text((end+26)/2, intervention_line, label="Intervention 3", cex=0.7, font=2)
