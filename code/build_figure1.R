@@ -1,4 +1,3 @@
-pdf("test1.pdf", width=7.5, height=10)
 
 library("png")
 source("code/rf_baseline_analysis.R")
@@ -178,4 +177,3 @@ text(label="E", x=-0.88, y=0.83, font=2.5, cex=2, xpd=TRUE)
 
 
 
-dev.off()
