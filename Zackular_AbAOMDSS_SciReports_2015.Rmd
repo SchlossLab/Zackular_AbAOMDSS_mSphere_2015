@@ -139,7 +139,7 @@ of the gut microbiota mediate the capacity to modulate tumorigenesis.
 ```{r setup}
 
 shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
-rel_abund <- get_rel_abund(paste0(PROJHOME, "/", shared_file), "DSS")
+rel_abund <- get_rel_abund(shared_file, "DSS")
 
 treatment <- sapply(rownames(rel_abund), get_treatment)
 eartag <- sapply(rownames(rel_abund), get_eartag)
@@ -155,7 +155,7 @@ rabund_baseline <- rel_abund[baseline,]     #extract the baseline samples
 #is indexed by `treatment_eartag`
 mice_baseline <- paste(treatment_baseline, eartag_baseline, sep="_")
 
-tumor_count.file <- paste0(PROJHOME, "/data/process/tumor_counts.tsv")
+tumor_count.file <- "data/process/tumor_counts.tsv"
 tumor_counts <- read.table(file=tumor_count.file, header=T)
 tumor_counts_baseline <- tumor_counts[mice_baseline,]   #get the tumor count data
 ```
