@@ -1,4 +1,4 @@
-```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, cache=FALSE}
 opts_chunk$set("dev" = c("png", "cairo_pdf"))
 opts_chunk$set(results = "hold")
 opts_chunk$set(echo = FALSE)
