@@ -255,6 +255,8 @@ based on the composition of the microbiota at the beginning of the model.
 
 
 ```{r predict_tumor_final}
+set.seed(19760620)
+
 get_end_sample <- function(treat_et){
     treat_et_days <- day[grep(treat_et, names(day))]
     names(which.max(treat_et_days))
