@@ -1,4 +1,7 @@
 
+```
+## Error in library("png", quietly = TRUE): there is no package called 'png'
+```
 
 **Manipulation of the Gut Microbiota Reveals Role of Gut Microbiota in Colon
 Tumorigenesis**
@@ -21,7 +24,24 @@ University of Michigan, Ann Arbor, MI
 
 **Abstract**
 
-There is growing evidence that individuals with colonic adenomas and carcinomas harbor a distinct microbiota. Alterations to the gut microbiota may allow the outgrowth of bacterial populations that induce genomic mutations or exacerbate tumor-promoting inflammation. In addition, it is likely that the loss of key bacterial populations may result in the loss of protective functions that are normally provided by the microbiota. We explored the role of the gut microbiota in colon tumorigenesis using an inflammation-based murine model. We observed that perturbing the microbiota with different combinations of antibiotics did not change the bacterial load but reduced the number of tumors at the end of the model. Using the random forest machine learning algorithm we successfully modeled the number of tumors that developed over the course of the model based on the composition of the microbiota at the beginning. The timing of antibiotic treatment was an important determinant of tumor outcome as colon tumorigenesis was arrested with the use of antibiotics during the inflammation period of the murine model. Together, these results indicate that it is possible to predict colon tumorigenesis based on the composition of the microbiota and that altering the gut microbiota can alter the course of tumorigenesis.
+There is growing evidence that individuals with colonic adenomas and carcinomas
+harbor a distinct microbiota. Alterations to the gut microbiota may allow the
+outgrowth of bacterial populations that induce genomic mutations or exacerbate
+tumor-promoting inflammation. In addition, it is likely that the loss of key
+bacterial populations may result in the loss of protective functions that are
+normally provided by the microbiota. We explored the role of the gut microbiota
+in colon tumorigenesis using an inflammation-based murine model. We observed
+that perturbing the microbiota with different combinations of antibiotics did
+not change the bacterial load but reduced the number of tumors at the end of the
+model. Using the random forest machine learning algorithm we successfully
+modeled the number of tumors that developed over the course of the model based
+on the composition of the microbiota at the beginning. The timing of antibiotic
+treatment was an important determinant of tumor outcome as colon tumorigenesis
+was arrested with the use of antibiotics during the inflammation period of the
+murine model. Together, these results indicate that it is possible to predict
+colon tumorigenesis based on the composition of the microbiota and that altering
+the gut microbiota can alter the course of tumorigenesis.
+
 
 **Keywords:** azoxymethane, dextran sodium sulfate, 16S rRNA gene sequencing,
 microbial ecology, microbiome
@@ -107,6 +127,10 @@ of the gut microbiota mediate the capacity to modulate tumorigenesis.
 
 
 
+
+
+
+
 ***Antibiotic perturbation of the gut microbiota modulates tumorigenicity.***
 We subjected specific pathogen-free (SPF) C57BL/6 mice to an inflammation-based
 model of colorectal cancer that utilizes azoxymethane (AOM) as a mutagen and
@@ -114,26 +138,21 @@ dextran sodium sulfate (DSS) to induce inflammation {Zackular, 2013
 #3305;Baxter, 2014 #3469;De Robertis, 2011 #3300} (Figure 1A). To determine how
 differential changes in
 the gut microbiota affected tumorigenesis, we manipulated the microbiota by
-administering seven different antibiotic combinations and then quantified the
+administering seven different antibiotic combinations for the length of the model and then quantified the
 effects of the treatments on the number of tumors observed at the end of the
-model. Specifically, we treated mice with (i) no antibiotics, (ii)
+model (Figure 1BC). Specifically, we treated mice with (i) no antibiotics, (ii)
 metronidazole, streptomycin, and vancomycin (all antibiotics), (iii)
 streptomycin and vancomycin ($\Delta$ metronidazole), (iv) metronidazole and
 vancomycin ($\Delta$ streptomycin), (v) metronidazole and streptomycin ($\Delta$
 vancomycin), (vi) metronidazole, (vii) streptomycin, and (viii) vancomycin.
-Quantitative PCR targeting the 16S rRNA gene indicated that the number of copies
-of the 16S rRNA gene did not differ between treatment groups, indicating that
-the different antibiotic combinations did not affect total bacterial load. The
-three antibiotics were selected based on their reported ability to target
+The three antibiotics were selected based on their reported ability to target
 general groups of bacteria including anaerobes (metronidazole), Gram-negatives
-(streptomycin), and Gram-positives (vancomycin). Sequencing the 16S rRNA genes
+(streptomycin), and Gram-positives (vancomycin). Upon necropsy we observed that perturbation of the microbiota through the use of antibiotics yielded a differential capacity for colon tumorigenesis (Figures 1BC). Sequencing the 16S rRNA genes
 that were present in the feces of conventional and antibiotic-treated mice
 demonstrated that the different antibiotic treatments generated different
-bacterial communities prior to AOM injection (Figure 1B); however, the
+bacterial communities prior to AOM injection (Figure 1DE); however, the
 composition of these communities could not have been predicted by the spectrum
-of the antibiotic that was used to treat the mice (Figure 1C,D). These results
-demonstrated that perturbation of the microbiota through the use of antibiotics
-yields a differential capacity for colon tumorigenesis.
+of the antibiotic that was used to treat the mice. The eight community structures generated by using the untreated mice and those that received one of the seven antibiotic combinations were all significantly different from each other (all P<0.05 by AMOVA with Benjimani-Hochberg correction) with the exception of the vancomycin and $\Delta$ streptomycin treated mice (P=0.10). These results and an ordination of the communities indicated that the communities were non-overlapping (Figure 1E) and varied in their ability to drive tumorigenesis.
 
 
 
@@ -150,15 +169,15 @@ random forest machine learning algorithm to identify OTUs that would enable us
 to predict the number of tumors that developed at the end of the model. The
 model that included OTUs that had an average relative abundance greater than
 1.5% resulted in the greatest percentage of the variance explained
-(Supplementary Figure 1).This model included 15
-OTUs and explained 62.6% of the
+(Supplementary Figure 1).This model included 14
+OTUs and explained 49.1% of the
 variation in the tumor counts (Figure 2). The OTUs were ranked by their
 importance in the random forest model as measured by the percent the mean
 squared error increases when the OTU was removed. When the OTUs were sorted in
 decreasing order by the percent they contributed to increasing the mean squared
 error (MSE) of the model, there was a jump between the sixth and seventh OTUs
 (Figure 2A). In fact, when we reconstructed the model using only the six OTUs
-that provided the greatest change in the MSE, the model explained 67%
+that provided the greatest change in the MSE, the model explained 49.5%
 of the variation in the observed tumor counts was indicating that the model
 based on the reduced dataset explained as much of the variation in tumor counts
 as the model based on all of the OTUs. These six OTUs included members of the
@@ -180,10 +199,10 @@ developed a random forest regression model to predict the number of tumors in
 the mice based on the composition of the microbiota at the end of the model. The
 model included 11 OTUs after we again applied a filter
 requiring each OTU to have an average relative abundance of at least 1.5%. The
-model explained 52.9% of the variation in
+model explained 57.5% of the variation in
 the tumor counts (Supplementary Figure 2), which is less than we observed when
 we modeled tumor counts based on the initial community composition. The seven
-most important OTUs in the model explained 55.4%
+most important OTUs in the model explained 60.5%
 of the variation and included *Odoribacter* (OTU 70), *Bacteroides* (OTU 5),
 *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3), *Alloprevotella* (OTU 14),
 *Prevotella* (OTU 19), and Betaproteobacteria (OTU 17) (Supplementary Figure 3).
@@ -342,7 +361,8 @@ diet, probiotics, and prebiotics.
 old) age-matched C57BL/6 male mice that were maintained under SPF conditions.
 Mice were co-housed in groups of five and fed the same autoclaved chow diet. All
 animal experiments were approved by the University Committee on Use and Care of
-Animals at the University of Michigan.
+Animals at the University of Michigan and carried out in accordance with the
+approved guidelines.
 
 **Inflammation-induced colon tumorigenesis.** Mice received a single
 intraperitoneal (i.p.) injection of azoxymethane (10 mg/kg). Water containing
@@ -420,29 +440,44 @@ This work was supported by grants from the National Institutes for Health to PDS
 CA166879).
 
 
-
 **References**
 
 
 
-\newpage
+
+
+
+
+
+**Contributions**
+All authors contributed to the design of the experiments. JPZ and NTB carried
+out the experiments and generated the data. JPZ and PDS analyzed the data. All
+authors participated in interpreting the results. JPZ and PDS wrote the
+manuscript and NTB and GYC helped with the final editing of the text.
+
+
+**Competing financial interests**
+The authors declare no competing financial interests.
+
 
 
 **Figure legends**
 
+
 **Figure 1. Antibiotic perturbation drives changes in microbial community
 structure and final tumor burden.** The AOM-DSS model was administered to C57BL/6
 mice reared under standard pathogen free (SPF) conditions with different
-antibiotic perturbations; Black arrows indicate fecal samples that used for our
+antibiotic perturbations which were applied during the period covered by each of the rectangles; Black arrows indicate fecal samples that used for our
 analysis (A). The mice were treated with all possible combinations of
 metronidazole, streptomycin, and vancomycin to create eight treatment groups,
-which resulted in considerable differences in the taxonomic composition of the
-gut communities at the start of the model (Day 0) (B). These communities
-resulted in a continuum of tumor burden in the mice (C and D). The stars
+which resulted in a continuum of tumor burden in the mice (C and D). The stars
 indicate which treatments yielded a significantly (P<0.05) different number of
-tumors when compared to the treatment with the vertical line.
+tumors when compared to the treatment with the vertical line. The antibiotic treatments resulted in variation in the taxonomic structure of the communities at the start of the model (Day 0) (D). The two dimensional NMDS ordination had a stress of 0.20 and explained 84.2% of the variation in the distances (E).
 
-<img src="results/figures/figure1-1.png" title="plot of chunk figure1" alt="plot of chunk figure1" style="display: block; margin: auto;" />
+
+```
+## Error in library("png"): there is no package called 'png'
+```
 
 
 **Figure 2. A random forest model successfully predicted the number of tumors in
@@ -484,6 +519,15 @@ of metronidazole, vancomycin, and streptomycin were performed as
 depicted in Figure 1A with enumeration of tumors performed at the end point of
 the model (A). Representative images of tumors in the distal colon of mice from
 each treatment group (B).
+
+
+```
+## Error in eval(expr, envir, enclos): could not find function "readPNG"
+```
+
+```
+## Error in rasterImage(img, -10, -10, 160, 160, xpd = TRUE): object 'img' not found
+```
 
 <img src="results/figures/figure5-1.png" title="plot of chunk figure5" alt="plot of chunk figure5" style="display: block; margin: auto;" />
 
