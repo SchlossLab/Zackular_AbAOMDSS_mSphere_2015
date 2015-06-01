@@ -1,7 +1,4 @@
 
-```
-## Error in library("png", quietly = TRUE): there is no package called 'png'
-```
 
 **Manipulation of the Gut Microbiota Reveals Role of Gut Microbiota in Colon
 Tumorigenesis**
@@ -474,10 +471,7 @@ which resulted in a continuum of tumor burden in the mice (C and D). The stars
 indicate which treatments yielded a significantly (P<0.05) different number of
 tumors when compared to the treatment with the vertical line. The antibiotic treatments resulted in variation in the taxonomic structure of the communities at the start of the model (Day 0) (D). The two dimensional NMDS ordination had a stress of 0.20 and explained 84.2% of the variation in the distances (E).
 
-
-```
-## Error in library("png"): there is no package called 'png'
-```
+<img src="results/figures/figure1-1.png" title="plot of chunk figure1" alt="plot of chunk figure1" style="display: block; margin: auto;" />
 
 
 **Figure 2. A random forest model successfully predicted the number of tumors in
@@ -519,15 +513,6 @@ of metronidazole, vancomycin, and streptomycin were performed as
 depicted in Figure 1A with enumeration of tumors performed at the end point of
 the model (A). Representative images of tumors in the distal colon of mice from
 each treatment group (B).
-
-
-```
-## Error in eval(expr, envir, enclos): could not find function "readPNG"
-```
-
-```
-## Error in rasterImage(img, -10, -10, 160, 160, xpd = TRUE): object 'img' not found
-```
 
 <img src="results/figures/figure5-1.png" title="plot of chunk figure5" alt="plot of chunk figure5" style="display: block; margin: auto;" />
 
