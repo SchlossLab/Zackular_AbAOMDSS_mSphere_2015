@@ -10,7 +10,7 @@ opts_chunk$set(cache = FALSE)
 library("randomForest", quietly=TRUE)
 library("png", quietly=TRUE)
 
-set.seed(6201976)
+set.seed(19760620)
 source("code/rf_baseline_analysis.R")
 ```
 

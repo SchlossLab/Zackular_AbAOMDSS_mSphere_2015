@@ -170,14 +170,14 @@ to predict the number of tumors that developed at the end of the model. The
 model that included OTUs that had an average relative abundance greater than
 1.5% resulted in the greatest percentage of the variance explained
 (Supplementary Figure 1).This model included 14
-OTUs and explained 49.2% of the
+OTUs and explained 49.1% of the
 variation in the tumor counts (Figure 2). The OTUs were ranked by their
 importance in the random forest model as measured by the percent the mean
 squared error increases when the OTU was removed. When the OTUs were sorted in
 decreasing order by the percent they contributed to increasing the mean squared
 error (MSE) of the model, there was a jump between the sixth and seventh OTUs
 (Figure 2A). In fact, when we reconstructed the model using only the six OTUs
-that provided the greatest change in the MSE, the model explained 49.4%
+that provided the greatest change in the MSE, the model explained 49.5%
 of the variation in the observed tumor counts was indicating that the model
 based on the reduced dataset explained as much of the variation in tumor counts
 as the model based on all of the OTUs. These six OTUs included members of the
@@ -199,10 +199,10 @@ developed a random forest regression model to predict the number of tumors in
 the mice based on the composition of the microbiota at the end of the model. The
 model included 11 OTUs after we again applied a filter
 requiring each OTU to have an average relative abundance of at least 1.5%. The
-model explained 57.9% of the variation in
+model explained 57.7% of the variation in
 the tumor counts (Supplementary Figure 2), which is less than we observed when
 we modeled tumor counts based on the initial community composition. The seven
-most important OTUs in the model explained 60.6%
+most important OTUs in the model explained 61.2%
 of the variation and included *Odoribacter* (OTU 70), *Bacteroides* (OTU 5),
 *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3), *Alloprevotella* (OTU 14),
 *Prevotella* (OTU 19), and Betaproteobacteria (OTU 17) (Supplementary Figure 3).
