@@ -140,6 +140,21 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM)
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.std.dist
 
 
+# pull out the day 0 submatrix from above and the design file
+$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design : code/get_day0_matrix_design.R $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist
+	R -e "source('code/get_day0_matrix_design.R')"
+
+
+# build NMDS plot for day 0 submatrix
+$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.axes : $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist
+	mothur "#nmds(phylip=$<, maxdim=2)";\
+	rm data/process/*day0.nmds.iters
+
+
+# run AMOVA on subsetted data
+$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova : $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design
+	mothur "#amova(phylip=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist, design=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design, iters=100000)"
+
 
 ################################################################################
 #
