@@ -603,17 +603,21 @@ The authors declare no competing financial interests.
 
 **Figure legends**
 
+```{r stress}
+stress_table <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress", header=T)
+best <- which.min(stress_table$Stress)
+stress <- stress_table[best, "Stress"]
+fit <- stress_table[best, "Rsq"]
+```
 **Figure 1. Antibiotic perturbation drives changes in microbial community
 structure and final tumor burden.** The AOM-DSS model was administered to C57BL/6
 mice reared under standard pathogen free (SPF) conditions with different
-antibiotic perturbations; Black arrows indicate fecal samples that used for our
+antibiotic perturbations which were applied during the period covered by each of the rectangles; Black arrows indicate fecal samples that used for our
 analysis (A). The mice were treated with all possible combinations of
 metronidazole, streptomycin, and vancomycin to create eight treatment groups,
-which resulted in considerable differences in the taxonomic composition of the
-gut communities at the start of the model (Day 0) (B). These communities
-resulted in a continuum of tumor burden in the mice (C and D). The stars
+which resulted in a continuum of tumor burden in the mice (C and D). The stars
 indicate which treatments yielded a significantly (P<0.05) different number of
-tumors when compared to the treatment with the vertical line.
+tumors when compared to the treatment with the vertical line. The antibiotic treatments resulted in variation in the taxonomic structure of the communities at the start of the model (Day 0) (D). The two dimensional NMDS ordination had a stress of `r format(stress, digits=2, nsmall=2)` and explained `r format(fit*100, digits=1, nsmall=1)`% of the variation in the distances (E).
 
 ```{r figure1, fig.width=7.5, fig.height=10}
 source("code/build_figure1.R")
