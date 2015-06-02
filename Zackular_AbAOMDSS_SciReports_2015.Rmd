@@ -175,10 +175,10 @@ names(p_values) <- comparisons
 p_values <- p_values[-1]
 adj_p_values <- p.adjust(p_values, method="BH")
 
-result <- (names(p_values)[adj_p_values > 0.05] == "Vanc-VancMetro")
+result <- names(p_values)[adj_p_values > 0.05] == "Vanc-VancMetro"
 ```
-
-`r if(!result){ print("ERROR")}`
+`r result`
+r if(!result){ print("ERROR")}
 
 ***Antibiotic perturbation of the gut microbiota modulates tumorigenicity.***
 We subjected specific pathogen-free (SPF) C57BL/6 mice to an inflammation-based

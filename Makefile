@@ -106,8 +106,7 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.shared $(BASIC_STEM).pick.pick.pick.
 	mothur code/get_shared_otus.batch;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
-	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;\
-	rm data/process/*.an.*rabund
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;
 
 
 
@@ -134,7 +133,7 @@ $(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
 
 # rarefy the number of reads to 2500 sequences per library for the alpha and beta diversity analyses
 $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared : $(BASIC_STEM).pick.pick.pick.an.unique_list.shared
-	mothur "#dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100); sub.sample(shared=$^, size=2500)";\
+	mothur "#set.dir(seed=20);dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100); sub.sample(shared=$^, size=2500)";\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.groups.summary;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.dist;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.std.dist
@@ -147,13 +146,13 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist $(BASI
 
 # build NMDS plot for day 0 submatrix
 $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.axes : $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist
-	mothur "#nmds(phylip=$<, maxdim=2)";\
+	mothur "#set.dir(seed=20);nmds(phylip=$<, maxdim=2)";\
 	rm data/process/*day0.nmds.iters
 
 
 # run AMOVA on subsetted data
 $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova : $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design
-	mothur "#amova(phylip=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist, design=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design, iters=100000)"
+	mothur "#set.dir(seed=20);amova(phylip=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist, design=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design, iters=100000)"
 
 
 ################################################################################
