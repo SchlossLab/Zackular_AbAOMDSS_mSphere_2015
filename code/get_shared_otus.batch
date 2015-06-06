@@ -1,4 +1,4 @@
-set.dir(input=data/process, output=data/process, seed=20)
+set.dir(input=data/process, output=data/process, seed=19760620)
 set.current(processors=8)
 remove.groups(count=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.count_table, fasta=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, taxonomy=ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.taxonomy, groups=control_mock2-control_mock3)
 cluster.split(fasta=current, count=current, taxonomy=current, splitmethod=classify, taxlevel=4)
