@@ -87,7 +87,7 @@ BASIC_STEM = data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.
 # here we go from the raw fastq files and the files file to generate a fasta,
 # taxonomy, and count_table file that has had the chimeras removed as well as
 # any non bacterial sequences
-$(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC_STEM).pick.v4.wang.pick.taxonomy : code/get_good_seqs.batch\
+$(BASIC_STEM).denovo.uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC_STEM).pick.v4.wang.pick.taxonomy : code/get_good_seqs.batch\
 										data/raw/get_data\
 										data/references/silva.v4.align\
 										data/references/trainset10_082014.v4.fasta\
@@ -100,11 +100,11 @@ $(BASIC_STEM).uchime.pick.pick.count_table $(BASIC_STEM).pick.pick.fasta $(BASIC
 # here we go from the good sequences and generate a shared file and a
 # cons.taxonomy file based on OTU data
 $(BASIC_STEM).pick.pick.pick.an.unique_list.shared $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy : code/get_shared_otus.batch\
-										$(BASIC_STEM).uchime.pick.pick.count_table\
+										$(BASIC_STEM).denovo.uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(BASIC_STEM).pick.v4.wang.pick.taxonomy
 	mothur code/get_shared_otus.batch;\
-	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.pick.count_table;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;
 
@@ -113,11 +113,11 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.shared $(BASIC_STEM).pick.pick.pick.
 # here we go from the good sequences and generate a shared file and a
 # cons.taxonomy file based on phylum-level data
 $(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy $(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared : code/get_shared_phyla.batch\
-										$(BASIC_STEM).uchime.pick.pick.count_table\
+										$(BASIC_STEM).denovo.uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(BASIC_STEM).pick.v4.wang.pick.taxonomy
 	mothur code/get_shared_phyla.batch;\
-	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.uchime.pick.pick.pick.count_table;\
+	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.pick.count_table;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.fasta;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.v4.wang.pick.pick.taxonomy;\
 	rm data/process/*.tx.*rabund;
@@ -125,7 +125,7 @@ $(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy $(BASIC_STEM).pick.v4.wa
 
 # now we want to get the sequencing error as seen in the mock community samples
 $(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
-										$(BASIC_STEM).uchime.pick.pick.count_table\
+										$(BASIC_STEM).denovo.uchime.pick.pick.count_table\
 										$(BASIC_STEM).pick.pick.fasta\
 										$(REFS)HMP_MOCK.v4.fasta
 	mothur code/get_error.batch
@@ -133,7 +133,7 @@ $(BASIC_STEM).pick.pick.pick.error.summary : code/get_error.batch\
 
 # rarefy the number of reads to 2500 sequences per library for the alpha and beta diversity analyses
 $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared : $(BASIC_STEM).pick.pick.pick.an.unique_list.shared
-	mothur "#set.dir(seed=20);dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100); sub.sample(shared=$^, size=2500)";\
+	mothur "#set.dir(seed=19760620);dist.shared(shared=$^, calc=thetayc, subsample=2500, iters=100); summary.single(shared=$^, subsample=2500, calc=nseqs-sobs-shannon-invsimpson, iters=100); sub.sample(shared=$^, size=2500)";\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.groups.summary;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.dist;\
 	rm data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.std.dist
@@ -146,13 +146,13 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist $(BASI
 
 # build NMDS plot for day 0 submatrix
 $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.axes : $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist
-	mothur "#set.dir(seed=20);nmds(phylip=$<, maxdim=2)";\
+	mothur "#set.dir(seed=19760620);nmds(phylip=$<, maxdim=2)";\
 	rm data/process/*day0.nmds.iters
 
 
 # run AMOVA on subsetted data
 $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova : $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design
-	mothur "#set.dir(seed=20);amova(phylip=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist, design=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design, iters=100000)"
+	mothur "#set.dir(seed=19760620);amova(phylip=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.dist, design=data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.design, iters=100000)"
 
 
 ################################################################################
@@ -162,7 +162,12 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova : $(B
 #
 ################################################################################
 
-write.paper :
+write.paper :   $(BASIC_STEM).pick.pick.pick.error.summary\
+                $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary\
+                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
+                $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
+                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova\
+                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress
 	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_SciReports_2015.Rmd', 'Zackular_AbAOMDSS_SciReports_2015.html')"; \
 	pandoc -f markdown -t docx Zackular_AbAOMDSS_SciReports_2015.md -o Zackular_AbAOMDSS_SciReports_2015.docx
 
@@ -201,4 +206,6 @@ all : notebooks\
 		$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
 		$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
 		$(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy\
-		$(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared
+		$(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared\
+		$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova\
+		$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress
