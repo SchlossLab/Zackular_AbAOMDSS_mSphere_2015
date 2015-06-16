@@ -162,13 +162,21 @@ $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova : $(B
 #
 ################################################################################
 
-results/figures/figure1.pdf : code/build_figure1.Rcode/rf_baseline_analysis.R\
+$(FIGURES) = results/figures
+$(FIGURES)/figure_1.pdf : code/build_figure_1.R\
+							code/rf_baseline_analysis.R\
  							code/aomdss_timeline.R\
 							$(BASIC_STEM).pick.v4.wang.pick.pick.tx.shared\
 							$(BASIC_STEM).pick.v4.wang.pick.pick.tx.5.cons.taxonomy\ $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.axes\
 							results/pictures/tumor_images.png\
 							data/process/tumor_counts.tsv
-	source("code/build_figure1.R")
+	source("code/build_figure_1.R")
+
+
+$(FIGURES)/figure_S1.pdf $(FIGURES)/figure_2.pdf $(FIGURES)/figure_3.pdf data/process/baseline_model.Rdata : code/rf_baseline_analysis.R\
+							$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
+							data/process/tumor_counts.tsv
+	source("code/run_baseline_model.R")
 
 
 
@@ -177,7 +185,17 @@ write.paper :   $(BASIC_STEM).pick.pick.pick.error.summary\
                 $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
                 $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
                 $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova\
-                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress
+
+
+				depends on...
+				data/process/baseline_model.Rdata
+				$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress
+				$(FIGURES)/figure_1.pdf
+				$(FIGURES)/figure_2.pdf
+				$(FIGURES)/figure_3.pdf
+				$(FIGURES)/figure_S1.pdf
+
+
 	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_SciReports_2015.Rmd', 'Zackular_AbAOMDSS_SciReports_2015.html')"; \
 	pandoc -f markdown -t docx Zackular_AbAOMDSS_SciReports_2015.md -o Zackular_AbAOMDSS_SciReports_2015.docx
 

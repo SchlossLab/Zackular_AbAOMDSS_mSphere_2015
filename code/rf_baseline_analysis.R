@@ -68,16 +68,21 @@ filter_rabund <- function(rabund, threshold){
 }
 
 
+# limit the analysis to those OTUs that have an median relative abundance over
+# 1% within each experimental unit
+filter_rabund_by_treatment <- function(rabund, groupings, threshold=0.01){
+    medians <- aggregate(rabund, by=list(groupings), median)[,-1]
+    abund <- apply(medians, 2, max) > threshold
+    abund_good <- rabund[,abund]
+}
+
 #build random forest with the filtered rabund table; dependent would be
 #tumor_counts
-get_forest <- function(rabund, dependent, threshold, n_trees=10000){
-
-    #keep those OTUs that are more than threshold across all samples
-    rabund_filtered <- filter_rabund(rabund, threshold)
+get_forest <- function(rabund, dependent, n_trees=10000){
 
     #build random forest model where we predict `dependent` based on the
-    #filtered rabund data using `n_trees`
-    randomForest(dependent ~ ., data=rabund_filtered, importance=TRUE, ntree=n_trees)
+    #rabund data using `n_trees`
+    randomForest(dependent ~ ., data=rabund, importance=TRUE, ntree=n_trees)
 }
 
 
@@ -94,12 +99,12 @@ get_n_otus <- function(forest){
 
 
 #see what the rsquared value looks like for forests that are built stepwise
-simplify_model <- function(dependent, forest, rabund){
+simplify_model <- function(dependent, forest, rabund, max_features){
     #%IncMSE is in the first column of the importance data frame
     importance <- importance(forest)
     sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
 
-    notus <- nrow(importance)
+    notus <- min(nrow(importance), max_features)
     rf_simplify_rsq <- rep(0, notus)
 
     #add each successive OTU's data and rebuild the model; save the Rsquared value
@@ -207,9 +212,9 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
     labels_no_n <- gsub(" \\(.*\\)", "", labels)
 
     plot(forest_fit~observed, pch=pch[treatment],
-        col=clrs[treatment], ylim=c(0,max_value), xlim=c(0,max_value),
+        col=clrs[treatment], ylim=c(0,25), xlim=c(0,25),
         cex=1, xlab="", ylab="", yaxt="n")
-    legend(x=-1, y=max_value*1.05, legend=labels_no_n, pch=pch[names(labels)],
+    legend(x=-1, y=26, legend=labels_no_n, pch=pch[names(labels)],
             col=clrs[names(labels)], cex=0.8, bty="n")
     mtext(side=1, text="Observed number of tumors", line=2.0)
     mtext(side=2, text="Predicted number of tumors", line=2.0)
@@ -217,12 +222,8 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
 
 }
 
-#Plot top features' relative abundance versus the tumor counts for the mice that
-#they came from...
-plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
 
-    importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
+get_otu_labels <- function(otu_ids){
 
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
@@ -232,26 +233,35 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
     tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
 
-    #let's just use the top six OTUs, based on our inspection of the importance plot
-    #and combine the OTU name with its taxonomy and % Increase in MSE coefficient
-    otus <- rownames(sorted_importance)[1:6]
-    pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[1:6,"%IncMSE"], 1), 1))
-    otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
+    pretty_otus <- gsub("Otu0*", "OTU ", otu_ids)
+    otu_labels <- paste0("(", pretty_otus, ")")
+    otu_labels <- paste(tax[otu_ids,2], otu_labels, sep=" ")
+    otu_labels <- paste0(otu_labels, "\n% Increase in MSE: ", format(round(sorted_importance[,"%IncMSE"], 1), 1))
+    return(otu_labels)
+}
 
+#Plot top features' relative abundance versus the tumor counts for the mice that
+#they came from...
+plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
+    otus <- rownames(sorted_importance)
+
+    otu_labels <- get_otu_labels(otus)
 
     par(mar=c(0.5,0.5,0.5,0.5))
 
-    design <- matrix(1:6, nrow=2, byrow=T)
-    design <- cbind(c(7,7), design)
-    design <- rbind(design, c(0,8,8,8))
-    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,0.3))
+    design <- matrix(1:9, nrow=3, byrow=T)
+    design <- cbind(c(10,10,10), design)
+    design <- rbind(design, c(0,11,11,11))
+    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,1,0.3))
 
-    for(i in 1:6){
+    for(i in 1:9){
 
         #get the row and column number for each spot in the layout
-        row <- ifelse(i<=3,1,2)
-        column <- ifelse(i<=3, i, i-3)
+        row <- ceiling(i/3)
+        column <- i-3*(row-1)
 
         #extract the relative abundance data for this OTU
         rel_abund <- rabund[,otus[i]]
@@ -277,10 +287,10 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
         abline(v=2.2e-4, col="gray")
 
         #put the OTU label in the upper left corner of the plot
-        text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
+        text(x=0.8e-4, y=25.5, label=otu_labels[i], pos=4, font=2)
 
         #if it's on the bottom row, put a customized axis indicating the % rabund
-        if(row == 2){
+        if(row == 3){
             axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
                     label=c("0", "0.1", "1", "10", "100"),
                     cex.axis=1.5)
