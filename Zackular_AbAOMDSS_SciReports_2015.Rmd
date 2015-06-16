@@ -205,17 +205,13 @@ of the antibiotic that was used to treat the mice. The eight community structure
 
 ```{r predict_tumor_baseline}
 n_trees <- 10000 #number of trees for random forest
-rf_baseline_thresh <- 0.015 #an average of 1.5%
 
-rf_baseline_forest <- get_forest(rabund=rabund_baseline,
-                            dependent=tumor_counts_baseline,
-                            n_trees=n_trees,
-                            threshold=rf_baseline_thresh)
+rabund_baseline_filtered <- rabund_baseline[,apply(rabund_baseline, 2, sum)>0]
 
-rf_baseline_rabund <- filter_rabund(rabund_baseline, rf_baseline_thresh)
+rf_baseline_forest <- get_forest(rabund=rabund_baseline_filtered, dependent=tumor_counts_baseline, n_trees=n_trees)
 
 rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest,
-    rabund_baseline)
+    rabund_baseline_filtered, 10)
 ```
 
 
@@ -229,20 +225,8 @@ units (OTUs) that were defined as a group of sequences that, on average, were
 not more than 3% different from each other. We then used the regression-based
 random forest machine learning algorithm to identify OTUs that would enable us
 to predict the number of tumors that developed at the end of the model. The
-model that included OTUs that had an average relative abundance greater than
-1.5% resulted in the greatest percentage of the variance explained
-(Supplementary Figure 1).This model included `r get_n_otus(rf_baseline_forest)`
-OTUs and explained `r round(100*get_rsq(rf_baseline_forest), 1)`% of the
-variation in the tumor counts (Figure 2). The OTUs were ranked by their
-importance in the random forest model as measured by the percent the mean
-squared error increases when the OTU was removed. When the OTUs were sorted in
-decreasing order by the percent they contributed to increasing the mean squared
-error (MSE) of the model, there was a jump between the sixth and seventh OTUs
-(Figure 2A). In fact, when we reconstructed the model using only the six OTUs
-that provided the greatest change in the MSE, the model explained `r round(100*rf_simplify_rsq[6], 1)`%
-of the variation in the observed tumor counts was indicating that the model
-based on the reduced dataset explained as much of the variation in tumor counts
-as the model based on all of the OTUs. These six OTUs included members of the
+model that included all `r ncol(rabund_baseline_filtered)` OTUs explained `r round(100*get_rsq(rf_baseline_forest), 1)`% of the variation in the tumor counts. We then sorted the OTUs by their importance in the random forest model as determined by the percent reduction in the mean squared error when that OTU was removed from the model and observed a peak in the amount of the variation explained in the observed tumor counts when we used the 8 most important OTUs (Supplemental Figure 1). This reduced model explained `r round(100*rf_simplify_rsq[8], 1)`% of the variation in the observed tumor counts. These eight OTUs included members of the
+
 Firmicutes (OTU 6), Bacteroidetes (OTUs 4 and 19), Proteobacteria (OTU 3), and
 Tenericutes (OTUs 34 and 35). Increased numbers of tumors were associated with
 decreases in the relative abundance of relatives of the Enterobacteriaceae (OTU
@@ -619,9 +603,6 @@ which resulted in a continuum of tumor burden in the mice (C and D). The stars
 indicate which treatments yielded a significantly (P<0.05) different number of
 tumors when compared to the treatment with the vertical line. The antibiotic treatments resulted in variation in the taxonomic structure of the communities at the start of the model (Day 0) (D). The two dimensional NMDS ordination had a stress of `r format(stress, digits=2, nsmall=2)` and explained `r format(fit*100, digits=1, nsmall=1)`% of the variation in the distances (E).
 
-```{r figure1, fig.width=7.5, fig.height=10}
-source("code/build_figure1.R")
-```
 
 
 **Figure 2. A random forest model successfully predicted the number of tumors in
