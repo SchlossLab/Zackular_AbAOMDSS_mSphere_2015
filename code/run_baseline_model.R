@@ -51,15 +51,15 @@ tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
 tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
 tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
 
-all_rsq <- rf_baseline_forest$rsq[n_trees]
-top_rsq <- rf_baseline_top_features_forest$rsq[n_trees]
-features <- tax[top_features,]
+baseline_all_rsq <- rf_baseline_forest$rsq[n_trees]
+baseline_top_rsq <- rf_baseline_top_features_forest$rsq[n_trees]
+baseline_features <- tax[top_features,]
 
-save(all_rsq, top_rsq, features, file="data/process/baseline_model.Rdata")
+save(baseline_all_rsq, baseline_top_rsq, baseline_features, file="data/process/baseline_model.Rdata")
 
 
 cairo_pdf(file="results/figures/figure_S1.pdf", width=5.0, height=5.0)
-	plot(rf_simplify_rsq, xlim=c(2,20), ylim=c(0.5, 0.7), xlab="Number of features",
+	plot(rf_simplify_rsq, xlim=c(2,15), ylim=c(0.5, 0.7), xlab="Number of features",
 		ylab="Variance explained (%)", pch=19)
 	text(x=n_features, y=0.70, "*", cex=2)
 dev.off()
