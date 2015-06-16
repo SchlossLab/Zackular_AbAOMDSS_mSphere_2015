@@ -33,7 +33,7 @@ rf_baseline_forest <- get_forest(rabund=rabund_baseline_filtered,
 							dependent=tumor_counts_baseline, n_trees=n_trees)
 
 rf_simplify_rsq <- simplify_model(tumor_counts_baseline, rf_baseline_forest,
-    						rabund_baseline_filtered, 20)
+    						rabund_baseline_filtered, 15)
 
 n_features <- which.max(rf_simplify_rsq)
 
