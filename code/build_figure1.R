@@ -1,6 +1,8 @@
 library("png")
 source("code/rf_baseline_analysis.R")
 
+cairopdf("results/figures/figure1.pdf", width=7.5, height=10.0)
+
 design <- c(1,1,10,
             3,2,10,
             8,4,10,
@@ -169,3 +171,4 @@ axis(2, label=format(seq(-0.6,0.6,0.3), nsmall=1), at=seq(-0.6,0.6,0.3), las=1)
 
 text(label="E", x=-0.88, y=0.83, font=2.5, cex=2, xpd=TRUE)
 
+dev.off()
