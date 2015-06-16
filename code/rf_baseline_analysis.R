@@ -329,25 +329,24 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
 
     #let's just use the top six OTUs, based on our inspection of the importance plot
     #and combine the OTU name with its taxonomy and % Increase in MSE
-    otus <- rownames(sorted_importance)[1:7]
+    otus <- rownames(sorted_importance)[1:10]
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[1:7,"%IncMSE"], 1), 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[1:10,"%IncMSE"], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
     par(mar=c(0.5,0.5,0.5,0.5))
 
-    design <- matrix(1:8, nrow=2, byrow=T)
-    design <- cbind(c(8,8), design)
-    design <- rbind(design, c(0,9,9,9,9))
-    design[2,5] <- 0
-    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,0.3))
+    design <- matrix(1:12, nrow=4, byrow=T)
+    design <- cbind(c(13,13,13,13), design)
+    design <- rbind(design, c(0,14,14,14))
+    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,1,1,0.3))
 
-    for(i in 1:7){
+    for(i in 1:10){
 
         #get the row and column number for each spot in the layout
-        row <- ifelse(i<=4,1,2)
-        column <- ifelse(i<=4, i, i-4)
+        row <- ceiling(i/3)
+        column <- i-3*(row-1)
 
         #extract the relative abundance data for this OTU
         rel_abund <- rabund[,otus[i]]
@@ -376,7 +375,7 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
         text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
 
         #if it's on the bottom row, put a customized axis indicating the % rabund
-        if(row == 2){
+        if(row == 4){
             axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
                     label=c("0", "0.1", "1", "10", "100"),
                     cex.axis=1.5)
@@ -387,6 +386,9 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
             axis(2, las=2, cex.axis=1.5)
         }
     }
+
+    plot.new()
+    plot.new()
 
     plot.new()
     text(x=0.15, y=0.5, label="Observed number of tumors", cex=1.5, srt=90)
