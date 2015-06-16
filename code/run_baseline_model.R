@@ -29,6 +29,9 @@ n_trees <- 10000 #number of trees for random forest
 
 rabund_baseline_filtered <- rabund_baseline[,apply(rabund_baseline, 2, sum)>0]
 
+n_full_features <- ncol(rabund_baseline_filtered)
+
+
 rf_baseline_forest <- get_forest(rabund=rabund_baseline_filtered,
 							dependent=tumor_counts_baseline, n_trees=n_trees)
 
@@ -55,7 +58,7 @@ baseline_all_rsq <- rf_baseline_forest$rsq[n_trees]
 baseline_top_rsq <- rf_baseline_top_features_forest$rsq[n_trees]
 baseline_features <- tax[top_features,]
 
-save(baseline_all_rsq, baseline_top_rsq, baseline_features, file="data/process/baseline_model.Rdata")
+save(n_full_features, baseline_all_rsq, baseline_top_rsq, baseline_features, file="data/process/baseline_model.Rdata")
 
 
 cairo_pdf(file="results/figures/figure_S1.pdf", width=5.0, height=5.0)

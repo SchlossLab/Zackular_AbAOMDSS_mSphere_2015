@@ -182,51 +182,24 @@ of the antibiotic that was used to treat the mice. The eight community structure
 
 
 ```{r predict_tumor_baseline}
+load("data/process/baseline_model.Rdata")
+
+number <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
 ```
 
 
 ***Tumor burden can be predicted from the initial microbiota.***
-Tumor burden can be predicted from the initial microbiota. Serial collection of
-fecal samples allowed us to ascertain the composition of the microbiota for each
-mouse and associate it with the number of tumors that developed at the end of
-the model. Using the 16S rRNA gene sequence data generated from feces collected
-on the day of AOM injection, we assigned the sequences to operational taxonomic
-units (OTUs) that were defined as a group of sequences that, on average, were
-not more than 3% different from each other. We then used the regression-based
-random forest machine learning algorithm to identify OTUs that would enable us
-to predict the number of tumors that developed at the end of the model. The
-model that included all `r ncol(rabund_baseline_filtered)` OTUs explained `r round(100*get_rsq(rf_baseline_forest), 1)`% of the variation in the tumor counts. We then sorted the OTUs by their importance in the random forest model as determined by the percent reduction in the mean squared error when that OTU was removed from the model and observed a peak in the amount of the variation explained in the observed tumor counts when we used the 8 most important OTUs (Supplemental Figure 1). This reduced model explained `r round(100*rf_simplify_rsq[8], 1)`% of the variation in the observed tumor counts. These eight OTUs included members of the
-
-Firmicutes (OTU 6), Bacteroidetes (OTUs 4 and 19), Proteobacteria (OTU 3), and
-Tenericutes (OTUs 34 and 35). Increased numbers of tumors were associated with
-decreases in the relative abundance of relatives of the Enterobacteriaceae (OTU
-3), *Ureaplasma* (OTU 34), and *Lactobacillus* (OTU 6) and increases in the
-relative abundance of the *Anaeroplasma* (OTU 35), Porphyromonadaceae (OTU 4),
-and *Prevotella* (OTU 19) (Figure 3). Our random forest modeling demonstrated
-that it was possible to predict the number of tumors at the end of the model
-based on the composition of the microbiota at the beginning of the model.
+Tumor burden can be predicted from the initial microbiota. Serial collection of fecal samples allowed us to ascertain the composition of the microbiota for each mouse and associate it with the number of tumors that developed at the end of
+the model. Using the 16S rRNA gene sequence data generated from feces collected on the day of AOM injection, we assigned the sequences to operational taxonomic units (OTUs) that were defined as a group of sequences that, on average, were not more than 3% different from each other. We then used the regression-based random forest machine learning algorithm to identify OTUs that would enable us to predict the number of tumors that developed at the end of the model. The model that included all `r n_full_features` OTUs explained `r round(100*baseline_all_rsq, 1)`% of the variation in the tumor counts. We then sorted the OTUs by their importance in the random forest model as determined by the percent reduction in the mean squared error when that OTU was removed from the model and observed a peak in the amount of the variation explained in the observed tumor counts when we used the `r number[nrow(baseline_features)]` most important OTUs (Supplemental Figure 1). The simplified model explained `r round(100*baseline_top_rsq, 1)`% of the variation in the observed tumor counts (Figure 2). These `r number[nrow(baseline_features)]` OTUs included members of the Firmicutes (OTUs 1 and 99), Bacteroidetes (OTUs 14, 51, 79, 107), Proteobacteria (OTU 7 and 36), and Tenericutes (OTUs 9). With the exception of OTUs affiliated with members of the *Lactobacillus* (OTU 1) and Betaproteobacteria (OTU 7), each of the OTUs was associated with increased tumor burden (Figure 3). The relative abundance of the *Lactobacillus*-affiliated OTU at the start of the model was inversely proportional to the tumor burden at the end of the model. There was not a clear relationship between the initial relative abundance of the *Betaproteobacteria*-affiliated OTU and the final tumor burden. Our random forest modeling demonstrated that it was possible to predict the number of tumors at the end of the model based on the composition of the microbiota at the beginning of the model.
 
 
 ```{r predict_tumor_final}
+load("data/process/final_model.Rdata")
+
 ```
 
 ***Tumor burden can be predicted from the microbiota at the end of the model.***
-Similar to our analysis using the initial composition of the microbiota, we
-developed a random forest regression model to predict the number of tumors in
-the mice based on the composition of the microbiota at the end of the model. The
-model included `r ncol(rf_final_rabund)` OTUs after we again applied a filter
-requiring each OTU to have an average relative abundance of at least 1.5%. The
-model explained `r round(100*get_rsq(rf_final_forest), 1)`% of the variation in
-the tumor counts (Supplementary Figure 2), which is less than we observed when
-we modeled tumor counts based on the initial community composition. The seven
-most important OTUs in the model explained `r round(100*rf_simplify_rsq[7], 1)`%
-of the variation and included *Odoribacter* (OTU 70), *Bacteroides* (OTU 5),
-*Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3), *Alloprevotella* (OTU 14),
-*Prevotella* (OTU 19), and Betaproteobacteria (OTU 17) (Supplementary Figure 3).
-Interestingly, of the OTUs that were predictive of the number of tumor counts
-using the baseline and final community composition data, only three of the OTUs
-overlapped. These included *Lactobacillus* (OTU 6), Enterobacteriaceae (OTU 3),
-and *Prevotella* (OTU 19).
+Similar to our analysis using the initial composition of the microbiota, we developed a random forest regression model to predict the number of tumors in the mice based on the composition of the microbiota at the end of the model (Supplemental Figure 1). The simplified model included `r number[nrow(final_features)]` OTUs. The simplified model explained `r round(100*final_top_rsq, 1)`% of the variation in the tumor counts (Supplementary Figure 3), which was comparable to what we observed when we modeled tumor counts based on the initial community composition. This model utilized the relative abundance data from OTUs affiliated with members of the Firmicutes (OTU 23, 85, and 125), Bacteroidetes (OTU 19, 28, 29, 51, and 67), Proteobacteria (OTU 7), candidate phylum Saccharibacteria (OTU 192; Supplementary Figure 4). Interestingly, of the OTUs that were predictive of the number of tumor counts using the initial and final community composition data, only `r number[length(intersect(rownames(final_features), rownames(baseline_features)))]` of the OTUs overlapped. These OTUs were affiliated with the *Bacteroides* (OTU 51) and Betaproteobacteria (OTU 7). The distinction between OTUs that were predictive of tumor burden using the community composition at the beginning and end of the model suggests that the communities that gave rise to tumors were different from those that were enriched in a tumor-laden environment.
 
 
 ```{r distance_tumor_correlation}
@@ -643,18 +616,11 @@ text(label="B", x=-30.0, y=143, font=2.5, cex=2, xpd=TRUE)
 
 **Supplemental Figure 1. Effect of pruning the number of OTUs included in the random forest model for predicting the number of tumors at the end of the model based on the microbiota found at the start of the model.** The order of OTUs was set by the percent increase in mean square error when that OTU was removed from the model. The percent of the variance explained here indicates the quality of the fit when the top features were used to generate a model. The star indicates the number of OTUs that resulted in the model explaining the maximum percent of the variance.
 
+
 **Supplemental Figure 2. Effect of pruning the number of OTUs included in the random forest model for predicting the number of tumors at the end of the model based on the microbiota found at the end of the model.** The order of OTUs was set by the percent increase in mean square error when that OTU was removed from the model. The percent of the variance explained here indicates the quality of the fit when the top features were used to generate a model. The star indicates the number of OTUs that resulted in the model explaining the maximum percent of the variance.
 
 
 **Supplemental Figure 3. A random forest model successfully predicted the number of tumors in the mice at the end of the model based on their microbiota composition at the end of the model.** The model explains XX.X% of the variation in the data.
 
 
-
-**Supplemental Figure 3. Relationship between the initial relative abundance of the most
-informative OTUs from the random forest model with the number of tumors found
-in the mice at the end of the model.** The vertical gray line indicates the
-limit of detection.
-
-```{r supp_figure3, fig.width=10, fig.height=5}
-plot_final_features(tumor_counts_final, rf_final_forest, rf_final_rabund, treatment_final)
-```
+**Supplemental Figure 4. Relationship between the final relative abundance of the most informative OTUs from the random forest model with the number of tumors found in the mice at the end of the model.** The vertical gray line indicates the limit of detection. Panels are ordered in decreasing order of the percent increase in the mean squared error of the model when that OTU was removed. The color and shape of the plotting symbols corresponds to those used in Figure S3.

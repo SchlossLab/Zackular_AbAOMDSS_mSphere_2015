@@ -223,7 +223,13 @@ plot_forest_fit <- function(observed, forest, rabund, treatment){
 }
 
 
-get_otu_labels <- function(otu_ids){
+#Plot top features' relative abundance versus the tumor counts for the mice that
+#they came from...
+plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
+
+    importance <- importance(forest)
+    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
+    otus <- rownames(sorted_importance)
 
     #read in the taxonomy file
     tax <- read.table(file="data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.cons.taxonomy", header=T, row.names=1)
@@ -233,22 +239,10 @@ get_otu_labels <- function(otu_ids){
     tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
 
-    pretty_otus <- gsub("Otu0*", "OTU ", otu_ids)
+    pretty_otus <- gsub("Otu0*", "OTU ", otus)
     otu_labels <- paste0("(", pretty_otus, ")")
-    otu_labels <- paste(tax[otu_ids,2], otu_labels, sep=" ")
+    otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
     otu_labels <- paste0(otu_labels, "\n% Increase in MSE: ", format(round(sorted_importance[,"%IncMSE"], 1), 1))
-    return(otu_labels)
-}
-
-#Plot top features' relative abundance versus the tumor counts for the mice that
-#they came from...
-plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
-
-    importance <- importance(forest)
-    sorted_importance <- importance[order(importance[,"%IncMSE"], decreasing=T),]
-    otus <- rownames(sorted_importance)
-
-    otu_labels <- get_otu_labels(otus)
 
     par(mar=c(0.5,0.5,0.5,0.5))
 
