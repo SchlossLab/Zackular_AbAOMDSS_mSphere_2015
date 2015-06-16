@@ -1,7 +1,7 @@
 library("png")
 source("code/rf_baseline_analysis.R")
 
-cairopdf("results/figures/figure1.pdf", width=7.5, height=10.0)
+cairopdf("results/figures/figure_1.pdf", width=7.5, height=10.0)
 
 design <- c(1,1,10,
             3,2,10,
