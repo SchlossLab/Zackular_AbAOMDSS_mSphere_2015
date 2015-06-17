@@ -320,6 +320,7 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
     tax$Taxonomy <- gsub("unclassified.*", "", tax$Taxonomy)
     tax$Taxonomy <- gsub("\\(\\d*\\);$", "", tax$Taxonomy)
     tax$Taxonomy <- gsub(".*;", "", tax$Taxonomy)
+    tax$Taxonomy <- gsub("Candidatus_", "", tax$Taxonomy)
 
     #let's just use the top six OTUs, based on our inspection of the importance plot
     #and combine the OTU name with its taxonomy and % Increase in MSE
