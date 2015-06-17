@@ -187,21 +187,34 @@ $(FIGURES)/figure_S2.pdf $(FIGURES)/figure_S3.pdf $(FIGURES)/figure_S4.pdf data/
 	source("code/run_final_model.R")
 
 
-write.paper :   $(BASIC_STEM).pick.pick.pick.error.summary\
-                $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary\
-                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
-                $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
-                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova\
+$(FIGURES)/figure_4.pdf data/process/distance_tumor_correlation.Rdata : code/build_figure_4.R\
+				code/make_timeline_plot.R\
+				code/rf_baseline_analysis.R\
+				$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
+				$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared
+	source("code/build_figure_4.R")
 
 
-				depends on...
-				data/process/baseline_model.Rdata
-				$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress
-				$(FIGURES)/figure_1.pdf
-				$(FIGURES)/figure_2.pdf
-				$(FIGURES)/figure_3.pdf
-				$(FIGURES)/figure_S1.pdf
+write.paper :   data/process/baseline_model.Rdata\
+				data/process/final_model.Rdata\
+				data/process/distance_tumor_correlation.Rdata\
+				$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova\
+				$(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.nmds.stress\
+				$(FIGURES)/figure_1.pdf\
+				$(FIGURES)/figure_2.pdf\
+				$(FIGURES)/figure_3.pdf\
+				$(FIGURES)/figure_4.pdf\
+				$(FIGURES)/figure_S1.pdf\
+				$(FIGURES)/figure_S2.pdf\
+				$(FIGURES)/figure_S3.pdf\
+				$(FIGURES)/figure_S4.pdf
 
+
+				$(BASIC_STEM).pick.pick.pick.error.summary\
+				                $(BASIC_STEM).pick.pick.pick.an.unique_list.groups.ave-std.summary\
+				                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist\
+				                $(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
+				                $(BASIC_STEM).pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.day0.amova\
 
 	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_SciReports_2015.Rmd', 'Zackular_AbAOMDSS_SciReports_2015.html')"; \
 	pandoc -f markdown -t docx Zackular_AbAOMDSS_SciReports_2015.md -o Zackular_AbAOMDSS_SciReports_2015.docx

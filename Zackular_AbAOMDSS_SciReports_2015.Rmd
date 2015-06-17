@@ -203,71 +203,11 @@ Similar to our analysis using the initial composition of the microbiota, we deve
 
 
 ```{r distance_tumor_correlation}
-get_dist_lt <- function(file_name){
-
-    dist_vector <- scan(file_name, what="", sep="\n")
-
-    n_samples <- as.numeric(dist_vector[1])
-    dist_vector <- dist_vector[-1]
-
-    sample_names <- character(n_samples)
-    distance_matrix <- matrix(rep(0, n_samples*n_samples), nrow=n_samples)
-
-    for(i in 1:n_samples){
-
-        split_line <- unlist(strsplit(dist_vector[i], "\t"))
-        sample_names[i] <- split_line[1]
-
-        if(i > 1){
-            distance_matrix[i,1:(i-1)] <- as.numeric(split_line[2:i])
-        }
-    }
-
-    distance_matrix <- distance_matrix + t(distance_matrix)
-    rownames(distance_matrix) <- sample_names
-    colnames(distance_matrix) <- sample_names
-    distance_matrix
-}
-
-
-get_start_end_dist <- function(u_treat_et, days){
-    subset <- days[treat_et == u_treat_et]
-    start <- names(subset[subset==0])
-    end <- names(sort(subset, decreasing=TRUE))[1]
-    distances[start, end]
-}
-
-
-dist_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.thetayc.0.03.lt.ave.dist"
-
-distances <- get_dist_lt(dist_file)
-treat_et <- gsub("_d.*", "", rownames(distances))
-days <- sapply(rownames(distances), get_day)
-start_end_dist <- unlist(sapply(unique(treat_et), get_start_end_dist, days))
-
-tumor_counts_prepost <- tumor_counts[names(start_end_dist), "n_tumors"]
-dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist,
-                                method="spearman")
+load("data/process/distance_tumor_correlation.Rdata")
 ```
 
 ***The microbial community is dynamic during inflammation-associated tumorigenesis.***
-Using mice that were colonized with human feces, we previously reported that
-tumor burden was associated with the amount of change in the community structure
-over the course of the AOM-DSS model {Baxter, 2014 #3469}. In the current study,
-however, there was a non-significant association between the change in the
-community structure as measured by the $\theta$<sub>YC</sub> metric of community
-structure similarity and tumor burden ($\rho$=`r round(dist_tumor_cor$estimate,2)`,
-P=`r round(dist_tumor_cor$p.value, 2)`; Figure 4A). We did observe that mice
-that did not receive antibiotics and those that received the Δvancomycin and
-Δmetronidazole treatments changed the most over the course of the model.
-Interestingly, when we investigated the temporal progression of the three OTUs
-that were most important for predicting the number of tumors based on the
-starting and final community structure (i.e. OTUs 3, 6, and 19; Figure 2B) we
-observed dynamic changes in relative abundance with time during the course of
-the model.  These data suggest that the magnitude of change that occurs in a
-microbial community during tumorigenesis does not influence tumor burden.
-Instead, specific changes in community structure and the abundance of
-tumor-associated bacterial populations dictate tumor burden.
+Using mice that were colonized with human feces, we previously reported that tumor burden was associated with the amount of change in the community structure over the course of the AOM-DSS model {Baxter, 2014 #3469}. In the current study, however, there was a non-significant association between the change in the community structure as measured by the $\theta$<sub>YC</sub> metric of community structure similarity and tumor burden ($\rho$=`r round(dist_tumor_cor$estimate,2)`, P=`r round(dist_tumor_cor$p.value, 2)`; Figure 4A). We did observe that mice that did not receive antibiotics and those that received the Δvancomycin and Δmetronidazole treatments changed the most over the course of the model. When we identified those OTUs whose relative abundances changed the most across each treatment group, we found that OTUs affiliated with the *Lactobacillus* (OTU 1) and Enterobacteriaceae (OTU 2) were consistently among the most dynamic OTUs across the treatment groups (Figure 4). Interestingly the initial relative abundance of the *Lactobacillus*-affiliated OTU was predictive of the final tumor burden, but the final relative abundance of neither OTU was predictive of final tumor burden. These data suggest that the magnitude of change that occurs in a microbial community during tumorigenesis does not influence tumor burden. Instead, specific changes in community structure and the abundance of tumor-associated bacterial populations dictate tumor burden.
 
 
 ***Antibiotic intervention during inflammation reduces tumorigenesis.***
@@ -519,58 +459,15 @@ fit <- stress_table[best, "Rsq"]
 **Figure 3. Relationship between the initial relative abundance of the most informative OTUs from the random forest model with the number of tumors found in the mice at the end of the model.** The vertical gray line indicates the limit of detection. Panels are ordered in decreasing order of the percent increase in the mean squared error of the model when that OTU was removed. The color and shape of the plotting symbols corresponds to those used in Figure 2.
 
 
-
-
 **Figure 4. The murine microbiota is dynamic but the amount of change is
 not associated with the final number of tumors.** The structure of the gut
 microbiota associated with untreated and the $\Delta$ metronidazole and $\Delta$
 vancoymcin-treated mice changed the most throughout the model as measured using
-the $\Theta$<sub>YC</sub> distance metric (A). OTUs 3, 6, and 19 were among the
-most salient features for predicting tumor burden at the beginning and end of
-the model (B). The plotting symbols and characters are the same as those used in
+the $\Theta$<sub>YC</sub> distance metric (A). OTUs 1 and 2 were among the
+most dynamic OTUs across all treatment groups; here we depict the change in their relative abundance across the model for those treatment groups that experienced the greatest overall change in community structure (B). The plotting symbols and characters are the same as those used in
 Figure 1. In panel B, the median relative abundance is indicated by the plotting
 symbol and the range of observed relative abundances is plotted by the vertical
 bar. The vertical blue regions indicate when the DSS treatments were applied.
-
-```{r figure4, fig.width=3.75, fig.height=7}
-design <- matrix(c(2,1,
-                    6,3,
-                    6,4,
-                    6,5,
-                    0,7), byrow=T, nrow=5)
-z <- layout(design, width=c(0.15,1), height=c(1.5,1,1,1,0.3))
-
-par(mar=c(3,0.5,0.5,0.5))
-treatments <- gsub("_.*", "", names(start_end_dist))
-plot(tumor_counts_prepost~start_end_dist, ylim=c(0,25), xlim=c(0,1),
-    col=clrs[treatments],
-    pch=pch[treatments], axes=FALSE, xlab="", ylab="")
-mtext(side=1, text="Distance between communities on days 0 and 74", line=2, cex=0.7)
-axis(1)
-axis(2, las=2)
-box()
-
-#labels_no_n <- gsub(" \\(.*\\)", "", labels)
-#legend(x=-0.025, y=26, legend=labels_no_n, pch=pch[names(labels)],
-#        col=clrs[names(labels)], cex=0.9, bty="n")
-
-par(mar=c(0,0,0,0))
-plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.3, y=0.58, label="Number of tumors", srt=90, cex=1.5)
-text(x=0.3, y=0.98, label="A", srt=0, cex=2, font=2)
-
-
-par(mar=c(0.5,0.5,0.5,0.5))
-source("code/make_timeline_plot.R")
-
-par(mar=c(0,0,0,0))
-plot(NA, xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="", xpd=TRUE)
-text(x=0.3, y=0.5, label="Relative abundance (%)", srt=90, cex=1.5)
-text(x=0.3, y=1, label="B", srt=0, cex=2, font=2)
-
-plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
-text(x=0.55, y=0.25, label="Days since AOM administration")
-```
 
 
 **Figure 5. Antibiotic intervention prior to second administration of
