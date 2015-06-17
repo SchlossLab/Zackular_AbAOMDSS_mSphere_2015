@@ -194,6 +194,12 @@ $(FIGURES)/figure_4.pdf data/process/distance_tumor_correlation.Rdata : code/bui
 				$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared
 	source("code/build_figure_4.R")
 
+$(FIGURES)/figure_5.pdf : code/build_figure_5.R data/process/tumor_counts.tsv\
+							data/process/intervention_tumor_counts.tsv\
+							results/pictures/tumor_images_intervention.png
+	source("code/build_figure_5.R")
+
+
 
 write.paper :   data/process/baseline_model.Rdata\
 				data/process/final_model.Rdata\
@@ -204,6 +210,7 @@ write.paper :   data/process/baseline_model.Rdata\
 				$(FIGURES)/figure_2.pdf\
 				$(FIGURES)/figure_3.pdf\
 				$(FIGURES)/figure_4.pdf\
+				$(FIGURES)/figure_5.pdf\
 				$(FIGURES)/figure_S1.pdf\
 				$(FIGURES)/figure_S2.pdf\
 				$(FIGURES)/figure_S3.pdf\

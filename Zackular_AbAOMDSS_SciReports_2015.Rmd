@@ -477,39 +477,6 @@ depicted in Figure 1A with enumeration of tumors performed at the end point of
 the model (A). Representative images of tumors in the distal colon of mice from
 each treatment group (B).
 
-```{r figure5, fig.width=3.5, fig.height=3.5}
-abx <- read.table(file="data/process/tumor_counts.tsv", header=T)
-intervention <- read.table(file="data/process/intervention_tumor_counts.tsv", header=T)
-
-layout(matrix(c(1,2), byrow=T, nrow=1), width=c(1.5,1.20), height=1)
-
-par(mar=c(6,4,0.5,0.25))
-
-plot(NA, xlim=c(0.5,4.5), ylim=c(0,25), xlab="", ylab="Number of tumors", axes=F)
-stripchart(at=1, x=abx[grepl("NoAbs", rownames(abx)), "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=1, jitter=0.15, cex=1.0, add=T)
-stripchart(at=2, x=abx[grepl("AllAbs", rownames(abx)), "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=19, jitter=0.15, cex=1.0, add=T)
-stripchart(at=3, x=intervention[intervention$experiment=="Intervention1", "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=18, jitter=0.15, cex=1.5, add=T)
-stripchart(at=4, x=intervention[intervention$experiment=="Intervention2", "n_tumors"],
-    vertical=T, method="jitter", col="black", pch=17, jitter=0.15, cex=1.5, add=T)
-
-text(y=-9, x=(1:4)-0.6, label=c("No antibiotics", "All antibiotics", "Intervention 1", "Intervention 2"), srt=70, cex=0.8, xpd=TRUE)
-axis(2, las=1)
-axis(1, tick=TRUE, labels=FALSE)
-box()
-mtext(text="A", side=2, line=2.5, at=25, font=2.5, cex=2, las=2, xpd=TRUE)
-
-
-par(mar=c(6,1.5,0.0,0.0))
-plot(c(0, 150), c(0, 150), type = "n", xlab = "", ylab = "", axes=FALSE)
-img <- readPNG("results/pictures/tumor_images_intervention.png")
-lim <- par()
-rasterImage(img, -10, -10, 160, 160, xpd=TRUE)
-text(label="B", x=-30.0, y=143, font=2.5, cex=2, xpd=TRUE)
-```
-
 
 **Supplemental Figure 1. Effect of pruning the number of OTUs included in the random forest model for predicting the number of tumors at the end of the model based on the microbiota found at the start of the model.** The order of OTUs was set by the percent increase in mean square error when that OTU was removed from the model. The percent of the variance explained here indicates the quality of the fit when the top features were used to generate a model. The star indicates the number of OTUs that resulted in the model explaining the maximum percent of the variance.
 
