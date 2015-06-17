@@ -1,3 +1,5 @@
+library("png")
+
 pdf("results/figures/figure_5.pdf", width=3.5, height=3.5)
 
 abx <- read.table(file="data/process/tumor_counts.tsv", header=T)

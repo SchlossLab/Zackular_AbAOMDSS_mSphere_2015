@@ -1,3 +1,6 @@
+source("code/rf_baseline_analysis.R")
+
+
 get_dist_lt <- function(file_name){
 
     dist_vector <- scan(file_name, what="", sep="\n")

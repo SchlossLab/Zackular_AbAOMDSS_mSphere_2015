@@ -324,9 +324,9 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
 
     #let's just use the top six OTUs, based on our inspection of the importance plot
     #and combine the OTU name with its taxonomy and % Increase in MSE
-    otus <- rownames(sorted_importance)[1:10]
+    otus <- rownames(sorted_importance)
     pretty_otus <- gsub("Otu0*", "OTU ", otus)
-    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[1:10,"%IncMSE"], 1), 1))
+    otu_labels <- paste0("(", pretty_otus, ")", "\n% Increase in MSE: ", format(round(sorted_importance[,"%IncMSE"], 1), 1))
     otu_labels <- paste(tax[otus,2], otu_labels, sep=" ")
 
 
