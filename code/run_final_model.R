@@ -1,7 +1,7 @@
 source("code/rf_baseline_analysis.R")
 library("randomForest")
 
-set.seed(19760620)
+set.seed(1)
 
 shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
 rel_abund <- get_rel_abund(shared_file, "DSS")
