@@ -1,0 +1,232 @@
+AllAbs-Metro-NoAbs-Strep-StrepMetro-Vanc-VancMetro-VancStrep	Among	Within	Total
+SS	13.8309	2.03375	15.8646
+df	7	38	45
+MS	1.97584	0.0535197
+
+Fs:	36.918
+p-value: <1e-05*
+
+AllAbs-Metro	Among	Within	Total
+SS	2.86013	0.140043	3.00017
+df	1	11	12
+MS	2.86013	0.0127312
+
+Fs:	224.655
+p-value: 0.00068*
+
+AllAbs-NoAbs	Among	Within	Total
+SS	4.21257	1.18768	5.40026
+df	1	18	19
+MS	4.21257	0.0659824
+
+Fs:	63.8439
+p-value: <1e-05*
+
+AllAbs-Strep	Among	Within	Total
+SS	2.99785	0.0794015	3.07725
+df	1	11	12
+MS	2.99785	0.00721832
+
+Fs:	415.311
+p-value: 0.00068*
+
+AllAbs-StrepMetro	Among	Within	Total
+SS	0.268116	0.134357	0.402473
+df	1	11	12
+MS	0.268116	0.0122143
+
+Fs:	21.951
+p-value: 0.00078*
+
+AllAbs-Vanc	Among	Within	Total
+SS	1.76503	0.0241275	1.78915
+df	1	9	10
+MS	1.76503	0.00268083
+
+Fs:	658.389
+p-value: 0.00204
+
+AllAbs-VancMetro	Among	Within	Total
+SS	1.28944	0.0273387	1.31678
+df	1	9	10
+MS	1.28944	0.00303763
+
+Fs:	424.489
+p-value: 0.00188
+
+AllAbs-VancStrep	Among	Within	Total
+SS	2.61108	0.573952	3.18503
+df	1	11	12
+MS	2.61108	0.0521775
+
+Fs:	50.0422
+p-value: 0.00083*
+
+Metro-NoAbs	Among	Within	Total
+SS	1.6822	1.28334	2.96554
+df	1	15	16
+MS	1.6822	0.0855561
+
+Fs:	19.662
+p-value: 0.00015*
+
+Metro-Strep	Among	Within	Total
+SS	1.09942	0.17506	1.27448
+df	1	8	9
+MS	1.09942	0.0218825
+
+Fs:	50.242
+p-value: 0.0077
+
+Metro-StrepMetro	Among	Within	Total
+SS	2.1744	0.230016	2.40442
+df	1	8	9
+MS	2.1744	0.0287519
+
+Fs:	75.6263
+p-value: 0.00709
+
+Metro-Vanc	Among	Within	Total
+SS	0.98682	0.119786	1.10661
+df	1	6	7
+MS	0.98682	0.0199643
+
+Fs:	49.4292
+p-value: 0.01716
+
+Metro-VancMetro	Among	Within	Total
+SS	0.787934	0.122997	0.910931
+df	1	6	7
+MS	0.787934	0.0204995
+
+Fs:	38.4367
+p-value: 0.01668
+
+Metro-VancStrep	Among	Within	Total
+SS	2.09302	0.66961	2.76263
+df	1	8	9
+MS	2.09302	0.0837013
+
+Fs:	25.0058
+p-value: 0.00806
+
+NoAbs-Strep	Among	Within	Total
+SS	0.333664	1.2227	1.55636
+df	1	15	16
+MS	0.333664	0.0815133
+
+Fs:	4.09337
+p-value: 0.00819
+
+NoAbs-StrepMetro	Among	Within	Total
+SS	2.9925	1.27765	4.27015
+df	1	15	16
+MS	2.9925	0.085177
+
+Fs:	35.1327
+p-value: 7e-05*
+
+NoAbs-Vanc	Among	Within	Total
+SS	2.04015	1.16742	3.20758
+df	1	13	14
+MS	2.04015	0.0898019
+
+Fs:	22.7184
+p-value: 0.00071*
+
+NoAbs-VancMetro	Among	Within	Total
+SS	2.12721	1.17064	3.29785
+df	1	13	14
+MS	2.12721	0.0900489
+
+Fs:	23.6228
+p-value: 0.00082*
+
+NoAbs-VancStrep	Among	Within	Total
+SS	2.72542	1.71725	4.44266
+df	1	15	16
+MS	2.72542	0.114483
+
+Fs:	23.8062
+p-value: 0.0001*
+
+Strep-StrepMetro	Among	Within	Total
+SS	2.37132	0.169374	2.5407
+df	1	8	9
+MS	2.37132	0.0211717
+
+Fs:	112.004
+p-value: 0.0069
+
+Strep-Vanc	Among	Within	Total
+SS	1.80649	0.0591439	1.86563
+df	1	6	7
+MS	1.80649	0.00985732
+
+Fs:	183.264
+p-value: 0.01637
+
+Strep-VancMetro	Among	Within	Total
+SS	1.83686	0.0623551	1.89922
+df	1	6	7
+MS	1.83686	0.0103925
+
+Fs:	176.748
+p-value: 0.01588
+
+Strep-VancStrep	Among	Within	Total
+SS	2.15333	0.608968	2.7623
+df	1	8	9
+MS	2.15333	0.0761211
+
+Fs:	28.2882
+p-value: 0.00795
+
+StrepMetro-Vanc	Among	Within	Total
+SS	1.43886	0.1141	1.55296
+df	1	6	7
+MS	1.43886	0.0190166
+
+Fs:	75.6636
+p-value: 0.01776
+
+StrepMetro-VancMetro	Among	Within	Total
+SS	1.14024	0.117311	1.25755
+df	1	6	7
+MS	1.14024	0.0195518
+
+Fs:	58.3188
+p-value: 0.01694
+
+StrepMetro-VancStrep	Among	Within	Total
+SS	2.0123	0.663924	2.67623
+df	1	8	9
+MS	2.0123	0.0829905
+
+Fs:	24.2474
+p-value: 0.00788
+
+Vanc-VancMetro	Among	Within	Total
+SS	0.388596	0.00708103	0.395677
+df	1	4	5
+MS	0.388596	0.00177026
+
+Fs:	219.514
+p-value: 0.01672
+
+Vanc-VancStrep	Among	Within	Total
+SS	1.56211	0.553694	2.1158
+df	1	6	7
+MS	1.56211	0.0922824
+
+Fs:	16.9275
+p-value: 0.01817
+
+VancMetro-VancStrep	Among	Within	Total
+SS	1.6197	0.556906	2.1766
+df	1	6	7
+MS	1.6197	0.0928176
+
+Fs:	17.4503
+p-value: 0.018
+
