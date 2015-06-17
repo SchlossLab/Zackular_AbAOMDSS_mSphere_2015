@@ -246,12 +246,12 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
 
     par(mar=c(0.5,0.5,0.5,0.5))
 
-    design <- matrix(1:9, nrow=3, byrow=T)
-    design <- cbind(c(10,10,10), design)
-    design <- rbind(design, c(0,11,11,11))
-    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,1,0.3))
+    design <- matrix(1:12, nrow=4, byrow=T)
+    design <- cbind(c(13,13,13,13), design)
+    design <- rbind(design, c(0,14,14,14))
+    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,1,1,0.3))
 
-    for(i in 1:9){
+    for(i in 1:12){
 
         #get the row and column number for each spot in the layout
         row <- ceiling(i/3)
@@ -284,7 +284,7 @@ plot_baseline_features <- function(tumor_counts, forest, rabund, treatment){
         text(x=0.8e-4, y=25.5, label=otu_labels[i], pos=4, font=2)
 
         #if it's on the bottom row, put a customized axis indicating the % rabund
-        if(row == 3){
+        if(row == 4){
             axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
                     label=c("0", "0.1", "1", "10", "100"),
                     cex.axis=1.5)
@@ -332,12 +332,12 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
 
     par(mar=c(0.5,0.5,0.5,0.5))
 
-    design <- matrix(1:12, nrow=4, byrow=T)
-    design <- cbind(c(13,13,13,13), design)
-    design <- rbind(design, c(0,14,14,14))
-    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,1,1,0.3))
+    design <- matrix(1:9, nrow=3, byrow=T)
+    design <- cbind(c(10,10,10), design)
+    design <- rbind(design, c(0,11,11,11))
+    layout(design, widths=c(0.3,1,1,1), heights=c(1,1,1,0.3))
 
-    for(i in 1:10){
+    for(i in 1:8){
 
         #get the row and column number for each spot in the layout
         row <- ceiling(i/3)
@@ -370,7 +370,7 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
         text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
 
         #if it's on the bottom row, put a customized axis indicating the % rabund
-        if(row == 4){
+        if(row == 3){
             axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
                     label=c("0", "0.1", "1", "10", "100"),
                     cex.axis=1.5)
@@ -382,7 +382,6 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
         }
     }
 
-    plot.new()
     plot.new()
 
     plot.new()

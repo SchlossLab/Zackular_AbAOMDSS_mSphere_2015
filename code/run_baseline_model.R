@@ -1,7 +1,7 @@
 source("code/rf_baseline_analysis.R")
 library("randomForest")
 
-set.seed(1)
+set.seed(19760620)
 
 shared_file <- "data/process/ab_aomdss.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.pick.an.unique_list.0.03.subsample.shared"
 rel_abund <- get_rel_abund(shared_file, "DSS")
@@ -76,7 +76,7 @@ dev.off()
 
 
 
-cairo_pdf(file="results/figures/figure_3.pdf", width=7.5, height=7)
+cairo_pdf(file="results/figures/figure_3.pdf", width=7.5, height=10)
 	plot_baseline_features(tumor_counts_baseline, rf_baseline_top_features_forest,
 						rabund_baseline_top_features, treatment_baseline)
 dev.off()

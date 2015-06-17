@@ -177,14 +177,16 @@ $(FIGURES)/figure_1.pdf : code/build_figure_1.R\
 $(FIGURES)/figure_S1.pdf $(FIGURES)/figure_2.pdf $(FIGURES)/figure_3.pdf data/process/baseline_model.Rdata : code/rf_baseline_analysis.R\
 							$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
 							$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy\
-							data/process/tumor_counts.tsv
+							data/process/tumor_counts.tsv\
+							code/run_baseline_model.R
 	R -e 'source("code/run_baseline_model.R")'
 
 
 $(FIGURES)/figure_S2.pdf $(FIGURES)/figure_S3.pdf $(FIGURES)/figure_S4.pdf data/process/final_model.Rdata : code/rf_baseline_analysis.R\
 								$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.subsample.shared\
 								$(BASIC_STEM).pick.pick.pick.an.unique_list.0.03.cons.taxonomy\
-								data/process/tumor_counts.tsv
+								data/process/tumor_counts.tsv\
+								code/run_final_model.R
 	R -e 'source("code/run_final_model.R")'
 
 

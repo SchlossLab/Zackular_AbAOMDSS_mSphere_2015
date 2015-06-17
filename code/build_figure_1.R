@@ -169,6 +169,6 @@ box()
 axis(1, label=format(seq(-0.6,0.6,0.3), nsmall=1), at=seq(-0.6,0.6,0.3))
 axis(2, label=format(seq(-0.6,0.6,0.3), nsmall=1), at=seq(-0.6,0.6,0.3), las=1)
 
-text(label="E", x=-0.88, y=0.83, font=2.5, cex=2, xpd=TRUE)
+text(label="E", x=-1.05, y=0.83, font=2.5, cex=2, xpd=TRUE)
 
 dev.off()

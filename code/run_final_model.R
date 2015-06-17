@@ -74,7 +74,7 @@ cairo_pdf(file="results/figures/figure_S3.pdf", width=3.5, height=3.5)
 dev.off()
 
 
-cairo_pdf(file="results/figures/figure_S4.pdf", width=7.5, height=10)
+cairo_pdf(file="results/figures/figure_S4.pdf", width=7.5, height=7.5)
 	plot_final_features(tumor_counts_final, rf_final_top_features_forest,
 						rabund_final_top_features, treatment_final)
 dev.off()
