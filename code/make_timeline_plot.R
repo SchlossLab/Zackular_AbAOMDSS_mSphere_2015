@@ -47,7 +47,7 @@ vancstrep_otus <- get_top_delta("VancStrep")
 
 composite_otus <- c(all_otus, metro_otus, vanc_otus, noabs_otus, strepmetro_otus,
                     vancmetro_otus, vancstrep_otus)
-ranked_otus <- sort(table(composite_otus), decreasing=TRUE)[1:2]
+ranked_otus <- sort(table(composite_otus), decreasing=TRUE)
 
 
 

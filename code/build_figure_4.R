@@ -49,7 +49,6 @@ tumor_counts_prepost <- tumor_counts[names(start_end_dist), "n_tumors"]
 dist_tumor_cor <- cor.test(tumor_counts_prepost, start_end_dist,
                                 method="spearman")
 
-save(dist_tumor_cor, file="data/process/distance_tumor_correlation.Rdata")
 
 pdf(file="results/figures/figure_4.pdf", width=3.75, height=7)
 design <- matrix(c(2,1,
@@ -89,3 +88,5 @@ text(x=0.3, y=1, label="B", srt=0, cex=2, font=2)
 plot(NA, xlim=c(0.1,1), ylim=c(0,1), axes=F, xlab="", ylab="")
 text(x=0.55, y=0.25, label="Days since AOM administration")
 dev.off()
+
+save(ranked_otus, dist_tumor_cor, file="data/process/distance_tumor_correlation.Rdata")
