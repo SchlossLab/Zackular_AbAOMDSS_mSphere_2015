@@ -36,8 +36,7 @@ tumor-promoting inflammation. In addition, it is likely that the loss of key
 bacterial populations may result in the loss of protective functions that are
 normally provided by the microbiota. We explored the role of the gut microbiota
 in colon tumorigenesis using an inflammation-based murine model. We observed
-that perturbing the microbiota with different combinations of antibiotics did
-not change the bacterial load but reduced the number of tumors at the end of the
+that perturbing the microbiota with different combinations of antibiotics reduced the number of tumors at the end of the
 model. Using the random forest machine learning algorithm, we successfully
 modeled the number of tumors that developed over the course of the model based
 on the initial composition of the microbiota. The timing of antibiotic
