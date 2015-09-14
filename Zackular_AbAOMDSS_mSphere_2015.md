@@ -40,8 +40,12 @@ colon tumorigenesis based on the composition of the microbiota and that altering
 the gut microbiota can alter the course of tumorigenesis.
 
 
-**Keywords:** azoxymethane, dextran sodium sulfate, 16S rRNA gene sequencing,
-microbial ecology, microbiome
+**Importance**
+
+Mounting evidence indicates that alterations to the gut microbiota, the complex community of bacteria that inhabits the gastrointestinal tract, are strongly associated with the development colorectal cancer. We used antibiotic-perturbations to a murine model of inflammation-driven colon cancer to generate eight starting communities that resulted in varying severity of tumorigenesis. Furthermore, we were able to quantitatively predict the final number of tumors based on the initial composition of the gut microbiota. These results further bolster the evidence that the gut microbiota is involved in mediating the development of colorectal cancer. As a final proof of principle, we showed that perturbing the gut microbiota in the midst of tumorigenesis could halt the formation of additional tumors. Together, alteration of the gut microbiota may be a useful therapeutic approach to preventing and altering the trajectory of colorectal cancer.
+
+
+**Keywords:** azoxymethane, dextran sodium sulfate, 16S rRNA gene sequencing, microbial ecology, microbiome
 
 
 
@@ -226,12 +230,12 @@ sampling. A mock community was sequenced and processed in parallel to the fecal
 samples. Based on the mock community data we observed a sequencing error rate of
 0.05%. The complete analysis methods and this document as an R-executable
 document are available at
-https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015. All FASTQ
+https://github.com/SchlossLab/Zackular_AbAOMDSS_mSphere_2015. All FASTQ
 sequence data can be obtained from the Sequence Read Archive at NCBI (Accession SRP056144).
 
 **Statistical analysis.** The microbiota data were analyzed using the R project
 for statistical computing. All R source code is available on our GitHub
-repository at https://github.com/SchlossLab/Zackular_AbAOMDSS_SciReports_2015.
+repository at https://github.com/SchlossLab/Zackular_AbAOMDSS_mSphere_2015.
 All random forest models were made using the randomForest package with 10,000
 trees {Breiman, 2001 #2526}. Diagnostic plots indicated that the percent of the
 variance explained had stabilized with this number of trees. Comparison of
@@ -240,12 +244,15 @@ The resulting p-values were corrected for multiple comparisons using the
 Benjamini-Hochberg procedure using an experiment-wide Type I error rate of 0.05.
 
 
-**Acknowledgements**
+**Funding statement**
 
-This work was supported by grants from the National Institutes for Health to PDS
-(R01GM099514, R01HG005975, P30DK034933, University of Michigan GI SPORE) and GYC
-(University of Michigan GI SPORE, ARRA Supplement P30CA4659-22S3, and R01
-CA166879).
+This work was supported by grants from the National Institutes for Health to PDS (R01GM099514, R01HG005975, P30DK034933, University of Michigan GI SPORE) and GYC (University of Michigan GI SPORE, ARRA Supplement P30CA4659-22S3, and R01 CA166879). JPZ, GYC, and PDS designed the experiments; JPZ and NTB carried out the experiments; JPZ, NTB, and PDS analyzed the data; JPZ and PDS wrote the initial drafts of the manuscript and all authors were involved in its editing.
+
+
+**Contributions**
+
+All authors contributed to the design of the experiments. JPZ and NTB carried out the experiments and generated the data. JPZ and PDS analyzed the data. All authors participated in interpreting the results. JPZ and PDS wrote the manuscript and NTB and GYC helped with the final editing of the text.
+
 
 
 **References**
@@ -257,15 +264,6 @@ CA166879).
 
 
 
-**Contributions**
-All authors contributed to the design of the experiments. JPZ and NTB carried
-out the experiments and generated the data. JPZ and PDS analyzed the data. All
-authors participated in interpreting the results. JPZ and PDS wrote the
-manuscript and NTB and GYC helped with the final editing of the text.
-
-
-**Competing financial interests**
-The authors declare no competing financial interests.
 
 
 
