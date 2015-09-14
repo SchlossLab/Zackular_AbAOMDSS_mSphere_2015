@@ -27,8 +27,9 @@ Overview
     |
     |- scratch/        # temporary files that can be safely deleted or lost
     |
-    |- Zackular_AbAOMDSS_GutMicrobes_2015.Rmd  # executable Rmarkdown for this study, if applicable
-    |- Zackular_AbAOMDSS_GutMicrobes_2015.md   # Markdown (GitHub) version of the *Rmd file
-    |- Zackular_AbAOMDSS_GutMicrobes_2015.html # HTML version of *.Rmd file
+    |- Zackular_AbAOMDSS_mSphere_2015.Rmd  # executable Rmarkdown for this study, if applicable
+    |- Zackular_AbAOMDSS_mSphere_2015.md   # Markdown (GitHub) version of the *Rmd file
+    |- Zackular_AbAOMDSS_mSphere_2015.html # HTML version of *.Rmd file
+    |- Zackular_AbAOMDSS_mSphere_2015.docx # Word version of *.Rmd file
     |
     +- Makefile        # executable Makefile for this study
