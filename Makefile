@@ -218,8 +218,8 @@ write.paper :   data/process/baseline_model.Rdata\
 				$(FIGURES)/figure_S2.pdf\
 				$(FIGURES)/figure_S3.pdf\
 				$(FIGURES)/figure_S4.pdf
-	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_SciReports_2015.Rmd', 'Zackular_AbAOMDSS_SciReports_2015.html')"; \
-	pandoc -f markdown -t docx Zackular_AbAOMDSS_SciReports_2015.md -o Zackular_AbAOMDSS_SciReports_2015.docx
+	R -e "library(knitr);knit2html('Zackular_AbAOMDSS_mSphere_2015.Rmd', 'Zackular_AbAOMDSS_mSphere_2015.html')"; \
+	pandoc -f markdown -t docx Zackular_AbAOMDSS_mSphere_2015.md -o Zackular_AbAOMDSS_mSphere_2015.docx
 
 
 
