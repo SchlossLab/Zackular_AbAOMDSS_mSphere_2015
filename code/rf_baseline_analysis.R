@@ -370,7 +370,7 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
         text(x=0.8e-4, y=25, label=otu_labels[i], pos=4, font=2)
 
         #if it's on the bottom row, put a customized axis indicating the % rabund
-        if(row == 3){
+        if(row == 3 | (row==2 & column==3)){
             axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
                     label=c("0", "0.1", "1", "10", "100"),
                     cex.axis=1.5)
@@ -383,6 +383,13 @@ plot_final_features <- function(tumor_counts, forest, rabund, treatment){
     }
 
     plot.new()
+#    plot(NA, log="x", bty="n", type="n", ylab="", xlab="",
+ #           xlim=c(1e-4, 1), ylim=c(0,27), yaxt="n",
+  #          xaxt="n", cex.lab=1.5)
+   #
+   #  axis(1, at=c(1.25e-4, 1e-3,1e-2,1e-1,1),
+   #         label=c("0", "0.1", "1", "10", "100"),
+   #         cex.axis=1.5)
 
     plot.new()
     text(x=0.15, y=0.5, label="Observed number of tumors", cex=1.5, srt=90)
