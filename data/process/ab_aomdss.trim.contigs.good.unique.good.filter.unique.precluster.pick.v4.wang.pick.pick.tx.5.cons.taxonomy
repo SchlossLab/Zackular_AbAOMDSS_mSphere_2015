@@ -1,0 +1,15 @@
+OTU	Size	Taxonomy
+Otu01	2946141	Bacteria(100);Bacteroidetes(100);Bacteroidia(98);Bacteroidales(98);unclassified(100);unclassified(100);
+Otu02	2150959	Bacteria(100);Firmicutes(100);Bacilli(66);Lactobacillales(64);Lactobacillaceae(61);Lactobacillus(61);
+Otu03	1320808	Bacteria(100);Proteobacteria(100);Gammaproteobacteria(66);Enterobacteriales(66);Enterobacteriaceae(66);unclassified(66);
+Otu04	62314	Bacteria(100);unclassified(100);unclassified(100);unclassified(100);unclassified(100);unclassified(100);
+Otu05	65935	Bacteria(100);Actinobacteria(100);Actinobacteria(100);Bifidobacteriales(80);Bifidobacteriaceae(80);Bifidobacterium(80);
+Otu06	246973	Bacteria(100);Tenericutes(100);Mollicutes(100);Anaeroplasmatales(67);Anaeroplasmataceae(67);Anaeroplasma(67);
+Otu07	261372	Bacteria(100);Verrucomicrobia(100);Verrucomicrobiae(100);Verrucomicrobiales(100);Verrucomicrobiaceae(100);Akkermansia(100);
+Otu08	2156	Bacteria(100);Candidatus_Saccharibacteria(100);unclassified(100);unclassified(100);unclassified(100);unclassified(100);
+Otu09	23883	Bacteria(100);Deferribacteres(100);Deferribacteres(100);Deferribacterales(100);Deferribacteraceae(100);Mucispirillum(100);
+Otu10	5735	Bacteria(100);Deinococcus-Thermus(100);Deinococci(100);Deinococcales(100);Deinococcaceae(100);Deinococcus(100);
+Otu11	2	Bacteria(100);Planctomycetes(100);Planctomycetia(100);Planctomycetales(100);Planctomycetaceae(100);unclassified(100);
+Otu12	1	Bacteria(100);Parcubacteria(100);unclassified(100);unclassified(100);unclassified(100);unclassified(100);
+Otu13	1	Bacteria(100);Chloroflexi(100);Caldilineae(100);Caldilineales(100);Caldilineaceae(100);Litorilinea(100);
+Otu14	1	Bacteria(100);Fusobacteria(100);Fusobacteriia(100);Fusobacteriales(100);Fusobacteriaceae(100);Cetobacterium(100);
